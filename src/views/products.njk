@@ -1,0 +1,37 @@
+{% extends "layouts/layout.njk" %}
+{% from "common/components/swipper/index.njk" import Homeswipper,ProductCardswipper,opinionsswipper %}
+{% from "common/components/headers/index.njk" import titleSection %}
+{% from "common/components/cards/index.njk" import cardCategory %}
+{% from "common/components/operations/index.njk" import showMore,navogationLink %}
+
+{% block content %}
+<div class="main-bg pb-10">
+    <div class="flex justify-center ">
+        <div class="container">
+            <div class="mt-20 mb-4">
+                {{navogationLink(firstText="الرئيسية",firstLink="/",secondText=page.title,secondLink="#")}}
+            </div>
+            <div class=" my-10 relative">
+                <img class="w-full" src={{"images/pages.webp" | assets}}>
+            </div>
+            <div class=" grid md:grid-cols-4  grid-cols-2 gap-1">
+
+                {% for product in context.products %}
+                {{cardCategory(category=product.title,image=product.images[0].imageUrl, price=product.priceAfterDiscount,slug=product.slug,
+                discount="67", priceBeforeDiscount=product.price, rating=5,id=product._id,type="productsCategory")}}
+                {% endfor %}
+
+            </div>
+            <div class=" my-16 mb-10">
+                {{titleSection(text="آراء عملائنا")}}
+            </div>
+            <div class="flex justify-center">
+                <div class=w-11/12>
+
+                    {{opinionsswipper()}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

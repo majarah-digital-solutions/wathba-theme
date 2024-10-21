@@ -1,0 +1,10 @@
+{% extends "layouts/layout.njk" %}
+{% block title %}شكرًا لك - {{ page.title }}{% endblock %}
+{% block content %}
+  <div class="md:h-screen flex flex-col justify-center items-center text-center">
+    <img class="h-[100px] w-[100px] mb-3" src={{ "images/thank-you.png" | assets }} alt="شكرًا لك">
+    <h1 class="text-2xl font-bold mb-4">شكرًا لك على طلبك!</h1>
+    <p class="mb-4">لقد تم استلام طلبك بنجاح وسنقوم بمعالجته في أقرب وقت ممكن.</p>
+    <a href="/" class="bg-blue-500 text-white py-2 px-4 rounded">العودة إلى الصفحة الرئيسية</a>
+  </div>
+{% endblock %}

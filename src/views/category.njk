@@ -1,0 +1,28 @@
+{% extends "layouts/layout.njk" %}
+{% from "common/components/swipper/index.njk" import Homeswipper,ProductCardswipper,opinionsswipper %}
+{% from "common/components/headers/index.njk" import titleSection %}
+{% from "common/components/cards/index.njk" import cardSection1,cardOptions %}
+{% from "common/components/operations/index.njk" import showMore,navogationLink %}
+
+{% block content %}
+<div class="main-bg pb-10">
+    <div class="flex justify-center ">
+        <div class="xl:w-10/12  xl:w-10/12 w-[97%]">
+            <div class="my-[4.5rem]">
+                {{navogationLink(firstText="الرئيسية",firstLink="/",secondText=page.title,secondLink="#")}}
+
+            </div>
+            <div class=" my-10 relative">
+                <img class="w-full" src={{"images/pages.webp" | assets}}>
+            </div>
+            <div class=" grid md:grid-cols-3  grid-cols-2 gap-3">
+                {% for product in context.categories %}
+                {{cardSection1(category=product.title,image=product.iconUrl, rating=5,type="category",slug=product.slug)}}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

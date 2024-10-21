@@ -1,0 +1,63 @@
+{% from "common/components/operations/index.njk" import searchBox,
+language %}
+
+<!-- header -->
+<div class=" sticky top-0 flex flex-col gap-8 bg-white shadow-mainColor w-full">
+
+    <div class=" w-full h-16 pt-8  flex items-center     z-9999999999">
+        <div class=" flex items-center justify-between container">
+            <div class=" flex gap-6">
+                <img class=" h-12 w-20  object-contain" src={{global.app.logoUrl}} alt="Logo">
+
+
+            </div>
+
+            <div class=" py-2 px-3 w-5/12 rounded-lg  border-mainColor border flex gap-2 items-center ">
+                <div class=" border-l h-8 w-9 flex items-center">
+
+                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M14.446 14.54L17.9191 17.9M8.91914 4.69998C10.9074 4.69998 12.5191 6.31175 12.5191 8.29998M16.7991 8.93998C16.7991 13.2699 13.2891 16.78 8.95914 16.78C4.62923 16.78 1.11914 13.2699 1.11914 8.93998C1.11914 4.61006 4.62923 1.09998 8.95914 1.09998C13.2891 1.09998 16.7991 4.61006 16.7991 8.93998Z"
+                            stroke="{{global.app.settings.mainColor}}" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+
+                </div>
+
+                <input class="w-full outline-none text-black bg-transparent " placeholder="ابحث الان....">
+
+            </div>
+
+            <div class=" flex  gap-3 items-center">
+                <qumra-cart-button badgeSize="20px" iconsize="20px" testsize="13px"
+                    iconcolor="{{global.app.settings.mainColor}}" showtext={false}></qumra-cart-button>
+                <a class="bg-mainColor py-3 flex items-center gap-2 px-4 rounded-md text-white  font-bold ">
+                    <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M10.0002 10.0834V3.83337M5.59046 5.50004C4.20642 6.72161 3.3335 8.50889 3.3335 10.5C3.3335 14.1819 6.31826 17.1667 10.0002 17.1667C13.6821 17.1667 16.6668 14.1819 16.6668 10.5C16.6668 8.50889 15.7939 6.72161 14.4099 5.50004"
+                            stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    تسجيل الدخول
+
+                </a>
+
+            </div>
+        </div>
+    </div>
+    <div class=" flex border-t justify-start items-center py-4">
+        <div class="container">
+        {% for item in global.app.lists.header%}
+
+        <a href="{{item.href}}" class=" py-2 px-3 rounded-md text-mainColor font-bold {{item.class}}">{{item.title}}</a>
+        {% endfor %}
+    </div>
+</div>
+</div>
+<!-- header -->
+
+<script>
+    console.log("{{global}}", {{ global.app.lists | dump | safe }});
+    var test = JSON.parse('{{global.app.lists.header | dump |safe}}')
+    test.forEach(element =>
+        console.log("Header element:", element)
+    );
+</script>
