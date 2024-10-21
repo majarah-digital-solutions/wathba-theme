@@ -10,22 +10,24 @@ navogationLink %} #}
         <p class="">تشكيلة متنوعة من السيارات تناسب احتياجاتك</p>
     </div>
     <div class=" flex md:flex-row flex-col gap-10">
-        <div class="w-full flex flex-col gap-3">
-            <img class="w-full rounded-lg shadow-all" style="height: 375px" src={{context.product.images[0].imageUrl}}>
+        <div class=" w-5/12 z-10  flex flex-col gap-3">
+            <div class="relative">
+               <qumra-slider>
+                {%for image in context.product.images%}
+                    <qumra-slider-item><img class="h-full w-full " style="object-fit: contain;" src="{{ image.imageUrl }}" alt="Image description"></qumra-slider-item>
+                    {%endfor%}
+                </qumra-slider>
             <div class=" grid grid-cols-4 gap-3">
-                {# <img class=" rounded-lg" src={{"/images/car1.jpeg"}}>
-                <img class=" rounded-lg" src={{"/images/car1.jpeg"}}>
-                <img class=" rounded-lg" src={{"/images/car1.jpeg"}}>
-                <img class=" rounded-lg" src={{"/images/car1.jpeg"}}> #}
                 {% for item in context.product.images %}
                 <img class=" shadow-md rounded-lg h-full" src={{item.imageUrl}}>
                 {% endfor %}
             </div>
-        </div>
+        </div></div>
         
         <div class="w-full ">
             <form class="flex flex-col gap-6" enctype="multipart/form-data" method="post" onsubmit="return window.Qumra.forms.submit('qqqqqq', event)">
             <div class=" flex flex-col gap-2 ">
+                <input type="hidden" name="product" value={{context.product._id}}>
                 <h2 class="text-2xl font-bold">{{context.product.title}}</h2>
                 <div class=" flex gap-4 items-center">
                     <div class=" flex gap-1 items-center">
