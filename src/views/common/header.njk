@@ -2,9 +2,9 @@
 language %}
 
 <!-- header -->
-<div class=" sticky z-9999999999 top-0 flex flex-col gap-8 bg-white shadow-mainColor w-full">
+<div class=" sticky z-9999 top-0 flex flex-col gap-8 bg-white shadow-mainColor w-full">
 
-    <div class=" w-full h-16 pt-8  flex items-center     z-9999999999">
+    <div class=" w-full h-16 pt-8  flex items-center     z-9999">
         <div class=" flex items-center justify-between container">
             <div class=" flex gap-6">
                 <img class=" h-12 w-20  object-contain" src={{global.app.logoUrl}} alt="Logo">
@@ -28,6 +28,7 @@ language %}
             </div>
 
             <div class=" flex  gap-3 items-center">
+               <qumra-user-menu iconsize="20px" iconcolor="{{global.app.settings.mainColor}}"></qumra-user-menu>
                 <qumra-cart-button badgeSize="20px" iconsize="20px" testsize="13px"
                     iconcolor="{{global.app.settings.mainColor}}" showtext={false}></qumra-cart-button>
                 <a class="bg-mainColor py-3 flex items-center gap-2 px-4 rounded-md text-white  font-bold ">

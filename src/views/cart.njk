@@ -8,45 +8,35 @@
     <div class=" flex md:flex-row flex-col gap-14">
         <div style="border-radius: 20px;" class=" bg-white initial-scroll shadow-all w-2/3 py-8 px-10 flex flex-col gap-6">
            
-            {%for item in [1,2,3,4,5]%}
+            {%for item in context.cart.items%}
             {%if item != 1%}
             <div class=" border-t  flex w-full"></div>
             {%endif%}
             <div class=" w-full flex gap-4 ">
-                <img class="w-20  h-20" style="border-radius: 4px" src="/images/car1.jpeg" alt="">
+                <img class="w-20  h-20" style="border-radius: 4px" src={{item.product.images[0].imageUrl}} alt="">
                 <div class=" w-full flex flex-col gap-4 ">
 
                     <div class=" w-full flex flex-col" style="gap: 6px;">
                         <div class=" flex justify-between w-full">
-                            <h2 class=" font-bold"> سيارة فورد اكسبيديشن</h2>
-                            <span class=" font-bold">500,000 ج.م</span>
+                            <h2 class=" font-bold">{{item.product.title}}</h2>
+                            <span class=" font-bold">{{item.product.price}} ج.م</span>
                         </div>
                         <div class="py-1 text-xs flex ">
-                            <div class=" pl-4 border-l">500,000 ج.م</div>
-                            <div class=" mr-4  text-mainColor">متوفر في المعرض</div>
+                            <div class=" pl-4 border-l">{{item.product.price}} ج.م</div>
+                            <div class=" mr-4  ">
+                                {%if(item.status == "open")%}
+                                <span class="text-mainColor">متوفر في المعرض</span>
+                                {%else%}
+                                <span class="text-red-500">غير متوفر</span>
+                                {%endif%}
+                            </div>
                         </div>
                     </div>
                     <div class=" flex justify-between">
-                        <div class=" flex gap-3">
                             <div class=" border border-subColor w-max rounded-md ">
                                 <qumra-quantity-input value=1></qumra-quantity-input>
                             </div>
-                            <qumra-product-options product={{context.product._id}}
-                                data="{{context.product.properties | dump}}"></qumra-product-options>
-                            <div class=" border border-subColor w-max rounded-md ">
-                                <qumra-quantity-input value=1></qumra-quantity-input>
-                            </div>
-                        </div>
                         <div class="py-1 flex items-center ">
-                            <div class=" h-5 pl-4 border-l gap-2 flex items-center">
-                                <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M2.37885 3.879C2.94143 3.31659 3.70435 3.00064 4.49985 3.00064C5.29534 3.00064 6.05826 3.31659 6.62085 3.879L7.49985 4.75725L8.37885 3.879C8.65559 3.59247 8.98662 3.36392 9.35263 3.20669C9.71864 3.04947 10.1123 2.96671 10.5106 2.96325C10.909 2.95979 11.304 3.03569 11.6727 3.18653C12.0414 3.33738 12.3764 3.56014 12.658 3.84181C12.9397 4.12349 13.1625 4.45845 13.3133 4.82714C13.4642 5.19583 13.5401 5.59086 13.5366 5.9892C13.5331 6.38754 13.4504 6.7812 13.2931 7.14721C13.1359 7.51322 12.9074 7.84426 12.6208 8.121L7.49985 13.2427L2.37885 8.121C1.81643 7.55842 1.50049 6.79549 1.50049 6C1.50049 5.20451 1.81643 4.44158 2.37885 3.879Z"
-                                        fill="#8C8C8C" stroke="#8C8C8C" stroke-width="2" stroke-linejoin="round" />
-                                </svg>
-                                حفظ
-                            </div>
                             <div class="  h-5 mr-4 gap-2 flex items-center">
                                 <svg width="10" height="13" viewBox="0 0 10 13" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -74,22 +64,22 @@
                     <div class=" flex flex-col gap-3">
                         <div class=" flex justify-between">
                             <span class=" font-bold  text-subColor">اجمالي الطلب</span>
-                            <span class=" font-bold ">2,000000</span>
+                            <span class=" font-bold ">{{context.cart.totalPrice}}</span>
                         </div>
                         <div class=" flex justify-between">
                             <span class=" font-bold  text-subColor">الخصم</span>
-                            <span class=" font-bold ">20%</span>
+                            <span class=" font-bold ">{{context.cart.productDiscount}}</span>
                         </div>
-                        <div class=" flex justify-between">
+                        {# <div class=" flex justify-between">
                             <span class=" font-bold  text-subColor">الضريبة</span>
-                            <span class=" font-bold ">1000</span>
-                        </div>
+                            <span class=" font-bold ">{{context.cart.totalPrice}}</span>
+                        </div> #}
                     </div>
                     <div class=" flex flex-col gap-4">
                         <div class=" border-b border-dashed flex w-full"></div>
                         <div class=" flex justify-between">
                             <span class=" font-bold  text-subColor">الاجمالي</span>
-                            <span class=" font-bold ">2,000000</span>
+                            <span class=" font-bold ">{{context.cart.totalProductsAfterDiscount}}</span>
                         </div>
                     </div>
                 </div>

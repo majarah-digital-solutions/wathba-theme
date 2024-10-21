@@ -17,11 +17,7 @@ navogationLink %} #}
                     <qumra-slider-item><img class="h-full w-full " style="object-fit: contain;" src="{{ image.imageUrl }}" alt="Image description"></qumra-slider-item>
                     {%endfor%}
                 </qumra-slider>
-            <div class=" grid grid-cols-4 gap-3">
-                {% for item in context.product.images %}
-                <img class=" shadow-md rounded-lg h-full" src={{item.imageUrl}}>
-                {% endfor %}
-            </div>
+    
         </div></div>
         
         <div class="w-full ">
@@ -60,11 +56,6 @@ navogationLink %} #}
                     </svg>
                     <div class="">متوفر في المعرض</div>
                 </div>
-                <div class="">
-                    <span>SKU : </span>
-                    <span style="color: #6C6D6E;">{{ context.product.SKU }}</span>
-
-                </div>
             </div>
             <div class="pt-6 border-t" style="border-color: #D9D9D9;">
                 <div class=" flex gap-2 items-end">
@@ -78,10 +69,10 @@ navogationLink %} #}
                     تحتوي على ميزات أمان متطورة مثل نظام مراقبة النقاط العمياء. تعد فورد إكسبيديشن خياراً مثالياً
                     للعائلات ومحبي المغامرات بفضل قدرتها على التعامل مع مختلف الظروف.</div>
             </div>
-            <div class="pt-6 border-t font-bold" style="border-color: #D9D9D9">
+            <div class="pt-6 border-t gap-2 font-bold flex items-center" style="border-color: #D9D9D9">
+                الخصائص :
                 <qumra-product-options product={{context.product._id}}
                     data="{{context.product.properties | dump}}"></qumra-product-options>
-                {# الالوان : #}
             </div>
             <div class="pt-6  border-t font-bold flex gap-16" style="border-color: #D9D9D9">
                 <button type="submit"

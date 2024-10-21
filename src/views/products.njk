@@ -1,37 +1,21 @@
 {% extends "layouts/layout.njk" %}
-{% from "common/components/swipper/index.njk" import Homeswipper,ProductCardswipper,opinionsswipper %}
-{% from "common/components/headers/index.njk" import titleSection %}
-{% from "common/components/cards/index.njk" import cardCategory %}
-{% from "common/components/operations/index.njk" import showMore,navogationLink %}
 
 {% block content %}
-<div class="main-bg pb-10">
-    <div class="flex justify-center ">
-        <div class="container">
-            <div class="mt-20 mb-4">
-                {{navogationLink(firstText="الرئيسية",firstLink="/",secondText=page.title,secondLink="#")}}
-            </div>
-            <div class=" my-10 relative">
-                <img class="w-full" src={{"images/pages.webp" | assets}}>
-            </div>
-            <div class=" grid md:grid-cols-4  grid-cols-2 gap-1">
-
-                {% for product in context.products %}
-                {{cardCategory(category=product.title,image=product.images[0].imageUrl, price=product.priceAfterDiscount,slug=product.slug,
-                discount="67", priceBeforeDiscount=product.price, rating=5,id=product._id,type="productsCategory")}}
-                {% endfor %}
-
-            </div>
-            <div class=" my-16 mb-10">
-                {{titleSection(text="آراء عملائنا")}}
-            </div>
-            <div class="flex justify-center">
-                <div class=w-11/12>
-
-                    {{opinionsswipper()}}
-                </div>
-            </div>
-        </div>
+<div class=" flex flex-col gap-10 container">
+    <div class=" flex flex-col gap-2">
+        <h1 class=" font-bold text-2xl">المنتجات</h1>
+        <p class="">تشكيلة متنوعة من السيارات تناسب احتياجاتك</p>
     </div>
+   <div class=" grid grid-cols-4 gap-5">
+    {%for item in context.products%}
+    <qumra-product-card
+    name={{item.title}}
+    description=" سيارة الدفع الرباعي الكبيرة، قوية وواسعة، متنقلة للعائلات والرحلات"
+    image={{item.images[0].imageUrl}}
+    price="{{item.price | money}}"
+  ></qumra-product-card>
+  {%endfor%}
+
+   </div>
 </div>
 {% endblock %}
