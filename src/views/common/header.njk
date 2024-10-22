@@ -7,14 +7,19 @@ language %}
     <div style="height: 69px;" class=" w-full  flex items-center py-3 z-9999">
         <div class=" flex items-center justify-between container">
             <div class=" flex gap-8">
-                <img class=" h-12 w-20  object-contain" src={{global.app.logoUrl}} alt="Logo">
+                <div class="flex items-center gap-3">
+                    <svg class=" cursor-pointer" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3 7.25C3 6.83579 3.33579 6.5 3.75 6.5H20.25C20.6642 6.5 21 6.83579 21 7.25C21 7.66421 20.6642 8 20.25 8H3.75C3.33579 8 3 7.66421 3 7.25ZM3 12.5C3 12.0858 3.33579 11.75 3.75 11.75H20.25C20.6642 11.75 21 12.0858 21 12.5C21 12.9142 20.6642 13.25 20.25 13.25H3.75C3.33579 13.25 3 12.9142 3 12.5ZM11.25 17.75C11.25 17.3358 11.5858 17 12 17H20.25C20.6642 17 21 17.3358 21 17.75C21 18.1642 20.6642 18.5 20.25 18.5H12C11.5858 18.5 11.25 18.1642 11.25 17.75Z" fill="{{global.app.settings.mainColor}}" stroke="{{global.app.settings.mainColor}}" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        
+                    <img class=" h-12 w-20  object-contain" src={{global.app.logoUrl}} alt="Logo">
+                </div>
 
-                <div class=" flex justify-start items-center gap-10 ">
-                        {% for item in global.app.lists.header%}
-            
-                        <a href="{{item.href}}"
-                            class="  rounded-md text-black font-bold {{item.class}}">{{item.title}}</a>
-                        {% endfor %}
+                <div class=" flex hidden-lg justify-start items-center gap-10 ">
+                    {% for item in global.app.lists.header%}
+
+                    <a href="{{item.href}}" class="  rounded-md text-black font-bold {{item.class}}">{{item.title}}</a>
+                    {% endfor %}
                 </div>
             </div>
 
@@ -32,15 +37,18 @@ language %}
                 <input class="w-full outline-none text-black bg-transparent " placeholder="ابحث الان....">
 
             </div> #}
-          
+
             <div class=" flex  gap-6 items-center">
-                <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="45" height="45" rx="22.5" fill="{{global.app.settings.mainColor}}" />
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M23 16.5C26.0376 16.5 28.5 18.9624 28.5 22C28.5 25.0376 26.0376 27.5 23 27.5C21.481 27.5 20.107 26.8852 19.1109 25.8891C18.1148 24.893 17.5 23.519 17.5 22C17.5 18.9624 19.9624 16.5 23 16.5ZM30 22C30 18.134 26.866 15 23 15C19.134 15 16 18.134 16 22C16 23.6625 16.5803 25.1906 17.5483 26.3911L14.2197 29.7197C13.9268 30.0126 13.9268 30.4874 14.2197 30.7803C14.5126 31.0732 14.9874 31.0732 15.2803 30.7803L18.6089 27.4517C19.8094 28.4197 21.3375 29 23 29C26.866 29 30 25.866 30 22Z"
-                        fill="#fff" stroke="#fff" stroke-width="0.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
+                <div
+                    class="bg-mainColor  cursor-pointer  rounded-full w-10 h-10 border flex items-center justify-center">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M11 3.5C14.0376 3.5 16.5 5.96243 16.5 9C16.5 12.0376 14.0376 14.5 11 14.5C9.48101 14.5 8.10704 13.8852 7.11091 12.8891C6.11479 11.893 5.5 10.519 5.5 9C5.5 5.96243 7.96243 3.5 11 3.5ZM18 9C18 5.13401 14.866 2 11 2C7.13401 2 4 5.13401 4 9C4 10.6625 4.58031 12.1906 5.54828 13.3911L2.21967 16.7197C1.92678 17.0126 1.92678 17.4874 2.21967 17.7803C2.51256 18.0732 2.98744 18.0732 3.28033 17.7803L6.60894 14.4517C7.80944 15.4197 9.33748 16 11 16C14.866 16 18 12.866 18 9Z"
+                            fill="#fff" stroke="#fff" stroke-width="0.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </div>
+
                 <qumra-cart-button badgeSize="20px" iconsize="20px" testsize="13px"
                     iconcolor="{{global.app.settings.mainColor}}" showtext={false}></qumra-cart-button>
                 <qumra-user-menu iconsize="20px" iconcolor="{{global.app.settings.mainColor}}"></qumra-user-menu>
@@ -49,7 +57,7 @@ language %}
             </div>
         </div>
     </div>
-  
+
 </div>
 <!-- header -->
 

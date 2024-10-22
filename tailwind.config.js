@@ -3,6 +3,11 @@ module.exports = {
   content: [
     "src/**/*.njk",
     "src/**/*.js",
+    "src/**/*.ts",
+    "src/**/*.jsx",
+    "src/**/*.tsx",
+    "src/**/*.md",
+    "src/**/*.mdx",
   ],
   theme: {
     extend: {
@@ -12,6 +17,11 @@ module.exports = {
       },
       screens:{
         xs:"410px",
+        sm:"576px",
+        md:"768px",
+        lg:"992px",
+        xl:"1200px",
+        "2xl":"1400px",
       }
       ,
       container: {
