@@ -1,10 +1,71 @@
 {% extends "layouts/layout.njk" %}
 {% block title %}شكرًا لك - {{ page.title }}{% endblock %}
 {% block content %}
-  <div class="md:h-screen flex flex-col justify-center items-center text-center">
-    <img class="h-[100px] w-[100px] mb-3" src={{ "images/thank-you.png" | assets }} alt="شكرًا لك">
-    <h1 class="text-2xl font-bold mb-4">شكرًا لك على طلبك!</h1>
-    <p class="mb-4">لقد تم استلام طلبك بنجاح وسنقوم بمعالجته في أقرب وقت ممكن.</p>
-    <a href="/" class="bg-blue-500 text-white py-2 px-4 rounded">العودة إلى الصفحة الرئيسية</a>
+<div class=" flex flex-col items-center text-center gap-11">
+  <svg width="230" height="230" viewBox="0 0 230 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g filter="url(#filter0_d_6157_28037)">
+    <circle cx="115" cy="109" r="106.797" fill={{global.app.settings.mainColor}}  fill-opacity="0.2" shape-rendering="crispEdges"/>
+    </g>
+    <g filter="url(#filter1_d_6157_28037)">
+    <circle cx="114.406" cy="108.407" r="91.964" fill={{global.app.settings.mainColor}}  fill-opacity="0.15" shape-rendering="crispEdges"/>
+    </g>
+    <g filter="url(#filter2_d_6157_28037)">
+    <circle cx="115" cy="109" r="75.9444" fill={{global.app.settings.mainColor}}  fill-opacity="0.15" shape-rendering="crispEdges"/>
+    </g>
+    <g filter="url(#filter3_d_6157_28037)">
+    <circle cx="114.851" cy="108.852" r="62.7432" fill={{global.app.settings.mainColor}} />
+    </g>
+    <path d="M93.998 111.233C98.1602 114.605 106.485 123.88 109.89 130.203C114.052 120.085 124.647 97.3208 135.998 87.2031" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <defs>
+    <filter id="filter0_d_6157_28037" x="0.203125" y="0.203125" width="229.594" height="229.594" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+    <feOffset dy="6"/>
+    <feGaussianBlur stdDeviation="4"/>
+    <feComposite in2="hardAlpha" operator="out"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 0.916667 0 0 0 0 0.916667 0 0 0 0 0.916667 0 0 0 0.02 0"/>
+    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_6157_28037"/>
+    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_6157_28037" result="shape"/>
+    </filter>
+    <filter id="filter1_d_6157_28037" x="14.4424" y="14.4427" width="199.928" height="199.928" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+    <feOffset dy="6"/>
+    <feGaussianBlur stdDeviation="4"/>
+    <feComposite in2="hardAlpha" operator="out"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 0.916667 0 0 0 0 0.916667 0 0 0 0 0.916667 0 0 0 0.02 0"/>
+    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_6157_28037"/>
+    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_6157_28037" result="shape"/>
+    </filter>
+    <filter id="filter2_d_6157_28037" x="31.0557" y="31.0555" width="167.889" height="167.889" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+    <feOffset dy="6"/>
+    <feGaussianBlur stdDeviation="4"/>
+    <feComposite in2="hardAlpha" operator="out"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 0.916667 0 0 0 0 0.916667 0 0 0 0 0.916667 0 0 0 0.02 0"/>
+    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_6157_28037"/>
+    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_6157_28037" result="shape"/>
+    </filter>
+    <filter id="filter3_d_6157_28037" x="32.1074" y="30.1086" width="165.486" height="165.486" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+    <feOffset dy="4"/>
+    <feGaussianBlur stdDeviation="10"/>
+    <feComposite in2="hardAlpha" operator="out"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 0.658824 0 0 0 0 0.658824 0 0 0 0 0.658824 0 0 0 0.25 0"/>
+    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_6157_28037"/>
+    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_6157_28037" result="shape"/>
+    </filter>
+    </defs>
+    </svg>
+      <div class=" flex  flex-col gap-8 items-center">
+    <div class=" flex flex-col gap-3">
+      <h1 class="text-2xl font-bold">تم تأكيد طلبك بنجاح، شكرًا لك!</h1>
+      <p class=" text-subColor">لقد تم استلام طلبك بنجاح وسنقوم بمعالجته في أقرب وقت ممكن.</p>
+      <p class="">رقم الطلب : 123343456</p>
+    </div>
+    <a href="/" class="bg-mainColor text-white rounded" style="padding: 14px 32px;width: 200px;">عرض الطلب</a>
   </div>
+</div>
 {% endblock %}
