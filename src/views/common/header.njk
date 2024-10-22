@@ -4,15 +4,21 @@ language %}
 <!-- header -->
 <div class=" sticky z-9999 top-0 flex flex-col gap-8 bg-white shadow-mainColor w-full">
 
-    <div class=" w-full h-16 pt-8  flex items-center     z-9999">
+    <div style="height: 69px;" class=" w-full  flex items-center py-3 z-9999">
         <div class=" flex items-center justify-between container">
-            <div class=" flex gap-6">
+            <div class=" flex gap-8">
                 <img class=" h-12 w-20  object-contain" src={{global.app.logoUrl}} alt="Logo">
 
-
+                <div class=" flex justify-start items-center gap-10 ">
+                        {% for item in global.app.lists.header%}
+            
+                        <a href="{{item.href}}"
+                            class="  rounded-md text-black font-bold {{item.class}}">{{item.title}}</a>
+                        {% endfor %}
+                </div>
             </div>
 
-            <div class=" py-2 px-3 w-5/12 rounded-lg  border-mainColor border flex gap-2 items-center ">
+            {# <div class=" py-2 px-3 w-5/12 rounded-lg  border-mainColor border flex gap-2 items-center ">
                 <div class=" border-l h-8 w-9 flex items-center">
 
                     <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -25,33 +31,25 @@ language %}
 
                 <input class="w-full outline-none text-black bg-transparent " placeholder="ابحث الان....">
 
-            </div>
-
-            <div class=" flex  gap-3 items-center">
-               <qumra-user-menu iconsize="20px" iconcolor="{{global.app.settings.mainColor}}"></qumra-user-menu>
+            </div> #}
+          
+            <div class=" flex  gap-6 items-center">
+                <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="45" height="45" rx="22.5" fill="{{global.app.settings.mainColor}}" />
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M23 16.5C26.0376 16.5 28.5 18.9624 28.5 22C28.5 25.0376 26.0376 27.5 23 27.5C21.481 27.5 20.107 26.8852 19.1109 25.8891C18.1148 24.893 17.5 23.519 17.5 22C17.5 18.9624 19.9624 16.5 23 16.5ZM30 22C30 18.134 26.866 15 23 15C19.134 15 16 18.134 16 22C16 23.6625 16.5803 25.1906 17.5483 26.3911L14.2197 29.7197C13.9268 30.0126 13.9268 30.4874 14.2197 30.7803C14.5126 31.0732 14.9874 31.0732 15.2803 30.7803L18.6089 27.4517C19.8094 28.4197 21.3375 29 23 29C26.866 29 30 25.866 30 22Z"
+                        fill="#fff" stroke="#fff" stroke-width="0.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
                 <qumra-cart-button badgeSize="20px" iconsize="20px" testsize="13px"
                     iconcolor="{{global.app.settings.mainColor}}" showtext={false}></qumra-cart-button>
-                <a class="bg-mainColor py-3 flex items-center gap-2 px-4 rounded-md text-white  font-bold ">
-                    <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M10.0002 10.0834V3.83337M5.59046 5.50004C4.20642 6.72161 3.3335 8.50889 3.3335 10.5C3.3335 14.1819 6.31826 17.1667 10.0002 17.1667C13.6821 17.1667 16.6668 14.1819 16.6668 10.5C16.6668 8.50889 15.7939 6.72161 14.4099 5.50004"
-                            stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    تسجيل الدخول
+                <qumra-user-menu iconsize="20px" iconcolor="{{global.app.settings.mainColor}}"></qumra-user-menu>
 
-                </a>
 
             </div>
         </div>
     </div>
-    <div class=" flex border-t justify-start items-center py-4">
-        <div class="container">
-        {% for item in global.app.lists.header%}
-
-        <a href="{{item.href}}" class=" py-2 px-3 rounded-md text-mainColor font-bold {{item.class}}">{{item.title}}</a>
-        {% endfor %}
-    </div>
-</div>
+  
 </div>
 <!-- header -->
 
