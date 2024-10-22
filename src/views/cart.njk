@@ -6,36 +6,43 @@
         <p class="">راجع تفاصيل سياراتك وأكمل عملية الشراء بسهولة</p>
     </div>
     <div class=" flex md:flex-row flex-col gap-14">
-        <div style="border-radius: 20px;" class=" bg-white initial-scroll shadow-all md:w-2/3 py-8 px-10 flex flex-col gap-6">
-           
+        <div style="border-radius: 20px;"
+            class=" bg-white initial-scroll shadow-all md:w-2/3 py-8 md:px-10 flex flex-col gap-6">
+
             {%for item in context.cart.items%}
-            {%if item != 1%}
-            <div class=" border-t  flex w-full"></div>
-            {%endif%}
-            <div class=" w-full flex gap-4 ">
+            {% if not loop.first %}
+            <div class="border-t flex w-full"></div>
+            {% endif %}
+            <div class=" w-full flex gap-4  px-2">
                 <img class="w-20  h-20" style="border-radius: 4px" src={{item.product.images[0].imageUrl}} alt="">
                 <div class=" w-full flex flex-col gap-4 ">
 
                     <div class=" w-full flex flex-col" style="gap: 6px;">
                         <div class=" flex justify-between w-full">
                             <h2 class=" font-bold">{{item.product.title}}</h2>
-                            <span class=" font-bold">{{item.product.price}} ج.م</span>
+                            <span class=" font-bold">{{item.product.price|money}} </span>
                         </div>
-                        <div class="py-1 text-xs flex ">
-                            <div class=" pl-4 border-l">{{item.product.price}} ج.م</div>
-                            <div class=" mr-4  ">
-                                {%if(item.status == "open")%}
-                                <span class="text-mainColor">متوفر في المعرض</span>
-                                {%else%}
-                                <span class="text-red-500">غير متوفر</span>
-                                {%endif%}
+                        <div class=" text-xs">
+                            {% for prop in item.properties %}
+                    <span>{{ prop.property.title }}</span>,
+                    {% endfor %}
+                            <div class="py-1 text-xs flex ">
+
+                                <div class=" pl-4 border-l">{{item.product.price|money}}</div>
+                                <div class=" mr-4  ">
+                                    {%if(item.status == "open")%}
+                                    <span class="text-mainColor">متوفر في المعرض</span>
+                                    {%else%}
+                                    <span class="text-red-500">غير متوفر</span>
+                                    {%endif%}
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class=" flex justify-between">
-                            <div class=" border border-subColor w-max rounded-md ">
-                                <qumra-quantity-input value=1></qumra-quantity-input>
-                            </div>
+                        <div class=" border border-subColor w-max rounded-md ">
+                            <qumra-quantity-input value=1></qumra-quantity-input>
+                        </div>
                         <div class="py-1 flex items-center ">
                             <div class="  h-5 mr-4 gap-2 flex items-center">
                                 <svg width="10" height="13" viewBox="0 0 10 13" fill="none"
@@ -64,11 +71,11 @@
                     <div class=" flex flex-col gap-3">
                         <div class=" flex justify-between">
                             <span class=" font-bold  text-subColor">اجمالي الطلب</span>
-                            <span class=" font-bold ">{{context.cart.totalPrice}}</span>
+                            <span class=" font-bold ">{{context.cart.totalPrice |money}}</span>
                         </div>
                         <div class=" flex justify-between">
                             <span class=" font-bold  text-subColor">الخصم</span>
-                            <span class=" font-bold ">{{context.cart.productDiscount}}</span>
+                            <span class=" font-bold ">{{context.cart.productDiscount|money}}</span>
                         </div>
                         {# <div class=" flex justify-between">
                             <span class=" font-bold  text-subColor">الضريبة</span>
@@ -79,7 +86,7 @@
                         <div class=" border-b border-dashed flex w-full"></div>
                         <div class=" flex justify-between">
                             <span class=" font-bold  text-subColor">الاجمالي</span>
-                            <span class=" font-bold ">{{context.cart.totalProductsAfterDiscount}}</span>
+                            <span class=" font-bold ">{{context.cart.totalProductsAfterDiscount|money}}</span>
                         </div>
                     </div>
                 </div>

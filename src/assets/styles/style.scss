@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import './config/tailwind.scss';
+// @import './config/tailwind.scss';
 @import './config/qumra-gearbox.scss';
 .bg-mainColor {
   background-color: var(--mainColor) !important;
@@ -29,12 +29,21 @@
 }
 
 @media (max-width: 992px) {
+  .un-hidden-lg {
+    display: none !important;
+  }
+}
+@media (min-width: 992px) {
   .hidden-lg {
     display: none !important;
   }
 }
-
-
+.z-999999999 {
+  z-index: 999999999;
+}
+.z-9999999999 {
+  z-index: 9999999999;
+}
 
 
 

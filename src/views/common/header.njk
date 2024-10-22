@@ -3,14 +3,34 @@ language %}
 
 <!-- header -->
 <div class=" sticky z-9999 top-0 flex flex-col gap-8 bg-white shadow-mainColor w-full">
-
+    <div class="">
+    <div class=" bg-mainColor h-9 flex items-center">
+        <div class="container w-full  md:flex-row flex-col   flex justify-between">
+            <div class=" -hidden-lg flex   text-white md:gap-3">
+                <div class=" text-center">سياسة الاستبدال او الاستراجاع</div>
+                <div class=" border-r flex h-full"></div>
+                <div class=" text-center">سياسة الشحن والتوصيل</div>
+                <div class=" border-r flex h-full"></div>
+                <div class=" text-center">طرق الدفع</div>
+            </div>
+            <div class="text-white justify-end flex items-center gap-2">
+                +010989898989
+                <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M1 2C1 1.17157 1.67157 0.5 2.5 0.5H3.64837C4.35142 0.5 4.96014 0.988298 5.11265 1.6746L5.82887 4.89757C6.00105 5.67238 5.53984 6.4472 4.77667 6.66525L3.84388 6.93176C3.4331 7.04913 3.20107 7.48665 3.36396 7.88159C4.53001 10.7087 6.79126 12.97 9.61841 14.136C10.0134 14.2989 10.4509 14.0669 10.5682 13.6561L10.8348 12.7233C11.0528 11.9602 11.8276 11.499 12.6024 11.6711L15.8254 12.3873C16.5117 12.5399 17 13.1486 17 13.8516V15C17 15.8284 16.3284 16.5 15.5 16.5H14C12.8514 16.5 11.7366 16.3509 10.6742 16.0705C6.16665 14.8809 2.61908 11.3334 1.42949 6.82576C1.14913 5.76341 1 4.64856 1 3.5V2Z"
+                        fill="white" stroke="white" />
+                </svg>
+    
+            </div>
+        </div>
+    </div>
     <div style="height: 69px;" class=" w-full  flex items-center py-3 z-9999">
         <div class=" flex items-center justify-between container">
             <div class=" flex gap-8">
                 <div class="flex items-center gap-3">
-                    <svg class=" cursor-pointer" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg id="toggle-sideBar" class="  hidden-lg block cursor-pointer" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M3 7.25C3 6.83579 3.33579 6.5 3.75 6.5H20.25C20.6642 6.5 21 6.83579 21 7.25C21 7.66421 20.6642 8 20.25 8H3.75C3.33579 8 3 7.66421 3 7.25ZM3 12.5C3 12.0858 3.33579 11.75 3.75 11.75H20.25C20.6642 11.75 21 12.0858 21 12.5C21 12.9142 20.6642 13.25 20.25 13.25H3.75C3.33579 13.25 3 12.9142 3 12.5ZM11.25 17.75C11.25 17.3358 11.5858 17 12 17H20.25C20.6642 17 21 17.3358 21 17.75C21 18.1642 20.6642 18.5 20.25 18.5H12C11.5858 18.5 11.25 18.1642 11.25 17.75Z" fill="{{global.app.settings.mainColor}}" stroke="{{global.app.settings.mainColor}}" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                    </svg>
                         
                     <img class=" h-12 w-20  object-contain" src={{global.app.logoUrl}} alt="Logo">
                 </div>
@@ -57,11 +77,25 @@ language %}
             </div>
         </div>
     </div>
-
+</div>
 </div>
 <!-- header -->
+<div id="sideBar" class=" fixed pt-12 shadow-sm transition-all duration-300 right-0 bg-mainColor w-40 top-16 z-99999999 h-screen {{global.app.settings.mainColor}} hidden">
+    <div class=" justify-start flex-col flex items-center gap-4 ">
+        {% for item in global.app.lists.header %}
+        <a href="{{item.href}}" class=" px-2 shadow-md w-full border-t border-b text-white font-bold {{item.class}}">{{item.title}}</a>
+        {% endfor %}
+    </div>
+</div>
 
 <script>
+    
+    document.getElementById('toggle-sideBar').addEventListener('click', function () {
+        const sideBar = document.getElementById('sideBar');
+        sideBar.classList.toggle('hidden'); 
+    });
+
+
     console.log("{{global}}", {{ global.app.lists | dump | safe }});
     var test = JSON.parse('{{global.app.lists.header | dump |safe}}')
     test.forEach(element =>

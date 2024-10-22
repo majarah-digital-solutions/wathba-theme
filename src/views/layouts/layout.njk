@@ -25,9 +25,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family={{global.app.settings.font.sources}}">
 
 
-    {#
-    <script src="http://127.0.0.1:5501/dist/gearbox/index.js" defer></script> #}
-
+    
+    {# <script src="http://127.0.0.1:5501/dist/gearbox/index.js" defer></script>  #}
 
     <script src="https://cdn.qumra.cloud/lib/gearbox/1.0.9/qumra-gearbox.js" defer></script>
     <script type="module" src="https://unpkg.com/qumra-ui@0.0.32/dist/esm/qumra-ui.js"></script>
@@ -61,7 +60,6 @@
 
 <body style="background-color: white;overflow-x: hidden" dir="rtl">
     {% include "common/static/loading/index.njk" ignore missing %}
-    {% include "common/head.njk" ignore missing %}
     <div class=" flex-col flex gap-16">
     {% include "common/header.njk" ignore missing %}
     {% block content %}{% endblock %}
