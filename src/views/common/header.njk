@@ -6,7 +6,7 @@ language %}
     <div class="">
     <div class=" bg-mainColor h-9 flex items-center">
         <div class="container w-full  md:flex-row flex-col   flex justify-between">
-            <div class=" -hidden-lg flex   text-white md:gap-3">
+            <div class=" un-hidden-lg  flex   text-white md:gap-3">
                 <div class=" text-center">سياسة الاستبدال او الاستراجاع</div>
                 <div class=" border-r flex h-full"></div>
                 <div class=" text-center">سياسة الشحن والتوصيل</div>
@@ -35,10 +35,10 @@ language %}
                     <img class=" h-12 w-20  object-contain" src={{global.app.logoUrl}} alt="Logo">
                 </div>
 
-                <div class=" flex hidden-lg justify-start items-center gap-10 ">
+                <div class=" flex un-hidden-lg justify-start items-center gap-10 ">
                     {% for item in global.app.lists.header%}
 
-                    <a href="{{item.href}}" class="  rounded-md text-black font-bold {{item.class}}">{{item.title}}</a>
+                    <a href="{{item.url}}" class="  rounded-md text-black font-bold {{item.class}}">{{item.title}}</a>
                     {% endfor %}
                 </div>
             </div>
@@ -59,16 +59,8 @@ language %}
             </div> #}
 
             <div class=" flex  gap-6 items-center">
-                <div
-                    class="bg-mainColor  cursor-pointer  rounded-full w-10 h-10 border flex items-center justify-center">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M11 3.5C14.0376 3.5 16.5 5.96243 16.5 9C16.5 12.0376 14.0376 14.5 11 14.5C9.48101 14.5 8.10704 13.8852 7.11091 12.8891C6.11479 11.893 5.5 10.519 5.5 9C5.5 5.96243 7.96243 3.5 11 3.5ZM18 9C18 5.13401 14.866 2 11 2C7.13401 2 4 5.13401 4 9C4 10.6625 4.58031 12.1906 5.54828 13.3911L2.21967 16.7197C1.92678 17.0126 1.92678 17.4874 2.21967 17.7803C2.51256 18.0732 2.98744 18.0732 3.28033 17.7803L6.60894 14.4517C7.80944 15.4197 9.33748 16 11 16C14.866 16 18 12.866 18 9Z"
-                            fill="#fff" stroke="#fff" stroke-width="0.5" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                </div>
-
+                <qumra-search-button badgeSize="20px" iconsize="20px" testsize="13px"
+                    iconcolor="{{global.app.settings.mainColor}}" showtext={false}></qumra-search-button>
                 <qumra-cart-button badgeSize="20px" iconsize="20px" testsize="13px"
                     iconcolor="{{global.app.settings.mainColor}}" showtext={false}></qumra-cart-button>
                 <qumra-user-menu iconsize="20px" iconcolor="{{global.app.settings.mainColor}}"></qumra-user-menu>
@@ -80,7 +72,8 @@ language %}
 </div>
 </div>
 <!-- header -->
-<div id="sideBar" class=" fixed pt-12 shadow-sm transition-all duration-300 right-0 bg-mainColor w-40 top-16 z-99999999 h-screen {{global.app.settings.mainColor}} hidden">
+<div id="sideBar" class=" fixed pt-12 shadow-sm transition-all duration-300 right-0
+ bg-mainColor  w-60 top-16 z-99999999 h-screen {{global.app.settings.mainColor}} hidden">
     <div class=" justify-start flex-col flex items-center gap-4 ">
         {% for item in global.app.lists.header %}
         <a href="{{item.href}}" class=" px-2 shadow-md w-full border-t border-b text-white font-bold {{item.class}}">{{item.title}}</a>

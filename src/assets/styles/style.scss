@@ -44,8 +44,17 @@
 .z-9999999999 {
   z-index: 9999999999;
 }
+  .sideBarProperty {
+    right: -100% !important;
+  }
+  
 
 
+
+
+
+
+  
 
 .text-maingold {
     color: var(--maingold);
@@ -119,10 +128,7 @@
     z-index: 999999999;
   }
   
-  .sideBarProperty {
-    right: -100% !important;
-  }
-  
+
   
   /* home style */
   .swiper-slide {

@@ -8,6 +8,8 @@ module.exports = {
     "src/**/*.tsx",
     "src/**/*.md",
     "src/**/*.mdx",
+    "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js",  
+
   ],
   theme: {
     extend: {

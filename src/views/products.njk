@@ -12,6 +12,8 @@
     name={{item.title}}
     description=" سيارة الدفع الرباعي الكبيرة، قوية وواسعة، متنقلة للعائلات والرحلات"
     image={{item.images[0].imageUrl}}
+    main-color="{{global.app.settings.mainColor}}"
+    button-text="اضافة للسلة"
     price="{{item.price | money}}"
   ></qumra-product-card>
   {%endfor%}
