@@ -1,92 +1,106 @@
-
-
 <!-- header -->
-<div class=" sticky  md:hidden flex  z-9999 top-0  flex-col gap-8 bg-white shadow-mainColor w-full">
+<div class=" sticky  flex  z-9999 top-0  flex-col gap-8 shadow-mainColor w-full">
     <div class="">
 
-        
-    <div class=" h-9 items-center">
-        <div class="container w-full  md:flex-row flex-col   flex justify-between">
-            <div class=" un-hidden-lg  flex   text-white md:gap-3">
-                <div class=" text-center">سياسة الاستبدال او الاستراجاع</div>
-                <div class=" border-r flex h-full"></div>
-                <div class=" text-center">سياسة الشحن والتوصيل</div>
-                <div class=" border-r flex h-full"></div>
-                <div class=" text-center">طرق الدفع</div>
-            </div>
-            <a href="tel:{{global.app.support.phone}}" class="text-white justify-end flex items-center gap-2">
-                {{global.app.support.phone}}+
-                <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M1 2C1 1.17157 1.67157 0.5 2.5 0.5H3.64837C4.35142 0.5 4.96014 0.988298 5.11265 1.6746L5.82887 4.89757C6.00105 5.67238 5.53984 6.4472 4.77667 6.66525L3.84388 6.93176C3.4331 7.04913 3.20107 7.48665 3.36396 7.88159C4.53001 10.7087 6.79126 12.97 9.61841 14.136C10.0134 14.2989 10.4509 14.0669 10.5682 13.6561L10.8348 12.7233C11.0528 11.9602 11.8276 11.499 12.6024 11.6711L15.8254 12.3873C16.5117 12.5399 17 13.1486 17 13.8516V15C17 15.8284 16.3284 16.5 15.5 16.5H14C12.8514 16.5 11.7366 16.3509 10.6742 16.0705C6.16665 14.8809 2.61908 11.3334 1.42949 6.82576C1.14913 5.76341 1 4.64856 1 3.5V2Z"
-                        fill="white" stroke="white" />
-                </svg>
-    
-            </a>
-        </div>
-    </div>
-    <div style="height: 69px;" class=" w-full  flex items-center py-3 z-9999">
-        <div class=" flex items-center justify-between container">
-            <div class=" flex gap-8">
-                <div class="flex items-center gap-3">
-                    <svg id="toggle-sideBar" class="  hidden-lg block cursor-pointer" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3 7.25C3 6.83579 3.33579 6.5 3.75 6.5H20.25C20.6642 6.5 21 6.83579 21 7.25C21 7.66421 20.6642 8 20.25 8H3.75C3.33579 8 3 7.66421 3 7.25ZM3 12.5C3 12.0858 3.33579 11.75 3.75 11.75H20.25C20.6642 11.75 21 12.0858 21 12.5C21 12.9142 20.6642 13.25 20.25 13.25H3.75C3.33579 13.25 3 12.9142 3 12.5ZM11.25 17.75C11.25 17.3358 11.5858 17 12 17H20.25C20.6642 17 21 17.3358 21 17.75C21 18.1642 20.6642 18.5 20.25 18.5H12C11.5858 18.5 11.25 18.1642 11.25 17.75Z" fill="{{global.app.settings.mainColor}}" stroke="{{global.app.settings.mainColor}}" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                        
-                    <img class=" h-12 w-20  object-contain" src={{global.app.logoUrl}} alt="Logo">
+
+        <div class=" h-9 items-center flex  bg-mainColor">
+            <div class="container w-full  md:flex-row flex-col   flex justify-between">
+                <div class=" un-hidden-lg  flex   text-white md:gap-3">
+                    <div class=" text-center">سياسة الاستبدال او الاستراجاع</div>
+                    <div class=" border-r flex h-full"></div>
+                    <div class=" text-center">سياسة الشحن والتوصيل</div>
+                    <div class=" border-r flex h-full"></div>
+                    <div class=" text-center">طرق الدفع</div>
                 </div>
-
-                <div class=" flex un-hidden-lg justify-start items-center gap-10 ">
-                    {% for item in global.app.lists.header%}
-
-                    <a href="{{item.url}}" class="  rounded-md text-black font-bold {{item.class}}">{{item.title}}</a>
-                    {% endfor %}
-                </div>
-            </div>
-
-            {# <div class=" py-2 px-3 w-5/12 rounded-lg  border-mainColor border flex gap-2 items-center ">
-                <div class=" border-l h-8 w-9 flex items-center">
-
-                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M14.446 14.54L17.9191 17.9M8.91914 4.69998C10.9074 4.69998 12.5191 6.31175 12.5191 8.29998M16.7991 8.93998C16.7991 13.2699 13.2891 16.78 8.95914 16.78C4.62923 16.78 1.11914 13.2699 1.11914 8.93998C1.11914 4.61006 4.62923 1.09998 8.95914 1.09998C13.2891 1.09998 16.7991 4.61006 16.7991 8.93998Z"
-                            stroke="{{global.app.settings.mainColor}}" stroke-width="2" stroke-linecap="round" />
+                <a href="tel:{{global.app.support.phone}}" class="text-white justify-end flex items-center gap-2">
+                    {{global.app.support.phone}}+
+                    <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M1 2C1 1.17157 1.67157 0.5 2.5 0.5H3.64837C4.35142 0.5 4.96014 0.988298 5.11265 1.6746L5.82887 4.89757C6.00105 5.67238 5.53984 6.4472 4.77667 6.66525L3.84388 6.93176C3.4331 7.04913 3.20107 7.48665 3.36396 7.88159C4.53001 10.7087 6.79126 12.97 9.61841 14.136C10.0134 14.2989 10.4509 14.0669 10.5682 13.6561L10.8348 12.7233C11.0528 11.9602 11.8276 11.499 12.6024 11.6711L15.8254 12.3873C16.5117 12.5399 17 13.1486 17 13.8516V15C17 15.8284 16.3284 16.5 15.5 16.5H14C12.8514 16.5 11.7366 16.3509 10.6742 16.0705C6.16665 14.8809 2.61908 11.3334 1.42949 6.82576C1.14913 5.76341 1 4.64856 1 3.5V2Z"
+                            fill="white" stroke="white" />
                     </svg>
 
+                </a>
+            </div>
+        </div>
+        <div style="height: 69px;" class=" w-full  bg-white flex items-center py-3 z-9999">
+            <div class=" flex items-center justify-between container">
+                <div class=" flex gap-8">
+                    <div class="flex items-center gap-3">
+                        <svg id="toggle-sideBar" class="  hidden-lg block cursor-pointer" width="24" height="25"
+                            viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M3 7.25C3 6.83579 3.33579 6.5 3.75 6.5H20.25C20.6642 6.5 21 6.83579 21 7.25C21 7.66421 20.6642 8 20.25 8H3.75C3.33579 8 3 7.66421 3 7.25ZM3 12.5C3 12.0858 3.33579 11.75 3.75 11.75H20.25C20.6642 11.75 21 12.0858 21 12.5C21 12.9142 20.6642 13.25 20.25 13.25H3.75C3.33579 13.25 3 12.9142 3 12.5ZM11.25 17.75C11.25 17.3358 11.5858 17 12 17H20.25C20.6642 17 21 17.3358 21 17.75C21 18.1642 20.6642 18.5 20.25 18.5H12C11.5858 18.5 11.25 18.1642 11.25 17.75Z"
+                                fill="{{global.app.settings.mainColor}}" stroke="{{global.app.settings.mainColor}}"
+                                stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+
+                        <img class=" h-12 w-20  object-contain" src={{global.app.logoUrl}} alt="Logo">
+                    </div>
+
+                    <div class=" flex un-hidden-lg justify-start items-center gap-10 ">
+                        {% for item in global.app.lists.header%}
+
+                        <a href="{{item.url}}"
+                            class="  rounded-md text-black font-bold {{item.class}}">{{item.title}}</a>
+                        {% endfor %}
+                    </div>
                 </div>
 
-                <input class="w-full outline-none text-black bg-transparent " placeholder="ابحث الان....">
+                {# <div class=" py-2 px-3 w-5/12 rounded-lg  border-mainColor border flex gap-2 items-center ">
+                    <div class=" border-l h-8 w-9 flex items-center">
 
-            </div> #}
+                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M14.446 14.54L17.9191 17.9M8.91914 4.69998C10.9074 4.69998 12.5191 6.31175 12.5191 8.29998M16.7991 8.93998C16.7991 13.2699 13.2891 16.78 8.95914 16.78C4.62923 16.78 1.11914 13.2699 1.11914 8.93998C1.11914 4.61006 4.62923 1.09998 8.95914 1.09998C13.2891 1.09998 16.7991 4.61006 16.7991 8.93998Z"
+                                stroke="{{global.app.settings.mainColor}}" stroke-width="2" stroke-linecap="round" />
+                        </svg>
 
-            <div class=" flex gap-3 md:gap-6 items-center">
-                <qumra-search-button badgeSize="20px" iconsize="20px" testsize="13px"
-                    iconcolor="{{global.app.settings.mainColor}}" showtext={false}></qumra-search-button>
-                <qumra-cart-button badgeSize="20px" iconsize="20px" testsize="13px"
-                    iconcolor="{{global.app.settings.mainColor}}" showtext={false}></qumra-cart-button>
-                <qumra-user-menu iconsize="20px" iconcolor="{{global.app.settings.mainColor}}"></qumra-user-menu>
+                    </div>
+
+                    <input class="w-full outline-none text-black bg-transparent " placeholder="ابحث الان....">
+
+                </div> #}
+
+                <div class=" flex gap-3 md:gap-6 items-center">
+                    <qumra-search-button badgeSize="20px" iconsize="20px" testsize="13px"
+                        iconcolor="{{global.app.settings.mainColor}}" showtext={false}></qumra-search-button>
+                    <qumra-cart-button badgeSize="20px" iconsize="20px" testsize="13px"
+                        iconcolor="{{global.app.settings.mainColor}}" showtext={false}></qumra-cart-button>
+                    <qumra-user-menu iconsize="20px" iconcolor="{{global.app.settings.mainColor}}"></qumra-user-menu>
 
 
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 <!-- header -->
-<div id="sideBar" class=" fixed pt-12 shadow-sm transition-all duration-300 right-0
- bg-mainColor  w-60 top-16 z-99999999 h-screen {{global.app.settings.mainColor}} hidden">
-    <div class=" justify-start flex-col flex items-center gap-4 ">
+<div id="sideBar" style="top: 105px;" class="z-9999 fixed pt-8 shadow-sm transition-all duration-300 right-0
+ bg-mainColor  w-60 z-99999999 h-screen {{global.app.settings.mainColor}} hidden">
+    <div class=" justify-start flex-col flex items-center gap-4 px-4 ">
         {% for item in global.app.lists.header %}
-        <a href="{{item.href}}" class=" px-2 shadow-md w-full border-t border-b text-white font-bold {{item.class}}">{{item.title}}</a>
+        <a href="{{item.url}}" id="sidebar-item"
+            class=" p-2 w-full   flex items-center justify-between rounded-lg text-white font-bold {{item.class}}">
+            {{item.title}}
+            <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M14.5695 6.60719C14.8853 6.93563 14.8751 7.45789 14.5466 7.77369L10.2151 11.854L14.5466 15.9343C14.8751 16.2501 14.8853 16.7724 14.5695 17.1008C14.2537 17.4293 13.7314 17.4395 13.403 17.1237L8.45299 12.4487C8.29122 12.2931 8.1998 12.0784 8.1998 11.854C8.1998 11.6296 8.29122 11.4149 8.45299 11.2593L13.403 6.58432C13.7314 6.26851 14.2537 6.27875 14.5695 6.60719Z"
+                    fill="white" fill-opacity="0.77" stroke="white" stroke-opacity="0.77" stroke-width="0.25"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+
+        </a>
+
         {% endfor %}
     </div>
 </div>
 
 <script>
-    
+    var sidebarItem = document.getElementById('sidebar-item');
     document.getElementById('toggle-sideBar').addEventListener('click', function () {
         const sideBar = document.getElementById('sideBar');
-        sideBar.classList.toggle('hidden'); 
+        sideBar.classList.toggle('hidden');
     });
 
 
@@ -95,4 +109,30 @@
     test.forEach(element =>
         console.log("Header element:", element)
     );
+
+
+    function hexToRgb(hex) {
+        hex = hex.replace('#', '');
+        if (hex.length === 3) hex = hex.split('').map(x => x + x).join('');
+        const r = parseInt(hex.substring(0, 2), 16);
+        const g = parseInt(hex.substring(2, 4), 16);
+        const b = parseInt(hex.substring(4, 6), 16);
+        return { r: isNaN(r) ? 0 : r, g: isNaN(g) ? 0 : g, b: isNaN(b) ? 0 : b };
+    }
+
+    function lightenColor(rgb, percentage) {
+        return {
+            r: Math.round(rgb.r + (255 - rgb.r) * percentage),
+            g: Math.round(rgb.g + (255 - rgb.g) * percentage),
+            b: Math.round(rgb.b + (255 - rgb.b) * percentage),
+        };
+    }
+
+    const rgbColor = hexToRgb('{{global.app.settings.mainColor}}');
+    const lightenedColor = lightenColor(rgbColor, 0.5);
+    const lightenedBadgeColor = `rgb(${lightenedColor.r}, ${lightenedColor.g}, ${lightenedColor.b})`;
+    const url = window.location.href
+    document.querySelectorAll('#sidebar-item').forEach(item => {
+                item.style.backgroundColor = lightenedBadgeColor;
+        });
 </script>
