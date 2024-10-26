@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-// @import './config/tailwind.scss';
+
 @import './config/qumra-gearbox.scss';
 .bg-mainColor {
   background-color: var(--mainColor) !important;
