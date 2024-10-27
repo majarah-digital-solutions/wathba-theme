@@ -1,15 +1,16 @@
 {% extends "layouts/layout.njk" %}
 
 {% block content %}
-<div class=" flex flex-col gap-10 container">
+<div class=" flex flex-col gap-10 container px-0 ">
     <div class=" flex flex-col gap-2">
-        <h1 class=" font-bold text-2xl">المنتجات</h1>
-        <p class="">تشكيلة متنوعة من السيارات تناسب احتياجاتك</p>
+        <h1 class=" font-bold text-2xl">{{context.page.title}}</h1>
+        <p class="">{{context.page.description}}</p>
     </div>
-   <div class=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center gap-5">
+   <div class=" flex  flex-wrap gap-5 md:justify-start justify-center">
     {%for item in context.products%}
     <qumra-product-card
     name={{item.title}}
+    slug={{item.slug}}
     description=" سيارة الدفع الرباعي الكبيرة، قوية وواسعة، متنقلة للعائلات والرحلات"
     image={{item.images[0].imageUrl}}
     main-color="{{global.app.settings.mainColor}}"

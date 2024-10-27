@@ -10,7 +10,7 @@ navogationLink %} #}
         <p class="">تشكيلة متنوعة من السيارات تناسب احتياجاتك</p>
     </div>
     <div class=" flex lg:flex-row items-center flex-col gap-10">
-        <div class=" items-center md:w-5/12 z-10  flex flex-col gap-3">
+        <div class=" items-center md:w-6/12 w-full z-10  flex flex-col gap-3">
             <div class="relative w-full">
                 <qumra-slider>
                     {%for image in context.product.images%}
@@ -22,7 +22,7 @@ navogationLink %} #}
             </div>
         </div>
 
-        <div class="w-full md:w-5/12">
+        <div class=" md:w-6/12">
             <form class="flex flex-col gap-6" enctype="multipart/form-data" method="post"
                 onsubmit="return window.Qumra.forms.submit('qqqqqq', event)">
                 <div class=" flex flex-col gap-2 ">
