@@ -1,139 +1,142 @@
 {% extends "layouts/layout.njk" %}
 {% block content %}
-    <div>
-        {%if not context.cart %}
-            <qumra-empty-card main-color={{global.app.settings.mainColor}}></qumra-empty-card>
-            {%else%}
-            <div class=" flex flex-col gap-10 container">
-                <div class=" flex flex-col gap-2">
-                    <h1 class=" font-bold text-2xl">عربتي</h1>
-                    <p class="">راجع تفاصيل سياراتك وأكمل عملية الشراء بسهولة</p>
-                </div>
-                <div class=" flex md:flex-row flex-col gap-14 py-5">
-                    <div style="border-radius: 20px;" class=" bg-white initial-scroll shadow-all md:w-2/3 py-8 md:px-10 flex flex-col gap-6">
-                        {%for item in context.cart.items%}
-                            {% if not loop.first %}
-                                <div class="border-t flex w-full"></div>
-                            {% endif %}
-                            <div class=" w-full flex gap-4  px-2">
-                                <img class="w-20  h-20" style="border-radius: 4px" src={{item.product.images[0].imageUrl}} alt="">
-                                <div class=" w-full flex flex-col gap-4 ">
+<div>
+    {%if context.cart and context.cart.items %}
+    <div class=" flex flex-col gap-10 container">
+        <div class=" flex flex-col gap-2">
+            <h1 class=" font-bold text-2xl">عربتي</h1>
+            <p class="">راجع تفاصيل سياراتك وأكمل عملية الشراء بسهولة</p>
+        </div>
+        <div class=" flex md:flex-row flex-col gap-14 py-5">
+            <div style="border-radius: 20px;"
+                class=" bg-white initial-scroll shadow-all md:w-2/3 py-8 md:px-10 flex flex-col gap-6">
+                {%for item in context.cart.items%}
+                {% if not loop.first %}
+                <div class="border-t flex w-full"></div>
+                {% endif %}
+                <div class=" w-full flex gap-4  px-2">
+                    <img class="w-20  h-20" style="border-radius: 4px" src={{item.product.images[0].imageUrl}} alt="">
+                    <div class=" w-full flex flex-col gap-4 ">
 
-                                    <div class=" w-full flex flex-col" style="gap: 6px;">
-                                        <div class=" flex justify-between w-full">
-                                            <h2 class=" font-bold">{{item.product.title}}</h2>
-                                            <span class=" font-bold">{{item.price|money}}
-                                            </span>
-                                        </div>
-                                        <div class=" text-xs">
-                                            {% for prop in item.properties %}
-                                                <span>{{ prop.property.title }} : {{ prop.value.title }}</span>
-                                            {% endfor %}
-                                            <div class="py-1 text-xs flex ">
-
-                                                <div class=" pl-4 border-l">{{ item.price | money }}</div>
-                                                {# <div class=" mr-4  ">
-                                    {%if(item.status == "open")%}
-                                    <span class="text-mainColor">متوفر في المعرض</span>
-                                    {%else%}
-                                    <span class="text-red-500">غير متوفر</span>
-                                    {%endif%}
-                                </div> #}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class=" flex justify-between">
-                                        <div class=" border border-subColor w-max rounded-md ">
-                                            <qumra-quantity-input value={{item.quantity}}></qumra-quantity-input>
-                                        </div>
-                                        <div class="py-1 flex items-center ">
-                                            <div class="  h-5 mr-4 gap-2 flex items-center">
-                                                <svg width="10" height="13" viewBox="0 0 10 13" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M4.1251 0.199951C3.06195 0.199951 2.2001 1.0618 2.2001 2.12495V2.43484C1.6434 2.48875 1.09131 2.55858 0.544302 2.64386C0.257813 2.68852 0.0617753 2.95697 0.106439 3.24346C0.151102 3.52995 0.419554 3.72599 0.706043 3.68132L0.809582 3.66538L1.39863 11.0285C1.47866 12.0289 2.31388 12.8 3.3175 12.8H6.68255C7.68617 12.8 8.52139 12.0289 8.60142 11.0285L9.19047 3.66534L9.2943 3.68132C9.58079 3.72599 9.84924 3.52995 9.89391 3.24346C9.93857 2.95697 9.74253 2.68852 9.45604 2.64386C8.90898 2.55857 8.35685 2.48874 7.8001 2.43482V2.12495C7.8001 1.0618 6.93825 0.199951 5.8751 0.199951H4.1251ZM5.00017 2.29995C5.58772 2.29995 6.1712 2.31761 6.7501 2.35244V2.12495C6.7501 1.6417 6.35835 1.24995 5.8751 1.24995H4.1251C3.64185 1.24995 3.2501 1.6417 3.2501 2.12495V2.35245C3.82905 2.31762 4.41257 2.29995 5.00017 2.29995ZM4.23055 4.89497C4.214 4.48109 3.86506 4.15899 3.45118 4.17555C3.03729 4.19211 2.7152 4.54105 2.73175 4.95493L2.94176 10.2049C2.95832 10.6188 3.30726 10.9409 3.72114 10.9244C4.13502 10.9078 4.45712 10.5589 4.44056 10.145L4.23055 4.89497ZM7.26856 4.95493C7.28512 4.54105 6.96302 4.19211 6.54914 4.17555C6.13526 4.159 5.78632 4.48109 5.76976 4.89498L5.55976 10.145C5.54321 10.5589 5.8653 10.9078 6.27919 10.9244C6.69307 10.9409 7.04201 10.6188 7.05856 10.2049L7.26856 4.95493Z"
-                                        fill="#8C8C8C"/>
-                                                </svg>
-                                حذف
+                        <div class=" w-full flex flex-col" style="gap: 6px;">
+                            <div class=" flex justify-between w-full">
+                                <h2 class=" font-bold">{{item.product.title}}</h2>
+                                <span class=" font-bold">{{item.price|money}}
+                                </span>
                             </div>
-                                        </div>
-                                    </div>
+                            <div class=" text-xs">
+                                {% for prop in item.properties %}
+                                <span>{{ prop.property.title }} : {{ prop.value.title }}</span>
+                                {% endfor %}
+                                <div class="py-1 text-xs flex ">
+
+                                    <div class=" pl-4 border-l">{{ item.price | money }}</div>
+                                    {# <div class=" mr-4  ">
+                                        {%if(item.status == "open")%}
+                                        <span class="text-mainColor">متوفر في المعرض</span>
+                                        {%else%}
+                                        <span class="text-red-500">غير متوفر</span>
+                                        {%endif%}
+                                    </div> #}
                                 </div>
                             </div>
-                            {%endfor%}
-
                         </div>
-
-                        <div class="bg-white shadow-all md:w-1/3 h-max " style="padding:16px 26px 25px ;border-radius: 20px">
-                            <div class=" flex flex-col gap-8">
-                                <div class=" flex flex-col gap-4">
-                                    <div class=" flex flex-col gap-4">
-                                        <div class="font-bold">
-                            اجمالي الطلب
+                        <div class=" flex justify-between">
+                            <div class=" border border-subColor w-max rounded-md ">
+                                <qumra-quantity-input value={{item.quantity}}></qumra-quantity-input>
+                            </div>
+                            <div class="py-1 flex items-center ">
+                                <div class="  h-5 mr-4 gap-2 flex items-center">
+                                    <svg width="10" height="13" viewBox="0 0 10 13" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M4.1251 0.199951C3.06195 0.199951 2.2001 1.0618 2.2001 2.12495V2.43484C1.6434 2.48875 1.09131 2.55858 0.544302 2.64386C0.257813 2.68852 0.0617753 2.95697 0.106439 3.24346C0.151102 3.52995 0.419554 3.72599 0.706043 3.68132L0.809582 3.66538L1.39863 11.0285C1.47866 12.0289 2.31388 12.8 3.3175 12.8H6.68255C7.68617 12.8 8.52139 12.0289 8.60142 11.0285L9.19047 3.66534L9.2943 3.68132C9.58079 3.72599 9.84924 3.52995 9.89391 3.24346C9.93857 2.95697 9.74253 2.68852 9.45604 2.64386C8.90898 2.55857 8.35685 2.48874 7.8001 2.43482V2.12495C7.8001 1.0618 6.93825 0.199951 5.8751 0.199951H4.1251ZM5.00017 2.29995C5.58772 2.29995 6.1712 2.31761 6.7501 2.35244V2.12495C6.7501 1.6417 6.35835 1.24995 5.8751 1.24995H4.1251C3.64185 1.24995 3.2501 1.6417 3.2501 2.12495V2.35245C3.82905 2.31762 4.41257 2.29995 5.00017 2.29995ZM4.23055 4.89497C4.214 4.48109 3.86506 4.15899 3.45118 4.17555C3.03729 4.19211 2.7152 4.54105 2.73175 4.95493L2.94176 10.2049C2.95832 10.6188 3.30726 10.9409 3.72114 10.9244C4.13502 10.9078 4.45712 10.5589 4.44056 10.145L4.23055 4.89497ZM7.26856 4.95493C7.28512 4.54105 6.96302 4.19211 6.54914 4.17555C6.13526 4.159 5.78632 4.48109 5.76976 4.89498L5.55976 10.145C5.54321 10.5589 5.8653 10.9078 6.27919 10.9244C6.69307 10.9409 7.04201 10.6188 7.05856 10.2049L7.26856 4.95493Z"
+                                            fill="#8C8C8C" />
+                                    </svg>
+                                    حذف
+                                </div>
+                            </div>
                         </div>
-                                        <div class=" border-b border-dashed flex w-full"></div>
-                                    </div>
-                                    <div class=" flex flex-col gap-3">
-                                        <div class=" flex justify-between">
-                                            <span class=" font-bold  text-subColor">اجمالي المنتجات</span>
-                                            <span class=" font-bold ">
-                                                {% if context.cart.totalProducts > 0 %}
-                                                    {{context.cart.totalProducts | money}}
-                                                    {%else%}
-                                                    0
-                                                {%endif%}
-                                                </span>
-                                            </div>
-                                            <div class=" flex justify-between">
-                                                <span class=" font-bold  text-subColor">الخصم</span>
-                                                <span class=" font-bold ">
-                                                    {%if context.cart.productDiscount > 0%}
-                                                        {{ context.cart.productDiscount|money}}
-                                                        {%else%}
-                                                    0
-                                                    {%endif%}
-                                                    </span>
-                                                </div>
-                                                <div class=" flex justify-between">
-                                                    <span class=" font-bold  text-subColor">سعر المنتحات النهائي</span>
-                                                    <span class=" font-bold ">
-                                                        {%if context.cart.totalProductsAfterDiscount >0%}
+                    </div>
+                </div>
+                {%endfor%}
 
-                                                            {{context.cart.totalProductsAfterDiscount|money}}
-                                                            {%else%}
-                                                            0
-                                                            {%endif%}
+            </div>
 
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                {# <div class=" flex justify-between">
+            <div class="bg-white shadow-all md:w-1/3 h-max " style="padding:16px 26px 25px ;border-radius: 20px">
+                <div class=" flex flex-col gap-8">
+                    <div class=" flex flex-col gap-4">
+                        <div class=" flex flex-col gap-4">
+                            <div class="font-bold">
+                                اجمالي الطلب
+                            </div>
+                            <div class=" border-b border-dashed flex w-full"></div>
+                        </div>
+                        <div class=" flex flex-col gap-3">
+                            <div class=" flex justify-between">
+                                <span class=" font-bold  text-subColor">اجمالي المنتجات</span>
+                                <span class=" font-bold ">
+                                    {% if context.cart.totalProducts > 0 %}
+                                    {{context.cart.totalProducts | money}}
+                                    {%else%}
+                                    0
+                                    {%endif%}
+                                </span>
+                            </div>
+                            <div class=" flex justify-between">
+                                <span class=" font-bold  text-subColor">الخصم</span>
+                                <span class=" font-bold ">
+                                    {%if context.cart.productDiscount > 0%}
+                                    {{ context.cart.productDiscount|money}}
+                                    {%else%}
+                                    0
+                                    {%endif%}
+                                </span>
+                            </div>
+                            <div class=" flex justify-between">
+                                <span class=" font-bold  text-subColor">سعر المنتحات النهائي</span>
+                                <span class=" font-bold ">
+                                    {%if context.cart.totalProductsAfterDiscount >0%}
+
+                                    {{context.cart.totalProductsAfterDiscount|money}}
+                                    {%else%}
+                                    0
+                                    {%endif%}
+
+                                </span>
+                            </div>
+                        </div>
+                        {# <div class=" flex justify-between">
                             <span class=" font-bold  text-subColor">الضريبة</span>
                             <span class=" font-bold ">{{context.cart.totalPrice}}</span>
                         </div> #}
-                                            </div>
-                                            <div class=" flex flex-col gap-4">
-                                                <div class=" border-b border-dashed flex w-full"></div>
-                                                <div class=" flex justify-between">
-                                                    <span class=" font-bold  text-subColor">الإجمالي</span>
-                                                    <span class=" font-bold ">
-                                                        {%if context.cart.totalPrice >0%}
+                    </div>
+                    <div class=" flex flex-col gap-4">
+                        <div class=" border-b border-dashed flex w-full"></div>
+                        <div class=" flex justify-between">
+                            <span class=" font-bold  text-subColor">الإجمالي</span>
+                            <span class=" font-bold ">
+                                {%if context.cart.totalPrice >0%}
 
-                                                            {{context.cart.totalPrice|money}}
-                                                            {%else%}
-                                                            0
-                                                            {%endif%}
+                                {{context.cart.totalPrice|money}}
+                                {%else%}
+                                0
+                                {%endif%}
 
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <qumra-checkout-button class="py-3 mt-2 flex flex-col gap-8 rounded-lg text-white  bg-brown w-full">اتمام الطلب</qumra-checkout-button>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            {%endif%}
+                            </span>
                         </div>
-                    {% endblock %}
+                    </div>
+                </div>
+                <qumra-checkout-button
+                    class="py-3 mt-2 flex flex-col gap-8 rounded-lg text-white  bg-brown w-full">اتمام
+                    الطلب</qumra-checkout-button>
+            </div>
+        </div>
+    </div>
+    {%else%}
+    <qumra-empty-card main-color={{global.app.settings.mainColor}}></qumra-empty-card>
+
+    {%endif%}
+
+</div>
+{% endblock %}
