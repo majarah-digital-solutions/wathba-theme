@@ -63,8 +63,12 @@
                 </div> #}
 
                 <div class=" flex gap-3 md:gap-6 items-center">
-                    <qumra-search-button badgeSize="20px" iconsize="20px" testsize="13px"
+                    <div class=" relative">
+                        <qumra-search-button badgeSize="20px" iconsize="20px" testsize="13px"
                         iconcolor="{{global.app.settings.mainColor}}" showtext={false}></qumra-search-button>
+                        {# <input placeholder="ادخل كلمة البحث" class=" border border-[#E0E0E0] absolute -bottom-12 left-0 sm:left-0 text-black outline-none bg-white shadow-all p-2  rounded-md w-80 sm:w-96"/> #}
+                    </div>
+
                     <qumra-cart-button badgeSize="20px" iconsize="20px" testsize="13px"
                         iconcolor="{{global.app.settings.mainColor}}" showtext={false}></qumra-cart-button>
                     <qumra-user-menu iconsize="20px" iconcolor="{{global.app.settings.mainColor}}"></qumra-user-menu>

@@ -16,8 +16,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        mainColor: "#85D847",
-        subColor: "#6C6D6E",
+        mainColor:'var(--mainColor)',
+        subColor: "var(--subColor)",
       },
       screens:{
         xs:"410px",
