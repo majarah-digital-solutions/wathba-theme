@@ -31,7 +31,7 @@
                         <h2 class="text-2xl font-bold">{{context.product.title}}</h2>
                         <div class=" flex gap-4 items-center">
                             <div class=" flex gap-1 items-center">
-                                {%for i in [1,2,3,4]%}
+                                {%for i in range(0, context.product.rate)%}
                                 <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_6090_30129)">
@@ -66,9 +66,18 @@
                     </div>
                     <div class="pt-6 border-t flex flex-col gap-4" style="border-color: #D9D9D9;">
                         <div class=" flex gap-2 items-end">
-                            <div class="  font-bold text-mainColor text-2xl">{{context.product.price | money}}</div>
-                            <div class="line-through" style="color: #AEAEAE;">{{(context.product.price +
-                                context.product.discount) |money }}</div>
+                            {%if context.product.discount !=0%}
+                              <div class="  font-bold text-mainColor text-2xl">
+                                {{context.product.priceAfterDiscount | money}}
+                            </div>
+                            <div class="line-through" style="color: #AEAEAE;">
+                                {{context.product.price |money }}
+                            </div>
+                                {%else%}
+                                <div class="  font-bold text-mainColor text-2xl">
+                                    {{context.product.price | money}}
+                                </div>
+                            {%endif%}
                         </div>
                         <div class="text-sm text-subColor">
                             {{ context.product.content | safe }}
@@ -129,8 +138,10 @@
                             description=" سيارة الدفع الرباعي الكبيرة، قوية وواسعة، متنقلة للعائلات والرحلات"
                             image={{item.images[0].imageUrl}} main-color="{{global.app.settings.mainColor}}"
                             button-text="اضافة للسلة" price="{{item.price | money}}"
-                            dicount="{{item.discount}}"
-                            discountType="{{item.discountType}}"
+                            discount="{{item.discount}}"
+                            rate="{{item.rate}}"
+                            product="{{item._id}}"
+                            price-after-discount="{{item.priceAfterDiscount | money}}"
                             ></qumra-product-card>
     
                 </qumra-slider-item>
