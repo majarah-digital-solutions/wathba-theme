@@ -47,11 +47,6 @@
   .sideBarProperty {
     right: -100% !important;
   }
-  
-
-
-
-
 
 
   
@@ -127,7 +122,6 @@
   .z-999999999 {
     z-index: 999999999;
   }
-  
 
   
   /* home style */
@@ -166,7 +160,7 @@
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 
   
