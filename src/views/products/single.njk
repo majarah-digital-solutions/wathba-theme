@@ -7,8 +7,8 @@
 
     <div class=" flex flex-col gap-10 ">
         <div class=" flex flex-col gap-2">
-            <h1 class=" font-bold text-2xl">تفاصيل الطلب</h1>
-            <p class="">تشكيلة متنوعة من السيارات تناسب احتياجاتك</p>
+            <h1 class=" font-bold  text-customBlack text-2xl">تفاصيل الطلب</h1>
+            <p class=" text-subColor ">تشكيلة متنوعة من السيارات تناسب احتياجاتك</p>
         </div>
         <div class=" flex lg:flex-row items-center flex-col gap-10">
             <div class=" items-center md:w-6/12 w-full z-10  flex flex-col gap-3">
@@ -28,7 +28,7 @@
                     onsubmit="return window.Qumra.forms.submit('qqqqqq', event)">
                     <div class=" flex flex-col gap-2 ">
                         <input type="hidden" name="product" value={{context.product._id}}>
-                        <h2 class="text-2xl font-bold">{{context.product.title}}</h2>
+                        <h2 class="text-2xl font-bold  text-customBlack">{{context.product.title}}</h2>
                         <div class=" flex gap-4 items-center">
                             <div class=" flex gap-1 items-center">
                                 {%for i in range(0, context.product.rate)%}
@@ -50,8 +50,8 @@
                                 {%endfor%}
                             </div>
                             <div class="py-1 flex ">
-                                <div class=" pl-4 border-l">6 تقييما</div>
-                                <div class=" mr-4 border-b border-mainColor">اضافة تقييم</div>
+                                <div class=" pl-4 border-l  text-customBlack">6 تقييما</div>
+                                <div class=" mr-4 border-b border-mainColor  text-customBlack">اضافة تقييم</div>
                             </div>
                         </div>
                         <div class=" text-mainColor font-bold text-sm flex gap-2 items-center">
@@ -83,7 +83,7 @@
                             {{ context.product.content | safe }}
                         </div>
                     </div>
-                    <div class="pt-6 border-t w-full gap-2 font-bold flex items-center" style="border-color: #D9D9D9">
+                    <div class="pt-6 border-t w-full gap-2 font-bold flex items-center text-customBlack" style="border-color: #D9D9D9">
                         الخصائص :
                         <qumra-product-options main-color="{{global.app.settings.mainColor}}"
                             product={{context.product._id}}
@@ -131,7 +131,7 @@
     </div>
 
     <div class=" flex flex-col gap-5 ">
-        <h1 class=" font-bold text-2xl">منتجات مشابهة</h1>
+        <h1 class=" font-bold text-2xl text-customBlack">منتجات مشابهة</h1>
         <div class="relative w-full">
             <qumra-slider-multi slides-per-view="5" spaceBetween="10">
 
