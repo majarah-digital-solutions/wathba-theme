@@ -20,6 +20,9 @@ module.exports = {
         subColor: "var(--subColor)",
         customBlack:"#333333"
       },
+      order: {
+        '13': '13'
+      },
       screens:{
         xs:"410px",
         sm:"576px",
