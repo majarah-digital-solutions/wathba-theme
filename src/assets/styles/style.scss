@@ -176,13 +176,13 @@
     border-color: var(--mainColor);
   }
   .border-loading {
-    border: 2px solid rgb(88, 88, 88); 
+    border: 2px solid var(--mainColor); 
     border-right-color: transparent; 
   }
   #spinner-container{
     background: linear-gradient(
       to bottom,
-      #000,#4B4E50,#000
+      #f1f1f1,#ffffff,#f1f1f1
     );
   }
   .border-pink {

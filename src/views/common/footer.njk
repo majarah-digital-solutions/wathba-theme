@@ -17,14 +17,14 @@
                روابط سريعة
             </h5>
             <div class="  flex flex-col gap-2">
-            {% for item in global.app.lists.footer %}
+            {% for item in global.lists.footer %}
             <a href="{{item.url}}" class="flex gap-3 items-center">
                <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M6.14457 0.845458C6.40295 1.11418 6.39458 1.54148 6.12586 1.79987L2.58188 5.13831L6.12585 8.47674C6.39458 8.73513 6.40295 9.16243 6.14457 9.43116C5.88618 9.69988 5.45888 9.70825 5.19016 9.44987L1.14016 5.62487C1.00781 5.49761 0.933007 5.32192 0.933007 5.13831C0.933007 4.95469 1.00781 4.77901 1.14016 4.65174L5.19016 0.826744C5.45888 0.568359 5.88618 0.576737 6.14457 0.845458Z" fill="{{global.app.settings.mainColor}}" />
                </svg>
-               <h6>
+               <p class=" text-nowrap">
                   {{item.title}}
-               </h6>
+               </p>
                   
             </a>
             {%endfor%}

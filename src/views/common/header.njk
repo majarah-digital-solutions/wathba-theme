@@ -39,7 +39,7 @@
                     </div>
 
                     <div class=" flex un-hidden-lg justify-start items-center gap-10 ">
-                        {% for item in global.app.lists.header%}
+                        {% for item in global.lists.header%}
 
                         <a href="{{item.url}}"
                             class="  rounded-md text-customBlack font-bold {{item.class}}">{{item.title}}</a>
@@ -93,7 +93,7 @@
             </svg>
 
         </div>
-        {% for item in global.app.lists.header %}
+        {% for item in global.lists.header %}
         <a href="{{item.url}}"
             class=" p-4 pt-0 w-full border-b text-mainColor border-[#EAEAEA] flex items-center justify-between font-bold ">
             {{item.title}}
