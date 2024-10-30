@@ -18,6 +18,7 @@ module.exports = {
       colors: {
         mainColor:'var(--mainColor)',
         subColor: "var(--subColor)",
+        customBlack:"#333333"
       },
       screens:{
         xs:"410px",

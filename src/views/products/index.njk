@@ -4,16 +4,17 @@
 <div class=" flex flex-col gap-10 container  sm:px-0  pb-10">
     <div class=" flex flex-col gap-2">
         <h1 class=" font-bold text-2xl">{{context.page.title}}</h1>
-        <p class="">{{context.page.description}}</p>
+        <p class=" text-subColor">{{context.page.description}}</p>
     </div>
     <div class="   grid xl:grid-cols-4  md:grid-cols-4 grid-cols-1 sm:grid-cols-2 gap-5">
         {%for item in context.products%}
         <qumra-product-card name={{item.title}} slug={{item.slug}}
-            description=" سيارة الدفع الرباعي الكبيرة، قوية وواسعة، متنقلة للعائلات والرحلات"
-            image={{item.images[0].imageUrl}} main-color="{{global.app.settings.mainColor}}" button-text="اضافة للسلة"
-            price="{{item.price | money}}"
-            dicount="{{item.discount}}"
-            discountType="{{item.discountType}}"
+        description=" سيارة الدفع الرباعي الكبيرة، قوية وواسعة، متنقلة للعائلات والرحلات"
+        image={{item.images[0].imageUrl}} main-color="{{global.app.settings.mainColor}}"
+        button-text="اضافة للسلة" price="{{item.price | money}}"
+        discount="{% if item.discountType == 'fixed' %} {{ item.discount }} {% else %} {{ item.discount }}% {% endif %}"
+        rate="{{item.rate}}" product="{{item._id}}"
+        price-after-discount="{{item.priceAfterDiscount | money}}"
             >
         </qumra-product-card>
         {%endfor%}
