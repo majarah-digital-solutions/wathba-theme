@@ -9,7 +9,6 @@
     <div class="   grid lg:grid-cols-4  md:grid-cols-3 grid-cols-1 sm:grid-cols-2 gap-5">
         {%for item in context.products%}
         <qumra-product-card name={{item.title}} slug={{item.slug}}
-            description=" سيارة الدفع الرباعي الكبيرة، قوية وواسعة، متنقلة للعائلات والرحلات"
             image={{item.images[0].imageUrl}} main-color="{{global.app.settings.mainColor}}" button-text="اضافة للسلة"
             price="{{item.price | money }}" discount="{% if item.discountType == 'fixed' %} 
         {{ item.discount | money }}

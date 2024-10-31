@@ -25,11 +25,10 @@
                                 {{ item.product.title }}
                                 {% endif %} </div>
                             <div class=" text-[#929292]">
-                                bmbmbn
                                 {% if item.properties and item.properties|length > 0 %}
                                 {% for prop in item.properties %}
                                 {% if prop.property and prop.value %}
-                                <span>{{ prop.property.title }} : {{ prop.value.title }}</span>
+                                <span class=" text-nowrap">{{ prop.property.title }} : {{ prop.value.title }}</span>
                                 {% endif %}
                                 {% endfor %}
                                 {% endif %}
