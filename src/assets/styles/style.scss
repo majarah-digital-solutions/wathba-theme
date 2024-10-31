@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind variants;
+@tailwind screens;
 
 @import './config/qumra-gearbox.scss';
 .bg-mainColor {
@@ -47,91 +49,27 @@
   .sideBarProperty {
     right: -100% !important;
   }
-  .order--10 {
-    order: -10;
-  }
   
-  .order--9 {
-    order: -9;
-  }
+
+
+// .coupon-container{
+
+// }
+
+
+@media (max-width: 767px) {
   
-  .order--8 {
-    order: -8;
-  }
+}
+
+@media (max-width: 767px) {
   
-  .order--7 {
-    order: -7;
-  }
-  
-  .order--6 {
-    order: -6;
-  }
-  
-  .order--5 {
-    order: -5;
-  }
-  
-  .order--4 {
-    order: -4;
-  }
-  
-  .order--3 {
-    order: -3;
-  }
-  
-  .order--2 {
-    order: -2;
-  }
-  
-  .order--1 {
-    order: -1;
-  }
-  
-  .order-0 {
-    order: 0;
-  }
-  
-  .order-1 {
-    order: 1;
-  }
-  
-  .order-2 {
-    order: 2;
-  }
-  
-  .order-3 {
-    order: 3;
-  }
-  
-  .order-4 {
-    order: 4;
-  }
-  
-  .order-5 {
-    order: 5;
-  }
-  
-  .order-6 {
-    order: 6;
-  }
-  
-  .order-7 {
-    order: 7;
-  }
-  
-  .order-8 {
-    order: 8;
-  }
-  
-  .order-9 {
-    order: 9;
-  }
-  
-  .order-10 {
-    order: 10;
-  }
-  
-  
+}
+
+
+
+
+
+
 
 .text-maingold {
     color: var(--maingold);
