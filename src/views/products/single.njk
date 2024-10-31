@@ -7,8 +7,8 @@
 
     <div class=" flex flex-col gap-10 ">
         <div class=" flex flex-col gap-2">
-            <h1 class=" font-bold  text-customBlack text-2xl">تفاصيل الطلب</h1>
-            <p class=" text-subColor ">تشكيلة متنوعة من السيارات تناسب احتياجاتك</p>
+            <h1 class=" font-bold  text-customBlack text-2xl">{{context.page.title}}</h1>
+            <p class=" text-subColor ">{{context.page.description}}</p>
         </div>
         <div class=" flex lg:flex-row items-center flex-col gap-10">
             <div class=" items-center md:w-6/12 w-full z-10  flex flex-col gap-3">
@@ -50,18 +50,35 @@
                                 {%endfor%}
                             </div>
                             <div class="py-1 flex ">
-                                <div class=" text-customBlack">6 تقييما</div>
+                                <div class=" text-customBlack">
+                                    {%if(context.product.rateCount == 0)%}
+                                    لا يوجد تقييمات
+                                    {%else%}
+                                    {{context.product.rateCount}}
+                                    تقييما
+                                    {%endif%}
+                                </div>
                             </div>
                         </div>
-                        <div class=" text-mainColor font-bold text-sm flex gap-2 items-center">
+                        {% set statusAvailable = context.product.status == "AVAILABLE" %}
+                        <div
+                            class="{% if statusAvailable %} text-mainColor {% else %}text-red-500{% endif %} font-bold text-sm flex gap-2 items-center">
                             <svg width="15" height="16" viewBox="0 0 15 16" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
                                     d="M4.95216 1.84907C5.57029 1.1382 6.48249 0.6875 7.5 0.6875C8.51746 0.6875 9.42962 1.13815 10.0477 1.84896C10.9876 1.7833 11.9514 2.10962 12.671 2.82918C13.3905 3.54874 13.7169 4.51257 13.6512 5.45239C14.3619 6.07052 14.8125 6.98261 14.8125 8C14.8125 9.01758 14.3617 9.92983 13.6508 10.548C13.7163 11.4876 13.39 12.4513 12.6705 13.1707C11.9511 13.8901 10.9875 14.2165 10.0478 14.151C9.42969 14.8618 8.5175 15.3125 7.5 15.3125C6.48255 15.3125 5.5704 14.8619 4.95228 14.1511C4.01244 14.2167 3.0486 13.8904 2.32903 13.1708C1.60947 12.4513 1.28314 11.4874 1.34881 10.5476C0.638089 9.92949 0.1875 9.01739 0.1875 8C0.1875 6.98256 0.638135 6.07042 1.34892 5.45229C1.28332 4.51254 1.60965 3.5488 2.32915 2.8293C3.04866 2.1098 4.0124 1.78347 4.95216 1.84907ZM10.2077 6.63945C10.3883 6.38665 10.3297 6.03534 10.0769 5.85477C9.82415 5.67421 9.47284 5.73276 9.29227 5.98555L6.86572 9.38273L5.64775 8.16475C5.42808 7.94508 5.07192 7.94508 4.85225 8.16475C4.63258 8.38442 4.63258 8.74058 4.85225 8.96025L6.53975 10.6477C6.65667 10.7647 6.81911 10.8242 6.9839 10.8106C7.14868 10.7969 7.29912 10.7115 7.39523 10.5769L10.2077 6.63945Z"
-                                    fill="{{global.app.settings.mainColor}}" />
+                                    fill="{% if statusAvailable %}{{global.app.settings.mainColor}}{% else %} red {% endif %}" />
                             </svg>
-                            <div class="">متوفر في المعرض</div>
+                            <div>
+                                {% if statusAvailable %}
+                                متوفر في المعرض
+                                {% else %}
+                                غير متوفر
+                                {% endif %}
+                            </div>
                         </div>
+
+
                     </div>
                     <div class="pt-6 border-t flex flex-col gap-4" style="border-color: #D9D9D9;">
                         <div class=" flex gap-2 items-end">
@@ -82,7 +99,8 @@
                             {{ context.product.content | safe }}
                         </div>
                     </div>
-                    <div class="pt-6 border-t w-full gap-2 font-bold flex items-center text-customBlack" style="border-color: #D9D9D9">
+                    <div class="pt-6 border-t w-full gap-2 font-bold flex items-center text-customBlack"
+                        style="border-color: #D9D9D9">
                         الخصائص :
                         <qumra-product-options main-color="{{global.app.settings.mainColor}}"
                             product={{context.product._id}}
@@ -132,26 +150,23 @@
     <div class=" flex flex-col gap-6 ">
         <div class="flex justify-between">
             <h2 class=" font-bold text-2xl text-customBlack">منتجات مشابهة</h2>
-            <a class=" font-bold text-md text-mainColor">عرض المزيد</a>
+            <a href="" class=" font-bold text-md text-mainColor">عرض المزيد</a>
         </div>
         <div class="relative w-full">
-            <qumra-slider-multi  navigation-color={{global.app.settings.mainColor}} slides-per-view="5" spaceBetween="10">
+            <qumra-slider-multi navigation-color={{global.app.settings.mainColor}} slides-per-view="5"
+                spaceBetween="10">
 
                 {%for item in context.relatedProducts.results%}
                 <qumra-slider-item>
                     <qumra-product-card name={{item.title}} slug={{item.slug}}
                         description=" سيارة الدفع الرباعي الكبيرة، قوية وواسعة، متنقلة للعائلات والرحلات"
                         image={{item.images[0].imageUrl}} main-color="{{global.app.settings.mainColor}}"
-                        button-text="اضافة للسلة" price="{{item.price | money}}"
-                        discount="{% if item.discountType == 'fixed' %} 
+                        button-text="اضافة للسلة" price="{{item.price | money }}" discount="{% if item.discountType == 'fixed' %} 
                         {{ item.discount | money }}
                          {%  elif item.discountType == 'percentage' %}
-                         {{ item.discount + "%" }}
-                         {% else %}
-                          {{item.discount}}
-                         {% endif %}"
-                        rate="{{item.rate}}" product="{{item._id}}"
-                        price-after-discount="{{item.priceAfterDiscount | money}}"></qumra-product-card>
+                         {{ item.discount + " %" }} {% else %} {{item.discount}} {% endif %}" rate="{{item.rate}}"
+                        product="{{item._id}}"
+                        price-after-discount="{{item.priceAfterDiscount | money }}"></qumra-product-card>
 
                 </qumra-slider-item>
                 {%endfor%}
