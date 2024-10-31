@@ -2,7 +2,7 @@
 {% block content %}
 <div>
     {%if context.cart and context.cart.items %}
-    <div class=" flex flex-col gap-10 container md:px-4">
+    <div class=" flex flex-col gap-8 md:gap-10 container md:px-4">
         <div class=" flex flex-col gap-2">
             <h1 class=" font-bold text-2xl text-customBlack">{{context.page.title}}</h1>
             <p class=" text-subColor">{{context.page.description}}</p>
@@ -43,14 +43,14 @@
 
                     <div class="text-customBlack justify-self-end font-[600] place-self-center  order-2">{{item.product.price|money}}</div>
                     
-                    <div class="justify-self-end place-self-start md:place-self-center md:order-last order-0">
+                    <div style="justify-self: end;" class="justify-self-end place-self-start md:place-self-center md:order-last order-0">
                         <qumra-dropdown icon='<svg class="cursor-pointer" width="24" height="6" viewBox="0 0 24 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                                  <circle cx="3" cy="3" r="3" fill="#C6C6C6" />
                                  <circle cx="12" cy="3" r="3" fill="#C6C6C6" />
                                  <circle cx="21" cy="3" r="3" fill="#C6C6C6" />
                                </svg>'>
                             <div class="w-[137px]">
-                                <div class="text-xs hover:text-mainColor gap-1 cursor-pointer flex  items-center">
+                                <div onclick="Qumra.cart.clearCartItem('{{item.id}}')"  class="text-xs hover:text-mainColor gap-1 cursor-pointer flex  items-center">
                                     <svg class="cursor-pointer over:text-mainColor " xmlns="http://www.w3.org/2000/svg"
                                         width="14px" height="14px" viewBox="0 0 1024 1024" class="icon" version="1.1"
                                         fill="#000000">
@@ -168,7 +168,7 @@
                             <div class=" text-subColor text-xs text-center">أدخل كود الخصم هنا واستفد من توفير فوري!
                             </div>
                         </div>
-                        <qumra-coupon></qumra-coupon>
+                        <qumra-coupon get-coupon="{{context.page.get_coupon}}" ></qumra-coupon>
                     </div>
                 </div>
 
