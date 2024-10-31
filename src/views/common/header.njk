@@ -1,5 +1,5 @@
 <!-- header -->
-<div class=" sticky  flex  z-9 top-0  flex-col gap-8 shadow-mainColor w-full">
+<div style="z-index: 99;" class=" sticky  flex   top-0  flex-col gap-8 shadow-mainColor w-full">
     <div class="">
         <div class=" h-9 items-center flex  bg-mainColor">
             <div class="container w-full  md:flex-row flex-col   flex justify-between">
@@ -78,7 +78,7 @@
     </div>
 </div>
 <!-- header -->
-<div id="sideBar" class="z-9999 fixed pt-8 shadow-sm transition-all duration-300 right-0
+<div id="sideBar" class="z-[9999] fixed pt-8 shadow-sm transition-all duration-300 right-0
   bg-white  w-60 z-9 h-screen hidden">
     <div class=" justify-start flex-col flex items-center gap-4 ">
         <div class=" flex justify-between w-full px-4 items-center">
@@ -106,6 +106,7 @@
         {% endfor %}
     </div>
 </div>
+
 
 <script>
     var sidebarItem = document.getElementById('sidebar-item');
