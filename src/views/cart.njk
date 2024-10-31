@@ -10,55 +10,64 @@
         <div class=" flex md:flex-row flex-col gap-[20px] lg:gap-[43px] py-5">
             <div style="border-radius:  20px;" class=" bg-white initial-scroll  md:w-2/3   flex flex-col gap-6">
                 {%for item in context.cart.items%}
+                <form onchange="window.Qumra.forms.change('updateCartItem', event)" >
+                    <input type="hidden" name="cartItem"  value={{item._id}}>
 
-                <div
-                    class=" w-full  grid md:grid-cols-5 grid-cols-2  md:items-center items-start  rounded-lg gap-4 shadow-[0px_0px_25px_#D7D7D780] p-[20px]">
+                    <div
+                        class=" w-full  grid md:grid-cols-5 grid-cols-2  md:items-center items-start  rounded-lg gap-4 shadow-[0px_0px_25px_#D7D7D780] p-[20px]">
 
-                    <div class=" flex lg:gap-4 gap-2  md:col-span-2  ">
-                        <img src="{{item.product.images[0].imageUrl}}"
-                            style="width: 80px;height: 80px; object-fit: contain;" alt="">
-                        <div class=" flex flex-col  justify-center ">
-                            <div class="text-customBlack">
-                                {% if item.product.title.length > 18 %}
-                                {{ item.product.title.slice(0, 18) }}...
-                                {% else %}
-                                {{ item.product.title }}
-                                {% endif %} </div>
-                            <div class=" text-[#929292]">
-                                {% if item.properties and item.properties|length > 0 %}
-                                {% for prop in item.properties %}
-                                {% if prop.property and prop.value %}
-                                <span class=" text-nowrap">{{ prop.property.title }} : {{ prop.value.title }}</span>
-                                {% endif %}
-                                {% endfor %}
-                                {% endif %}
+                        <div class=" flex lg:gap-4 gap-2  md:col-span-2  ">
+                            <img src="{{item.product.images[0].imageUrl}}"
+                                style="width: 80px;height: 80px; object-fit: contain;" alt="">
+                            <div class=" flex flex-col  justify-center ">
+                                <div class="text-customBlack">
+                                    {% if item.product.title.length > 18 %}
+                                    {{ item.product.title.slice(0, 18) }}...
+                                    {% else %}
+                                    {{ item.product.title }}
+                                    {% endif %} </div>
+                                <div class=" text-[#929292]">
+                                    {% if item.properties and item.properties|length > 0 %}
+                                    {% for prop in item.properties %}
+                                    {% if prop.property and prop.value %}
+                                    <span class=" text-nowrap">{{ prop.property.title }} : {{ prop.value.title }}</span>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+
                             </div>
+                        </div>
+                        <div class="order-1 md:justify-self-center justify-self-end relative sm:left-0 left-[-38px]">
+                            <div class="">
+                            <qumra-quantity-input value={{item.quantity}}></qumra-quantity-input>
+                            {# <qumra-product-options main-color="{{global.app.settings.mainColor}}" product={{context.product._id}}
+                            data="{{context.product.properties | dump}}">
+                        </qumra-product-options> #}
+</div>
+                        </div>
+
+                        <div class="text-customBlack justify-self-end font-[600] place-self-center  order-2">
+                            {{item.product.price|money}}</div>
+
+                        <div style="justify-self: end;"
+                            class="justify-self-end place-self-start md:place-self-center md:order-last order-0">
+                            <button onclick="window.Qumra.cart.clearCartItem('{{item.id}}')">
+                                <svg class="cursor-pointer" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M6.28033 5.21967C5.98744 4.92678 5.51256 4.92678 5.21967 5.21967C4.92678 5.51256 4.92678 5.98744 5.21967 6.28033L8.93934 10L5.21967 13.7197C4.92678 14.0126 4.92678 14.4874 5.21967 14.7803C5.51256 15.0732 5.98744 15.0732 6.28033 14.7803L10 11.0607L13.7197 14.7803C14.0126 15.0732 14.4874 15.0732 14.7803 14.7803C15.0732 14.4874 15.0732 14.0126 14.7803 13.7197L11.0607 10L14.7803 6.28033C15.0732 5.98744 15.0732 5.51256 14.7803 5.21967C14.4874 4.92678 14.0126 4.92678 13.7197 5.21967L10 8.93934L6.28033 5.21967Z"
+                                        fill="#DD0000" stroke="#DD0000" stroke-width="0.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+
+                            </button>
 
                         </div>
-                    </div>
-                    <div class="order-1 md:justify-self-center justify-self-end relative sm:left-0 left-[-38px]">
-                        <qumra-quantity-input value={{item.quantity}}></qumra-quantity-input>
-                    </div>
-
-                    <div class="text-customBlack justify-self-end font-[600] place-self-center  order-2">
-                        {{item.product.price|money}}</div>
-
-                    <div style="justify-self: end;"
-                        class="justify-self-end place-self-start md:place-self-center md:order-last order-0">
-                        <button onclick="window.Qumra.cart.clearCartItem('{{item.id}}')">
-                            <svg class="cursor-pointer" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M6.28033 5.21967C5.98744 4.92678 5.51256 4.92678 5.21967 5.21967C4.92678 5.51256 4.92678 5.98744 5.21967 6.28033L8.93934 10L5.21967 13.7197C4.92678 14.0126 4.92678 14.4874 5.21967 14.7803C5.51256 15.0732 5.98744 15.0732 6.28033 14.7803L10 11.0607L13.7197 14.7803C14.0126 15.0732 14.4874 15.0732 14.7803 14.7803C15.0732 14.4874 15.0732 14.0126 14.7803 13.7197L11.0607 10L14.7803 6.28033C15.0732 5.98744 15.0732 5.51256 14.7803 5.21967C14.4874 4.92678 14.0126 4.92678 13.7197 5.21967L10 8.93934L6.28033 5.21967Z"
-                                    fill="#DD0000" stroke="#DD0000" stroke-width="0.5" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
-
-                        </button>
 
                     </div>
 
-                </div>
+                </form>
                 {%endfor%}
 
             </div>
