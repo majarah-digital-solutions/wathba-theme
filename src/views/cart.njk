@@ -1,7 +1,7 @@
 {% extends "layouts/layout.njk" %}
 {% block content %}
 <div>
-    {%if context.cart and context.cart.items %}
+    {%if context.cart.items.length > 0 %}
     <div class=" flex flex-col gap-8 md:gap-10 container md:px-4">
         <div class=" flex flex-col gap-2">
             <h1 class=" font-bold text-2xl text-customBlack">{{context.page.title}}</h1>
@@ -10,7 +10,6 @@
         <div class=" flex md:flex-row flex-col gap-[20px] lg:gap-[43px] py-5">
             <div style="border-radius:  20px;" class=" bg-white initial-scroll  md:w-2/3   flex flex-col gap-6">
                 {%for item in context.cart.items%}
-                <form onchange="window.Qumra.forms.change('updateCartItem', event)" >
                     <input type="hidden" name="cartItem"  value={{item._id}}>
 
                     <div
@@ -40,7 +39,7 @@
                         </div>
                         <div class="order-1 md:justify-self-center justify-self-end relative sm:left-0 left-[-38px]">
                             <div class="">
-                            <qumra-quantity-input value={{item.quantity}}></qumra-quantity-input>
+                            <qumra-quantity-input callback="(quantity) => window.Qumra.cart.updateQuantity('{{item._id}}', quantity)" value={{item.quantity}}></qumra-quantity-input>
                             {# <qumra-product-options main-color="{{global.app.settings.mainColor}}" product={{context.product._id}}
                             data="{{context.product.properties | dump}}">
                         </qumra-product-options> #}
@@ -66,8 +65,6 @@
                         </div>
 
                     </div>
-
-                </form>
                 {%endfor%}
 
             </div>

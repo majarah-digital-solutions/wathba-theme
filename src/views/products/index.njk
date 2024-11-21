@@ -8,16 +8,7 @@
     </div>
     <div class="   grid lg:grid-cols-4  md:grid-cols-3 grid-cols-1 sm:grid-cols-2 gap-5">
         {%for item in context.products%}
-
-        <qumra-product-card name={{item.title}} slug={{item.slug}}
-            image={{item.images[0].imageUrl}} main-color="{{global.app.settings.mainColor}}" button-text="اضافة للسلة"
-            price="{{item.price | money }}" discount="{% if item.discountType == 'fixed' %} 
-        {{ item.discount | money }}
-         {%  elif item.discountType == 'percentage' %}
-         {{ item.discount + " %" }} {% else %} {{item.discount}} {% endif %}" rate="{{item.rate}}"
-            product="{{item._id}}" price-after-discount="{{item.priceAfterDiscount | money }}">
-        </qumra-product-card>
-
+            <qumra-product-card product='{{item | dump}}'></qumra-product-card>
         {%endfor%}
     </div>
 </div>

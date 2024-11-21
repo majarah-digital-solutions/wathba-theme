@@ -25,7 +25,7 @@
 
             <div class=" md:w-6/12">
                 <form class="flex flex-col gap-6" enctype="multipart/form-data" method="post"
-                    onsubmit="return window.Qumra.forms.submit('qqqqqq', event)">
+                    onsubmit="return window.Qumra.forms.submit('addToCart', event)">
                     <div class=" flex flex-col gap-2 ">
                         <input type="hidden" name="product" value={{context.product._id}}>
                         <h1 class="text-2xl font-bold  text-customBlack">{{context.product.title}}</h1>
@@ -160,15 +160,7 @@
 
                 {%for item in context.relatedProducts.results%}
                 <qumra-slider-item>
-                    <qumra-product-card name={{item.title}} slug={{item.slug}}
-                        image={{item.images[0].imageUrl}} main-color="{{global.app.settings.mainColor}}"
-                        button-text="اضافة للسلة" price="{{item.price | money }}" discount="{% if item.discountType == 'fixed' %} 
-                        {{ item.discount | money }}
-                         {%  elif item.discountType == 'percentage' %}
-                         {{ item.discount + " %" }} {% else %} {{item.discount}} {% endif %}" rate="{{item.rate}}"
-                        product="{{item._id}}"
-                        price-after-discount="{{item.priceAfterDiscount | money }}"></qumra-product-card>
-
+                    <qumra-product-card product='{{item | dump}}'></qumra-product-card>
                 </qumra-slider-item>
                 {%endfor%}
             </qumra-slider-multi>
