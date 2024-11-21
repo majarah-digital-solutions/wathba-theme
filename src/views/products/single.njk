@@ -100,15 +100,14 @@
                         </div>
                     </div>
                     {%  if context.product.properties.length > 0%}
-                    <div class="pt-6 border-t w-full gap-2 font-bold flex items-center text-customBlack"
-                        style="border-color: #D9D9D9">
-                        الخصائص :
-                        <qumra-product-options main-color="{{global.app.settings.mainColor}}"
+                    <div class="pt-6 border-t w-full font-bold  flex flex-col gap-2 items-center text-customBlack" style="border-color: #D9D9D9">
+                        <qumra-product-options class="w-full" main-color="{{global.app.settings.mainColor}}"
                             product={{context.product._id}}
                             data="{{context.product.properties | dump}}"></qumra-product-options>
+                </div>
 
-                    </div>
                     {%endif%}
+
                     <div
                         class="pt-6  border-t font-bold flex border-[#D9D9D9  justify-between flex-row  items-center  gap-4">
 
