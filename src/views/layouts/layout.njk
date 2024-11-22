@@ -8,7 +8,6 @@
         {{ hooks.seo | safe }}
         {{ hooks.head | safe }}
 
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai&amp;display=swap">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
         <link rel="stylesheet" href={{"style.css" | assets}}>
@@ -18,25 +17,6 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        <link
-        href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
-        rel="stylesheet">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family={{global.app.settings.font.sources}}">
-
-        <style>
-            * {
-                font-family: "{{global.app.settings.font.title}}" !important;
-            }
-            :root {
-                --mainColor: {{global.app.settings.mainColor}};
-                --subColor: {{global.app.settings.subColor}};
-                --backgroundColor: {{global.app.settings.backgroundColor}};
-                --pink: #fbdddd;
-                --reddiscount: #f55157;
-                --gray: #f7f7f7;
-                --borderRaduis: 18px;
-            }
-        </style>
     </head>
 
     <body style="background-color: white;overflow-x: hidden" dir="rtl">
