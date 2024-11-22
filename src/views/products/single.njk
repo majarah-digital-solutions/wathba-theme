@@ -13,9 +13,9 @@
         <div class=" flex lg:flex-row items-center flex-col gap-10">
             <div class=" items-center md:w-6/12 w-full z-10  flex flex-col gap-3">
                 <div class="relative w-full">
-                    <qumra-slider navigation-color={{global.app.settings.mainColor}}>
+                    <qumra-slider  navigation-color={{global.app.settings.mainColor}}>
                         {%for image in context.product.images%}
-                        <qumra-slider-item><img class="h-full w-full " style="object-fit: contain;max-height: 400px;"
+                        <qumra-slider-item class="rounded-lg"><img class="h-full w-full rounded-lg" style="object-fit: contain;max-height: 400px;"
                                 src="{{ image.imageUrl }}" alt="Image description"></qumra-slider-item>
                         {%endfor%}
                     </qumra-slider>
@@ -90,7 +90,7 @@
                                 {{context.product.price |money }}
                             </div>
                             {%else%}
-                            <div class="  font-bold text-mainColor text-2xl">
+                            <div class="  font-bold text-mainColor  text-2xl">
                                 {{context.product.price | money}}
                             </div>
                             {%endif%}
