@@ -3,12 +3,10 @@
     <div class="">
         <div class=" h-9 items-center flex  bg-mainColor">
             <div class="container w-full  md:flex-row flex-col   flex justify-between">
-                <div class=" un-hidden-lg  flex   text-white md:gap-3">
-                    <div class=" text-center">سياسة الاستبدال او الاستراجاع</div>
-                    <div class=" border-r flex h-full"></div>
-                    <div class=" text-center">سياسة الشحن والتوصيل</div>
-                    <div class=" border-r flex h-full"></div>
-                    <div class=" text-center">طرق الدفع</div>
+                <div class=" un-hidden-lg  flex   text-white ">
+                    {%for listItem in global.lists.topMenu%}
+                    <a href="{{listItem.url}}" class=" last:border-none text-center border-l  px-3">{{listItem.title}}</a>
+                    {%endfor%}
                 </div>
             </div>
         </div>
