@@ -13,10 +13,11 @@
         <div class=" flex lg:flex-row items-center flex-col gap-10">
             <div class=" items-center md:w-6/12 w-full z-10  flex flex-col gap-3">
                 <div class="relative w-full">
-                    <qumra-slider  navigation-color={{global.app.settings.mainColor}}>
+                    <qumra-slider navigation-color={{global.app.settings.mainColor}}>
                         {%for image in context.product.images%}
-                        <qumra-slider-item class="rounded-lg"><img class="h-full w-full rounded-lg" style="object-fit: contain;max-height: 400px;"
-                                src="{{ image.imageUrl }}" alt="Image description"></qumra-slider-item>
+                        <qumra-slider-item class="rounded-lg"><img class="h-full w-full rounded-lg"
+                                style="object-fit: contain;max-height: 400px;" src="{{ image.imageUrl }}"
+                                alt="Image description"></qumra-slider-item>
                         {%endfor%}
                     </qumra-slider>
 
@@ -99,12 +100,13 @@
                             {{ context.product.content | safe }}
                         </div>
                     </div>
-                    {%  if context.product.properties.length > 0%}
-                    <div class="pt-6 border-t w-full font-bold  flex flex-col gap-2 items-center text-customBlack" style="border-color: #D9D9D9">
+                    {% if context.product.properties.length > 0%}
+                    <div class="pt-6 border-t w-full font-bold  flex flex-col gap-2 items-center text-customBlack"
+                        style="border-color: #D9D9D9">
                         <qumra-product-options class="w-full" main-color="{{global.app.settings.mainColor}}"
                             product={{context.product._id}}
                             data="{{context.product.properties | dump}}"></qumra-product-options>
-                </div>
+                    </div>
 
                     {%endif%}
 
@@ -169,8 +171,40 @@
 
     </div>
 
+    <div class="">
+
+    </div>
+
+
 
 
 </div>
+{# <div class="relative w-full h-screen">
+    <img class=" h-[320px] absolute top-0" src={{"images/image.png" | assets}} alt="">
+    <div class=" relative container w-full flex justify-center ">
+        <div class="absolute w-full top-[53px]  flex justify-between   ">
+            <div class=" flex flex-col gap-2 ">
+                <div class="font-bold text-white">أفضل الخيارات بين يديك</div>
+                <div class="text-sm text-white">استمتع بتجربة تسوق فريدة مع مجموعة متنوعة من المنتجات التي تلبي جميع
+                    احتياجاتك</div>
+            </div>
+            <a class=" border text-white cursor-pointer border-white rounded-lg py-2 h-[35px] px-6" href="/">اكتشف
+                منتجاتنا</a>
+        </div>
+    </div>
+    <div class=" h-full container">
+        <qumra-slider-multi navigation-color={{global.app.settings.mainColor}} slides-per-view="5" spaceBetween="10">
+
+            {%for item in context.relatedProducts.results%}
+            <qumra-slider-item class=" bg-transparent">
+                <qumra-product-card product='{{item | dump}}'></qumra-product-card>
+            </qumra-slider-item>
+            {%endfor%}
+        </qumra-slider-multi>
+    </div>
+
+</div> #}
+
+
 
 {% endblock %}
