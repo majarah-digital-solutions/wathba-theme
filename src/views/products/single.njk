@@ -179,7 +179,7 @@
 
 
 </div>
-<div class="relative w-full h-screen">
+<div class="relative w-full h-screen flex justify-center">
     <img class=" h-[320px] absolute top-0" src={{"images/image.png" | assets}} alt="">
     <div class=" relative container w-full flex justify-center ">
         <div class="absolute w-full top-[53px]  flex justify-between   ">
@@ -192,7 +192,7 @@
                 منتجاتنا</a>
         </div>
     </div>
-    <div class=" h-full container">
+    <div class=" absolute top-0 translate-y-32 h-full container">
         <qumra-slider-multi navigation-color={{global.app.settings.mainColor}} slides-per-view="5" spaceBetween="10">
 
             {%for item in context.relatedProducts.results%}
