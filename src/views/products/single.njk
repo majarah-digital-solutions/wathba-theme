@@ -179,7 +179,7 @@
 
 
 </div>
-{# <div class="relative w-full h-screen">
+<div class="relative w-full h-screen">
     <img class=" h-[320px] absolute top-0" src={{"images/image.png" | assets}} alt="">
     <div class=" relative container w-full flex justify-center ">
         <div class="absolute w-full top-[53px]  flex justify-between   ">
@@ -196,18 +196,75 @@
         <qumra-slider-multi navigation-color={{global.app.settings.mainColor}} slides-per-view="5" spaceBetween="10">
 
             {%for item in context.relatedProducts.results%}
-            <qumra-slider-item class=" bg-transparent">
-                <qumra-product-card product='{{item | dump}}'></qumra-product-card>
+            <qumra-slider-item class="bg-transparent">
+                <qumra-product-card class=" w-full " product='{{item | dump}}'></qumra-product-card>
             </qumra-slider-item>
             {%endfor%}
         </qumra-slider-multi>
     </div>
 
-</div> #}
+</div>
 
- <div class=" flex flex-col gap-[34px] ">
-    <div class=" flex  justify-between ">
-        <div class="">الاقسام</div>
+
+
+
+<div class=" flex flex-col gap-[34px]">
+    <div class=" flex  justify-between">
+        <div class=" text-2xl font-bold">الاقسام</div>
+        <div class="text-mainColor font-bold">عرض الكل</div>
     </div>
- </div>
+    <div class=" grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-[77px]">
+
+        <a href="/"
+            class="border hover:shadow-[0px_11px_50px_#D7D7D780] border-transparent hover:border-mainColor cursor-pointer box-content rounded-[20px] p-6 flex flex-col gap-4 items-center">
+            <div class="w-[120px] h-[120px] rounded-full flex justify-center items-center bg-[#F3F3F3]">
+                <img src={{"images/image.png" | assets}} class="w-14 object-contain" alt="">
+            </div>
+            <div class="flex flex-col gap-2 items-center">
+                <div class="text-customBlack font-bold">ملابس</div>
+                <div class="text-center text-[#6C6D6E] text-xs">تقدم سياراتنا أداءً استثنائيًا وتصميمًا جذابًا لتلبية
+                    كافة احتياجاتك. اكتشف الخيار المثالي لأسلوب حياتك اليوم</div>
+            </div>
+        </a>
+
+
+    </div>
+</div>
+
+<div class=" grid lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-[77px]">
+    <a href="/" class=" flex flex-col items-center">
+        <div class="w-[90px] h-[90px] rounded-full flex justify-center items-center bg-[#F3F3F3]  ">
+            <img src={{"images/image.png" | assets}} class="w-14 object-contain" alt="">
+        </div>
+        <div class="text-customBlack font-bold">ملابس</div>
+    </a>
+    <a href="/" class=" flex flex-col items-center">
+        <div class="w-[90px] h-[90px] rounded-full flex justify-center items-center bg-[#F3F3F3]  ">
+            <img src={{"images/image.png" | assets}} class="w-14 object-contain" alt="">
+        </div>
+        <div class="text-customBlack font-bold">ملابس</div>
+    </a>
+    <a href="/" class=" flex flex-col items-center">
+        <div class="w-[90px] h-[90px] rounded-full flex justify-center items-center bg-[#F3F3F3]  ">
+            <img src={{"images/image.png" | assets}} class="w-14 object-contain" alt="">
+        </div>
+        <div class="text-customBlack font-bold">ملابس</div>
+    </a>
+    <a href="/" class=" flex flex-col items-center">
+        <div class="w-[90px] h-[90px] rounded-full flex justify-center items-center bg-[#F3F3F3]  ">
+            <img src={{"images/image.png" | assets}} class="w-14 object-contain" alt="">
+        </div>
+        <div class="text-customBlack font-bold">ملابس</div>
+    </a>
+
+    <a href="/" class=" flex flex-col items-center">
+        <div class="w-[90px] h-[90px] rounded-full flex justify-center items-center bg-[#F3F3F3]  ">
+            <img src={{"images/image.png" | assets}} class="w-14 object-contain" alt="">
+        </div>
+        <div class="text-customBlack font-bold">ملابس</div>
+    </a>
+
+</div>
+
+
 {% endblock %}
