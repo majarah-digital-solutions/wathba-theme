@@ -3,24 +3,31 @@ const CopyPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const path = require("path");
-
 const webpack = require('webpack');
 
-
 const asset = file => path.resolve('src/assets', file || '');
-const public = file => path.resolve("dist", file || '');
+const publicPath = file => path.resolve("dist", file || '');
 
 module.exports = {
   entry: {
-    app: [asset("js/main.js"),asset("styles/style.scss") ],
+    app: [asset("js/main.ts"), asset("styles/style.scss")],
   },
   output: {
-    path: public(),
+    path: publicPath(),
     clean: true,
-    chunkFilename: "[name].js",
+    chunkFilename: "[name].js", // تأكد من امتداد مناسب
+  },
+  resolve: {
+    // إضافة دعم لامتدادات TypeScript
+    extensions: ['.ts', '.js'],
   },
   module: {
     rules: [
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        use: "ts-loader",
+      },
       {
         test: /\.js$/,
         exclude: /(node_modules)/,
@@ -51,13 +58,14 @@ module.exports = {
     ],
   },
   plugins: [
-    new MiniCssExtractPlugin({filename: 'style.css'}),
-    new CopyPlugin({patterns: [{ from: asset('images'), to: public('images') }],}),
+    new MiniCssExtractPlugin({ filename: 'style.css' }),
+    new CopyPlugin({
+      patterns: [{ from: asset('images'), to: publicPath('images') }],
+    }),
     new webpack.HotModuleReplacementPlugin(), // دعم Hot Module Replacement
-
   ],
   optimization: {
-    minimize: true, // تمكين الضغط
+    minimize: true,
     minimizer: [
       new TerserPlugin(), // لضغط JavaScript
       new CssMinimizerPlugin(), // لضغط CSS

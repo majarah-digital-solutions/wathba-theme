@@ -24,6 +24,8 @@
     "postcss-preset-env": "^10.0.2",
     "sass": "^1.77.8",
     "sass-loader": "^16.0.1",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.7.3",
     "webpack": "^5.94.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.4",
@@ -38,6 +40,7 @@
     "express-session": "^1.18.0",
     "ora": "^4.1.1",
     "qumra-client": "^1.0.88",
+    "qumra-gearbox": "^1.0.9",
     "qumra-ui": "^0.0.29",
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-animated": "^1.1.2"
