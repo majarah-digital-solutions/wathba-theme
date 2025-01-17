@@ -8,8 +8,10 @@
         {{ hooks.head | safe }}
         <link rel="stylesheet" href={{"style.css" | assets}}>
     </head>
-     <script src="http://127.0.0.1:5503/dist/gearbox/index.js" defer></script> 
-    <script type="module" src="http://127.0.0.1:5502/dist/esm/qumra-ui.js"></script>
+     <script src="http://127.0.0.1:5501/dist/gearbox/qumra-gearbox.js" defer></script> 
+
+     {# <script type="module" src="https://cdn.jsdelivr.net/npm/qumra-ui@0.0.77/dist/esm/qumra-ui.js"></script> #}
+    {# <script type="module" src="http://127.0.0.1:5500/dist/esm/qumra-ui.js"></script> #}
     <style>
         * {font-family: "{{global.app.settings.font.title}}" !important;}
         :root {
