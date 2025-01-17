@@ -27,14 +27,13 @@
             {% include "common/header.njk" ignore missing %}
             <div class=" min-h-screen">
 
-                <div x-data="fruitList()" x-init="init()">
+                <div x-data="CartList()" x-init="init()">
                     <h2>قائمة الفاكهة:</h2>
                     <ul>
                         <template x-for="(item, index) in items" :key="index">
                             <li x-text="item"></li>
                         </template>
                     </ul>
-                    <button @click="addFruit()">أضف فاكهة</button>
                 </div>
 
                 {% block content %}{% endblock %}
@@ -43,22 +42,18 @@
         </div>
         <script src={{"app.js" | assets }}></script>
         <script>
-            function fruitList() {
+            function CartList() {
                 return {
                     items: [
                         'تفاحة', 'موز', 'برتقال', 'عنب'
                     ],
-                    addFruit(items) {
-                        // إضافة فاكهة جديدة إلى المصفوفة
-                        this.items = items;
-                    },
-                    updateFruit(index, newFruit) {
+                    updateCart(index, newFruit) {
                         // تحديث عنصر محدد في المصفوفة
                         this.items[index] = newFruit;
                     },
                     init() {
-                        window.addFruit = this
-                            .addFruit
+                        window.updateCart = this
+                            .updateCart
                             .bind(this);
                     }
                 }
