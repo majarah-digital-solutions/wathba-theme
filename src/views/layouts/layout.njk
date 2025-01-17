@@ -7,19 +7,20 @@
         {{ hooks.seo | safe }}
         {{ hooks.head | safe }}
         <link rel="stylesheet" href={{"style.css" | assets}}>
-    </head>
-    <script src="http://127.0.0.1:5501/dist/gearbox/qumra-gearbox.js" defer></script>
+        <script src="http://127.0.0.1:5501/dist/gearbox/qumra-gearbox.js" defer></script>
 
-    {# <script type="module" src="https://cdn.jsdelivr.net/npm/qumra-ui@0.0.77/dist/esm/qumra-ui.js"></script> #}
-    {# <script type="module" src="http://127.0.0.1:5500/dist/esm/qumra-ui.js"></script> #}
-    <style>
-        * {
-            font-family: "{{global.app.settings.font.title}}" !important;
-        }
-        :root {
-            --mainRadius: 18px;
-        }
-    </style>
+        {# <script type="module" src="https://cdn.jsdelivr.net/npm/qumra-ui@0.0.77/dist/esm/qumra-ui.js"></script> #}
+        {# <script type="module" src="http://127.0.0.1:5500/dist/esm/qumra-ui.js"></script> #}
+        <style>
+            * {
+                font-family: "{{global.app.settings.font.title}}" !important;
+            }
+            :root {
+                --mainRadius: 18px;
+            }
+        </style>
+
+    </head>
     <body style="background-color: white;overflow-x: hidden" dir="rtl" x-data="GlobalState()">
 
         {% include "common/static/loading/index.njk" ignore missing %}
@@ -30,29 +31,8 @@
             </div>
             {% include "common/footer.njk" ignore missing %}
         </div>
-        <script src={{"app.js" | assets }}></script>
-        <script>
-            function GlobalState() {
-                return {
-                    count: 5,
-                    notifi: 9, 
-                    updateCartNumber(newNum) {
-                        this.count = newNum;
-                    },
-                    updateCartNumberasda(newNum) {
-                        this.count = newNum;
-                    },
-                    init() {
-                        window.updateCartNumber = this.updateCartNumber.bind(this);
-                        window.updateCartNumberasda = this.updateCartNumberasda.bind(this);
-                    }
-                }
-            }
-            console.log("context", {{ context | dump | safe }})
-            console.log("global", {{ global | dump | safe}})
-        </script>
+        <script src={{"app.js" | assets }} ></script>
         {{ hooks.body | safe }}
-
     </body>
 
 </html>

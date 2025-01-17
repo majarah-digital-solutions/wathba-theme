@@ -34,6 +34,7 @@
   "description": "",
   "dependencies": {
     "cookie-parser": "^1.4.6",
+    "expose-loader": "^5.0.0",
     "express-session": "^1.18.0",
     "ora": "^4.1.1",
     "qumra-client": "^1.0.88",

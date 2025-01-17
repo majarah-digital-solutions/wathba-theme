@@ -4,7 +4,6 @@
 @tailwind variants;
 @tailwind screens;
 
-@import './config/qumra-gearbox.scss';
 .bg-mainColor {
   background-color: var(--mainColor) !important;
 }
