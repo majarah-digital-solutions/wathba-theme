@@ -3,7 +3,8 @@
 @tailwind utilities;
 @tailwind variants;
 @tailwind screens;
-
+@import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+ 
 .bg-mainColor {
   background-color: var(--mainColor) !important;
 }
