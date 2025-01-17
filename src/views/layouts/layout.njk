@@ -40,6 +40,9 @@
             </div>
             {% include "common/footer.njk" ignore missing %}
         </div>
+        <div x-data="CartButton()">
+            <p x-text="count"></p>
+        </div>
         <script src={{"app.js" | assets }}></script>
         <script>
             function CartList() {
@@ -47,13 +50,26 @@
                     items: [
                         'تفاحة', 'موز', 'برتقال', 'عنب'
                     ],
-                    updateCart(index, newFruit) {
+                    updateCartNumber(newFruit) {
                         // تحديث عنصر محدد في المصفوفة
-                        this.items[index] = newFruit;
+                        this.items = newFruit;
                     },
                     init() {
                         window.updateCart = this
                             .updateCart
+                            .bind(this);
+                    }
+                }
+            }
+            function CartButton() {
+                return {
+                    count: 5,
+                    updateCartNumber(newNum) {
+                        this.count = newNum;
+                    },
+                    init() {
+                        window.updateCartNumber = this
+                            .updateCartNumber
                             .bind(this);
                     }
                 }
