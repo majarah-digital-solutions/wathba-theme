@@ -62,7 +62,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [{ from: asset('images'), to: publicPath('images') }],
     }),
-    new webpack.HotModuleReplacementPlugin(), // دعم Hot Module Replacement
+    // new webpack.HotModuleReplacementPlugin(), // دعم Hot Module Replacement
   ],
   optimization: {
     minimize: true,
