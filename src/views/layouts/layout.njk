@@ -8,28 +8,61 @@
         {{ hooks.head | safe }}
         <link rel="stylesheet" href={{"style.css" | assets}}>
     </head>
-     <script src="http://127.0.0.1:5501/dist/gearbox/qumra-gearbox.js" defer></script> 
+    <script src="http://127.0.0.1:5501/dist/gearbox/qumra-gearbox.js" defer></script>
 
-     {# <script type="module" src="https://cdn.jsdelivr.net/npm/qumra-ui@0.0.77/dist/esm/qumra-ui.js"></script> #}
+    {# <script type="module" src="https://cdn.jsdelivr.net/npm/qumra-ui@0.0.77/dist/esm/qumra-ui.js"></script> #}
     {# <script type="module" src="http://127.0.0.1:5500/dist/esm/qumra-ui.js"></script> #}
     <style>
-        * {font-family: "{{global.app.settings.font.title}}" !important;}
+        * {
+            font-family: "{{global.app.settings.font.title}}" !important;
+        }
         :root {
             --mainRadius: 18px;
         }
-
     </style>
     <body style="background-color: white;overflow-x: hidden" dir="rtl">
+
         {% include "common/static/loading/index.njk" ignore missing %}
         <div class=" flex-col flex gap-10">
             {% include "common/header.njk" ignore missing %}
             <div class=" min-h-screen">
-             {% block content %}{% endblock %}
-             </div>
+
+                <div x-data="fruitList()" x-init="init()">
+                    <h2>قائمة الفاكهة:</h2>
+                    <ul>
+                        <template x-for="(item, index) in items" :key="index">
+                            <li x-text="item"></li>
+                        </template>
+                    </ul>
+                    <button @click="addFruit()">أضف فاكهة</button>
+                </div>
+
+                {% block content %}{% endblock %}
+            </div>
             {% include "common/footer.njk" ignore missing %}
         </div>
         <script src={{"app.js" | assets }}></script>
         <script>
+            function fruitList() {
+                return {
+                    items: [
+                        'تفاحة', 'موز', 'برتقال', 'عنب'
+                    ],
+                    addFruit(items) {
+                        // إضافة فاكهة جديدة إلى المصفوفة
+                        this.items = items;
+                    },
+                    updateFruit(index, newFruit) {
+                        // تحديث عنصر محدد في المصفوفة
+                        this.items[index] = newFruit;
+                    },
+                    init() {
+                        window.addFruit = this
+                            .addFruit
+                            .bind(this);
+                    }
+                }
+            }
             console.log("context", {{ context | dump | safe }})
             console.log("global", {{ global | dump | safe}})
         </script>
