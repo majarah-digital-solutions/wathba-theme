@@ -1,10 +1,16 @@
 // global.d.ts
 import Qumra from 'qumra-gearbox';
+import { CartType } from './cart';
 
 declare global {
   interface Window {
+    [key: string]: any;
     Qumra: typeof Qumra;
-    __qumra__: any
+    __qumra__: {
+      context: {
+        cart: CartType
+      }
+    }
   }
 }
 
