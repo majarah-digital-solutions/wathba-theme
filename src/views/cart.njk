@@ -10,7 +10,7 @@
                 <div   style="border-radius:  20px;"
                 class=" bg-white initial-scroll  md:w-2/3   flex flex-col gap-6">
                     <input type="hidden" name="cartItem" value={{item._id}}>
-                    <div x-data="CartItemList()" x-init="init()">
+                    <div>
 
                         <template x-for="item in items" >
                             <div x-text="item._id"></div>nmnm

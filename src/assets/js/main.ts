@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 function GlobalState() {
     return {
-        itemsCount: JSON.parse(localStorage.cart)?.itemsCount,
-        notifi: 9,
+        itemsCount: window.__qumra__.context.cart.items.length,
+        items: window.__qumra__.context.cart.items,
         updateCartNumber(newNum : any) {
             this.itemsCount = newNum;
         },
@@ -21,27 +21,6 @@ function GlobalState() {
 }
 
 
-function CartItemList() {
-    return {
-        items: window.__qumra__.context.cart.items,
-        addItemCart(items : CartItem) {
-            window
-                .Qumra
-                .events
-                .on("cart::updated", (cart: any) => {
-                    GlobalState().updateCartNumber(cart.itemsCount)
-                })
-        },
-        deleteItemCart(index: any, newFruit: any) {
-            this.items[index] = newFruit;
-        },
-        init() {
-            window.addItemCart = this
-                .addItemCart
-                .bind(this);
-        }
-    }
-}
+
 window.GlobalState = GlobalState;
-window.CartItemList = CartItemList;
 
