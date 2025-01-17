@@ -8,6 +8,8 @@
         {{ hooks.head | safe }}
         <link rel="stylesheet" href={{"style.css" | assets}}>
         {# <script src="http://127.0.0.1:5501/dist/gearbox/qumra-gearbox.js" defer></script> #}
+        <script src="http://127.0.0.1:5501/dist/gearbox/qumra-gearbox.js" defer></script>
+        {# <script src="//unpkg.com/alpinejs" defer></script> #}
         <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
         <style>
             * {
@@ -29,6 +31,7 @@
             </div>
             {% include "common/footer.njk" ignore missing %}
         </div>
+
         <script src={{"app.js" | assets }} ></script>
         {{ hooks.body | safe }}
     </body>
