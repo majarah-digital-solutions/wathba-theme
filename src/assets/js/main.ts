@@ -1,5 +1,3 @@
-import { CartItem } from "../../types/cart";
-
 document.addEventListener("DOMContentLoaded", async () => {
     window.Qumra.events.on("cart::updated", (cart : any) => {
         console.log("🚀 ~ window.Qumra.events.on ~ cart:", cart)
