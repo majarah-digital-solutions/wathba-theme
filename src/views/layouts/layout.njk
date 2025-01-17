@@ -20,57 +20,31 @@
             --mainRadius: 18px;
         }
     </style>
-    <body style="background-color: white;overflow-x: hidden" dir="rtl">
+    <body style="background-color: white;overflow-x: hidden" dir="rtl" x-data="GlobalState()">
 
         {% include "common/static/loading/index.njk" ignore missing %}
         <div class=" flex-col flex gap-10">
             {% include "common/header.njk" ignore missing %}
             <div class=" min-h-screen">
-
-                <div x-data="CartList()" x-init="init()">
-                    <h2>قائمة الفاكهة:</h2>
-                    <ul>
-                        <template x-for="(item, index) in items" :key="index">
-                            <li x-text="item"></li>
-                        </template>
-                    </ul>
-                </div>
-
                 {% block content %}{% endblock %}
             </div>
             {% include "common/footer.njk" ignore missing %}
         </div>
-        <div x-data="CartButton()">
-            <p x-text="count"></p>
-        </div>
         <script src={{"app.js" | assets }}></script>
         <script>
-            function CartList() {
-                return {
-                    items: [
-                        'تفاحة', 'موز', 'برتقال', 'عنب'
-                    ],
-                    updateCartNumber(newFruit) {
-                        // تحديث عنصر محدد في المصفوفة
-                        this.items = newFruit;
-                    },
-                    init() {
-                        window.updateCart = this
-                            .updateCart
-                            .bind(this);
-                    }
-                }
-            }
-            function CartButton() {
+            function GlobalState() {
                 return {
                     count: 5,
+                    notifi: 9, 
                     updateCartNumber(newNum) {
                         this.count = newNum;
                     },
+                    updateCartNumberasda(newNum) {
+                        this.count = newNum;
+                    },
                     init() {
-                        window.updateCartNumber = this
-                            .updateCartNumber
-                            .bind(this);
+                        window.updateCartNumber = this.updateCartNumber.bind(this);
+                        window.updateCartNumberasda = this.updateCartNumberasda.bind(this);
                     }
                 }
             }
