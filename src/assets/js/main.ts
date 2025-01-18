@@ -18,9 +18,9 @@ interface GlobalStateInterface {
 }
 function GlobalState(): GlobalStateInterface {
     return {
-        itemsCount: window.__qumra__.context.cart.items.length,
-        products: window.__qumra__.context.products,
-        cardItems: window.__qumra__.context.cart as any,
+        itemsCount: window.__qumra__.context.cart?.items?.length,
+        products: window.__qumra__?.context?.products,
+        cardItems: window.__qumra__?.context?.cart as any,
         Modal: {
             open: false,
             type: ""
