@@ -2,7 +2,6 @@
   "name": "wathaba-theme",
   "version": "1.0.1",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "build": "npx webpack --config webpack.config.js",
     "dev": "qumra theme dev"

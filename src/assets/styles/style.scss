@@ -46,10 +46,7 @@
 .z-9999999999 {
   z-index: 9999999999;
 }
-  .sideBarProperty {
-    right: -100% !important;
-  }
-  
+
 
 
 // .coupon-container{
@@ -256,5 +253,17 @@
 // endheader
 
 
+.right-0 {
+  right: 0;
+}
 
+.right-closed {
+  right: -120%;
+}
+
+@media (min-width: 768px) {
+  .md\:right-closed {
+      right: -100%;
+  }
+}
 

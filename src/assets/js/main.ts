@@ -76,6 +76,7 @@ function GlobalState(): GlobalStateInterface {
 			});
 		},
 		toggle(type) {
+			console.log("Modal", this.Modal, type);
 			if (this.Modal.type === type) {
 				this.Modal.open = !this.Modal.open;
 			} else {
@@ -102,9 +103,9 @@ function GlobalState(): GlobalStateInterface {
 	};
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-	window.Qumra.events.on(Qumra.events.QumraEventName.CartUpdate, (e : CartItem) => {
-		console.log(e)
-	})
-})
+// document.addEventListener("DOMContentLoaded", () => {
+// 	window.Qumra.events.on(Qumra.events.QumraEventName.CartUpdate, (e : CartItem) => {
+// 		console.log(e)
+// 	})
+// })
 window.GlobalState = GlobalState;
