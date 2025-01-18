@@ -23,6 +23,9 @@ module.exports = {
       order: {
         '13': '13'
       },
+      borderRadius: {
+         mainRadius: 'var(--mainRadius)'
+      },
       screens:{
         xs:"410px",
         sm:"576px",

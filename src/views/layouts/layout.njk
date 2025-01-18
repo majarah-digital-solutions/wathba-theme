@@ -11,6 +11,7 @@
         <script src="http://127.0.0.1:5501/dist/gearbox/qumra-gearbox.js" defer></script>
         {# <script src="//unpkg.com/alpinejs" defer></script> #}
         <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+        
         <style>
             * {
                 font-family: "{{global.app.settings.font.title}}" !important;
@@ -22,7 +23,6 @@
 
     </head>
     <body style="background-color: white;overflow-x: hidden" dir="rtl" x-data="GlobalState()">
-        <i class="fi fi-rr-phone-call"></i>
         {% include "common/static/loading/index.njk" ignore missing %}
         <div class=" flex-col flex gap-10">
             {% include "common/header.njk" ignore missing %}
@@ -33,6 +33,10 @@
         </div>
 
         <script src={{"app.js" | assets }} ></script>
+        <script>
+             console.log("global", {{ global | dump | safe }});
+             console.log("context", {{ context | dump | safe }});
+        </script>
         {{ hooks.body | safe }}
     </body>
 

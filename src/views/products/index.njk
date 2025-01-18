@@ -6,10 +6,77 @@
         <h1 class=" font-bold text-2xl">{{context.page.title}}</h1>
         <p class=" text-subColor">{{context.page.description}}</p>
     </div>
-    <div class="   grid lg:grid-cols-4  md:grid-cols-3 grid-cols-1 sm:grid-cols-2 gap-5">
-        {%for item in context.products%}
-            <qumra-product-card product='{{item | dump}}'></qumra-product-card>
-        {%endfor%}
+    <div class="grid lg:grid-cols-4  md:grid-cols-3 grid-cols-1 sm:grid-cols-2 gap-5">
+        <template x-for="product in products">
+            <div 
+            class="p-3 flex flex-col gap-4 relative border border-[#E5E5E5] rounded-lg">
+
+                <div x-show="product.discount > 0" class=" absolute flex items-center text-white justify-center top-3 left-0 
+                 gap-2 bg-mainColor rounded-r-full h-[30px] w-[84px] ">
+                    <template x-if="product.discountType === 'fixed'">
+                        <div class="">
+                            <span x-text="product.discount" class=" text-sm"></span>
+                            <span class=" text-sm">ج.م</span>
+                        </div>
+                    </template>
+                    <template x-if="product.discountType === 'percentage'">
+                        <div class="">
+                            <span x-text="product.discount"></span>
+                            <span class=" text-sm">%</span>
+                        </div>
+                    </template>
+                </div>
+                <img class=" w-full h-[150px] rounded-lg object-contain " :src="product.images[0].imageUrl" alt="">
+                <div class=" flex flex-col h-full gap-3  justify-between">
+                    <div class=" flex  flex-col gap-3">
+                        <div class=" flex flex-col gap-2">
+                            <div class=" flex justify-between items-center">
+                                <div class=" font-bold" x-text="product.title.length > 20 ? product.title.slice(0, 20) + '...' : product.title"></div>
+                                <div class=" flex items-center gap-[6px]">
+
+                                    <span class=" flex items-center">
+                                        (<div class=" font-bold text-sm" x-text="product.rateCount"></div>)
+                                    </span>
+                                    <div class="flex items-center gap-1">
+                                        <template x-for="(star, index) in 3" :key="index">
+                                            <svg width="12" height="13" viewBox="0 0 12 13" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                :class="index < product.rate ? 'text-yellow-400' : 'text-gray-300'"
+                                                class="fill-current">
+                                                <g clip-path="url(#clip0_10697_7250)">
+                                                    <path
+                                                        d="M11.9687 4.86572C11.9303 4.74658 11.8578 4.64138 11.7602 4.56325C11.6625 4.48512 11.5441 4.43751 11.4197 4.42635L7.95613 4.11123L6.58657 0.899406C6.48555 0.664032 6.25558 0.511719 6.00005 0.511719C5.74453 0.511719 5.51453 0.664055 5.41356 0.899993L4.04398 4.11125L0.5799 4.42635C0.455588 4.43776 0.337352 4.48547 0.23985 4.56358C0.142349 4.64168 0.0698707 4.74674 0.0314016 4.86572C-0.0476082 5.1092 0.0253546 5.37623 0.217899 5.54456L2.83593 7.84499L2.06393 11.2522C2.00744 11.5027 2.10448 11.7617 2.31195 11.9119C2.42345 11.9927 2.55393 12.0338 2.68548 12.0338C2.79892 12.0338 2.91143 12.0031 3.01245 11.9426L6.00005 10.1535L8.98658 11.9426C9.20512 12.0743 9.48061 12.0623 9.68762 11.9119C9.78896 11.8384 9.8665 11.7367 9.9106 11.6194C9.95469 11.5021 9.9634 11.3744 9.93564 11.2522L9.16366 7.84499L11.7817 5.54503C11.8758 5.46261 11.9438 5.35429 11.977 5.23352C12.0103 5.11275 12.0074 4.98486 11.9687 4.86572Z"
+                                                        fill="currentColor" />
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip0_10697_7250">
+                                                        <rect width="12" height="12" fill="white"
+                                                            transform="translate(0 0.5)" />
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </template>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" text-subColor text-sm" x-text="product.description"></div>
+                        </div>
+                        <div class=" flex items-center gap-2">
+                            <div :class="product.discount > 0 ? 'line-through' : 'font-bold text-mainColor'"
+                                class="  text-lg" x-text="product.price"></div>
+                            <div x-show="product.discount > 0" class=" font-bold text-lg text-mainColor"
+                                x-text="product.priceAfterDiscount"></div>
+                        </div>
+                    </div>
+                    <button
+                       x-on:click="addCartItem(product, 1, {})"
+                        class="h-[40px] transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 w-full rounded-lg border border-mainColor text-mainColor  ">
+                        <i class="fi fi-rr-shopping-cart  w-4 h-4 self-center flex"></i>
+                        اضافة للسلة
+                    </button>
+                </div>
+            </div>
+        </template>
     </div>
 </div>
 </div>

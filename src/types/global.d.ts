@@ -8,6 +8,7 @@ declare global {
     Qumra: typeof Qumra;
     __qumra__: {
       context: {
+        [x: string]: any;
         cart: CartType
       }
     }

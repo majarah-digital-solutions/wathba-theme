@@ -1,0 +1,108 @@
+
+<div x-bind:class="Modal.open && Modal.type === 'cart'  ? 'left-0' : 'left-[-100%]'"
+    class="fixed z-[9999] w-[450px]  h-screen overflow-y-auto flex flex-col gap-4 bg-white shadow-md top-0 transition-all duration-300" <div
+    class=" flex flex-col gap-4">
+    <div class=" flex  justify-between p-6 pb-0">
+        <div class=" text-mainColor text-2xl font-bold">
+            السلة
+        </div>
+        <button x-on:click="toggle('cart')">
+            <i class="fi fi-rr-cross-circle text-2xl text-mainColor"></i>
+        </button>
+    </div>
+    <div class=" px-4 flex flex-col gap-4  h-96 overflow-y-auto border-y border-black">
+        <template x-for="item in cardItems.items">
+            <div class="flex items-center justify-between gap-4 border-b py-2 ">
+                <div class="flex items-center  gap-4">
+
+                    <img :src="item.product.images[0].imageUrl"
+                        style="width: 80px; height: 80px; object-fit: contain; border-radius: 50%;" alt="">
+                    <div class=" flex flex-col gap-2 ">
+                        <div class=" text-customBlack">
+                            <span
+                                x-text="item.product.title.length > 18 ? item.product.title.slice(0, 18) + '...' : item.product.title"></span>
+                        </div>
+                        {# <div class=" text-[#929292]">
+                            <template x-if="item.properties && item.properties.length > 0">
+                                <template x-for="prop in item.properties" :key="prop.property">
+                                    <span class="text-nowrap">
+                                        <span x-text="prop.property"></span> : <span x-text="prop.value.title"></span>
+                                    </span>
+                                </template>
+                            </template>
+                        </div> #}
+                        <div class="flex items-center gap-2">
+                            <span :class="item.priceAfterDiscount ? 'line-through text-[#929292]' : 'text-customBlack'"
+                                x-text="item.product.price *item.quantity"></span>
+                            <span x-text="+item.priceAfterDiscount * +item.quantity"
+                                x-show="item.priceAfterDiscount"></span>
+                        </div>
+                       
+                        <div class="  flex items-center gap-[6px]"> 
+                            <div @click="updatePrductCount(item._id, item.quantity+1)"
+                                class=" hover:bg-[#E9E9E9] border border-[#E9E9E9] cursor-pointer justify-center w-8 h-8 rounded-full flex items-center ">
+                                <i class="fi fi-rr-plus-small  flex items-center  text-black "></i>
+                            </div>
+                            <div x-text="item.quantity"
+                                class=" border border-[#E9E9E9] justify-center w-8 h-8 rounded-full flex items-center ">
+                            
+                            </div>
+                            <div  @click="updatePrductCount(item._id, item.quantity-1)"
+                                class=" hover:bg-[#E9E9E9] border border-[#E9E9E9] cursor-pointer justify-center w-8 h-8 rounded-full flex items-center ">
+                                <i class="fi fi-rr-minus-small flex items-center  text-black "></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" w-max self-start">
+                    <div class="  w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300  bg-opacity-0 hover:bg-opacity-100 hover:bg-[#E9E9E9]">
+                        <i @click="removeProduct(item._id)" class="fi fi-rr-trash cursor-pointer  text-red-600  flex text-xl self-center"></i>
+                    </div>
+                </div>
+            </div>
+
+        </template>
+    </div>
+
+    <div class="px-4   flex flex-col gap-2">
+        <div x-show="!cardItems.getCoupon" class=" flex gap-2">
+            <input :disabled="couponLoading" x-model="coupon" placeholder="اكتب الكوبون" type="text"
+                class=" py-1 px-2 h-[45px] rounded-lg w-full outline-none border border-[#E9E9E9]">
+            <button          :disabled="couponLoading || coupon.length === 0" 
+            x-on:click="checkCoupon(coupon)" class="py-1 px-4 rounded-lg bg-mainColor text-white">
+                <template x-if="couponLoading">
+                    <div class="animate-spin border-2  border-r-0 border-white rounded-full h-6 w-6 border-t-transparent"></div>
+                </template>
+                <template x-if="!couponLoading">
+                    <span>تطبيق</span>
+                </template>
+            </button>
+        </div>
+        <div class=" flex justify-between">
+            <span class=" text-lg">السعر قبل الخصم</span>
+            <span class=" text-lg" x-text="cardItems.totalProducts"></span>
+        </div>
+        <div class=" flex justify-between">
+            <span class=" text-lg">توفير</span>
+            <span class=" text-lg" x-text="cardItems.productDiscount"></span>
+        </div>
+        
+        <div x-show="cardItems.couponDiscount" class=" flex justify-between">
+            <span class=" text-lg">خصم الكوبون</span>
+            <span class=" text-lg" x-text="cardItems.couponDiscount"></span>
+        </div>
+        <div class=" flex justify-between">
+            <span class=" text-2xl">المجموع</span>
+            <span class=" text-2xl" x-text="cardItems.totalPrice"></span>
+        </div>
+    </div>
+    <div class="px-4 pb-6 ">
+        <div class="flex flex-col gap-4">
+            <button :disabled="couponLoading" :class="couponLoading ? 'bg-gray-400' : 'bg-mainColor'" class="py-2 transition-all duration-300 px-4 rounded-lg h-[45px]  text-white w-full">اتمام الطلب</button>
+        </div>
+    </div>
+</div>
+
+ <div x-on:click="toggle('cart')" x-bind:class="Modal.open ? 'opacity-10' : 'hidden bg-opacity-0'"
+    class=" bg-black  transition-all duration-400  top-0 fixed flex w-screen h-screen z-[99]"></div>
+ 
