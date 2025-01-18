@@ -31,5 +31,5 @@
     </div>
 </div>
 
-<div x-on:click="toggle('sidebar')" x-bind:class="Modal.open ? 'opacity-10' : 'hidden bg-opacity-0'"
+<div x-on:click="closeModal()" x-bind:class="Modal.open ? 'opacity-10' : 'hidden bg-opacity-0'"
     class=" bg-black  transition-all duration-400  top-0 fixed flex w-screen h-screen z-[9991]"></div>
