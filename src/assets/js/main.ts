@@ -99,4 +99,8 @@ function GlobalState(): GlobalStateInterface {
 		
 	};
 }
+
+// document.addEventListener("DOMContentLoaded", () => {
+// 	Qumra.events.on("", () => {})
+// })
 window.GlobalState = GlobalState;
