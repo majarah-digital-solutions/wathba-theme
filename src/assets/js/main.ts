@@ -1,3 +1,5 @@
+import { CartItem } from "../../types/cart.js";
+
 interface GlobalStateInterface {
 	itemsCount: number;
 	products: any;
@@ -100,7 +102,9 @@ function GlobalState(): GlobalStateInterface {
 	};
 }
 
-// document.addEventListener("DOMContentLoaded", () => {
-// 	Qumra.events.on("", () => {})
-// })
+document.addEventListener("DOMContentLoaded", () => {
+	Qumra.events.on(Qumra.events.QumraEventName.CartUpdate, (e : CartItem) => {
+		console.log(e)
+	})
+})
 window.GlobalState = GlobalState;
