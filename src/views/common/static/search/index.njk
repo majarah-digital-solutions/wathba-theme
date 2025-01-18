@@ -4,18 +4,19 @@
     <div class="relative w-full h-full flex items-center justify-center">
         <i 
             x-on:click="toggle('search')" 
-            class="absolute top-[60px] right-[60px] cursor-pointer text-5xl text-white fi fi-rr-circle-xmark"
+            class="absolute md:top-[60px] top-5 md:right-[60px] right-5 cursor-pointer text-3xl md:text-5xl text-white fi fi-rr-circle-xmark"
         ></i>
 
-        <div class="w-7/12 bg-mainColor h-[80px] items-center rounded-mainRadius justify-center p-2 flex gap-4">
+        <div class="md:w-7/12 w-11/12 bg-mainColor md:h-[80px] items-center rounded-mainRadius justify-center p-2 flex gap-4">
             <input 
             @keydown.enter="searchProducts(search)" 
                x-model="search"
                 placeholder="ابحث عن المنتجات..." 
-                class="flex-1 outline-none h-[64px] bg-white rounded-mainRadius py-3 px-6" 
+                class="flex-1 outline-none md:h-[64px] bg-white rounded-mainRadius py-3 px-6" 
                 type="text"
             >
-            <i x-on:click="searchProducts(search)" class="fi cursor-pointer flex self-center fi-rr-search text-2xl text-white"></i>
+            <i x-on:click="searchProducts(search)" class="fi cursor-pointer 
+            flex self-center fi-rr-search text-2xl text-white"></i>
         </div>
     </div>
 </div>
