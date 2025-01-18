@@ -103,7 +103,7 @@ function GlobalState(): GlobalStateInterface {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-	Qumra.events.on(Qumra.events.QumraEventName.CartUpdate, (e : CartItem) => {
+	window.Qumra.events.on(Qumra.events.QumraEventName.CartUpdate, (e : CartItem) => {
 		console.log(e)
 	})
 })
