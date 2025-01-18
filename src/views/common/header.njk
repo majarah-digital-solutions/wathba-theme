@@ -1,4 +1,4 @@
-{# {% from "/wathba-theme/" import dropDown %} #}
+{# {% from "components/dropDown/index.njk" import dropDown %} #}
 <!-- header -->
 
 <div style="z-index: 99;" class=" sticky  flex   top-0  flex-col gap-8 shadow-mainColor w-full">
@@ -68,33 +68,6 @@
                             1
                         </span>
                     </div>
-
-                    {# {{ dropDown(
-                        [
-                            {title: "Home", url: "/home"},
-                            {title: "About", url: "/about"},
-                            {title: "Contact", url: "/contact"}
-                        ],
-                        '<svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M10.5 8.5C12.1569 8.5 13.5 7.15685 13.5 5.5C13.5 3.84315 12.1569 2.5 10.5 2.5C8.84315 2.5 7.5 3.84315 7.5 5.5C7.5 7.15685 8.84315 8.5 10.5 8.5Z"
-                                fill="#2778C0" />
-                            <path
-                                d="M3.96517 14.9935C3.77029 15.5016 3.94435 16.071 4.3742 16.4046C6.06656 17.718 8.19202 18.5 10.5001 18.5C12.8106 18.5 14.938 17.7164 16.6312 16.4006C17.0608 16.0667 17.2345 15.4971 17.0393 14.9892C16.0301 12.3635 13.4842 10.5 10.5031 10.5C7.52032 10.5 4.97329 12.3656 3.96517 14.9935Z"
-                                fill="#2778C0" />
-                        </svg>'
-                    ) }} #}
-                    {# <div style="background-color: {{global.app.settings.mainColor}}1F;" class="cursor-pointer group hover:scale-105 transition-all duration-300  rounded-full w-[45px] 
-                    h-[45px]  flex items-center justify-center ">
-                        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M10.5 8.5C12.1569 8.5 13.5 7.15685 13.5 5.5C13.5 3.84315 12.1569 2.5 10.5 2.5C8.84315 2.5 7.5 3.84315 7.5 5.5C7.5 7.15685 8.84315 8.5 10.5 8.5Z"
-                                fill="#2778C0" />
-                            <path
-                                d="M3.96517 14.9935C3.77029 15.5016 3.94435 16.071 4.3742 16.4046C6.06656 17.718 8.19202 18.5 10.5001 18.5C12.8106 18.5 14.938 17.7164 16.6312 16.4006C17.0608 16.0667 17.2345 15.4971 17.0393 14.9892C16.0301 12.3635 13.4842 10.5 10.5031 10.5C7.52032 10.5 4.97329 12.3656 3.96517 14.9935Z"
-                                fill="#2778C0" />
-                        </svg>
-                    </div> #}
                     <qumra-user-menu iconsize="20px" iconcolor="{{global.app.settings.mainColor}}"></qumra-user-menu>
 
 

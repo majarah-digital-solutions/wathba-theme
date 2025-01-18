@@ -1,7 +1,8 @@
 
-<div x-bind:class="Modal.open && Modal.type === 'cart'  ? 'left-0' : 'left-[-100%]'"
-    class="fixed z-[9999] w-[450px]  h-screen overflow-y-auto flex flex-col gap-4 bg-white shadow-md top-0 transition-all duration-300" <div
-    class=" flex flex-col gap-4">
+<div x-bind:class="Modal.open && Modal.type === 'cart'  ? 'left-0' : ' left-[-120%] md:left-[-100%]'"
+    class="fixed z-[9992] md:w-[450px]   flex flex-col gap-4
+     bg-white  top-0 transition-all duration-300">
+      <div class=" flex flex-col gap-4 h-screen overflow-y-auto">
     <div class=" flex  justify-between p-6 pb-0">
         <div class=" text-mainColor text-2xl font-bold">
             السلة
@@ -102,7 +103,8 @@
         </div>
     </div>
 </div>
+</div>
 
  <div x-on:click="toggle('cart')" x-bind:class="Modal.open ? 'opacity-10' : 'hidden bg-opacity-0'"
-    class=" bg-black  transition-all duration-400  top-0 fixed flex w-screen h-screen z-[99]"></div>
+    class=" bg-black  transition-all duration-400  top-0 fixed flex w-screen h-screen z-[9991]"></div>
  
