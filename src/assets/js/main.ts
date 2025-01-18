@@ -35,7 +35,7 @@ function GlobalState(): GlobalStateInterface {
 					)
 				);
 		},
-		updatePrductCount(_id: string, quantity: string | number) {
+		updatePrductCount(_id: string, quantity: number) {
 			window.Qumra.cart.updateQuantity(_id, quantity).then(
 				(res: any) => (
 					this.cardItems.items.map((item: any) => {
@@ -95,8 +95,9 @@ function GlobalState(): GlobalStateInterface {
 		},
 		searchProducts(search: any) {
 			window.location.href = `/search/?q=${search}`;
+			window.Qumra
 		},
+		
 	};
 }
-
 window.GlobalState = GlobalState;

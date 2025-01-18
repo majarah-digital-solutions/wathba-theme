@@ -2,6 +2,7 @@
   "name": "wathaba-theme",
   "version": "1.0.1",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "build": "npx webpack --config webpack.config.js",
     "dev": "qumra theme dev"
@@ -40,7 +41,7 @@
     "express-session": "^1.18.0",
     "ora": "^4.1.1",
     "qumra-client": "^1.0.88",
-    "qumra-gearbox": "^1.0.9",
+    "qumra-gearbox": "^1.0.11",
     "qumra-ui": "^0.0.29",
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-animated": "^1.1.2"
