@@ -74,6 +74,11 @@ function GlobalState(): GlobalStateInterface {
             }
             if (type === "cart") {
                 this.couponLoading = false
+                if (this.Modal.open) {
+                    window.Qumra.dom.disableScrolling()
+                } else {
+                    window.Qumra.dom.enableScrolling()
+                }
                 this.coupon = ""
             }
         },
