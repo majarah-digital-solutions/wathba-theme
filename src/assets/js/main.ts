@@ -18,7 +18,19 @@ interface GlobalStateInterface {
 	closeModal(): void;
 	searchProducts(search: any): void;
 }
+
 function GlobalState(): GlobalStateInterface {
+	document.addEventListener("DOMContentLoaded", () => {
+		if (window.Qumra && window.Qumra.events) {
+		  console.log("Qumra is ready");
+	  
+		  window.Qumra.events.on(window.Qumra.events.QumraEventName.CartUpdate, (arg2: any) => {
+			console.log("CartUpdate event received:", arg2);
+		  });
+		} else {
+		  console.error("Qumra is not defined or events are not available.");
+		}
+	  });
 	return {
 		itemsCount: window.__qumra__?.context.cart?.items?.length ?? 0,
 		products: window.__qumra__?.context?.products ?? [],
@@ -103,9 +115,5 @@ function GlobalState(): GlobalStateInterface {
 	};
 }
 
-// document.addEventListener("DOMContentLoaded", () => {
-// 	window.Qumra.events.on(Qumra.events.QumraEventName.CartUpdate, (e : CartItem) => {
-// 		console.log(e)
-// 	})
-// })
+
 window.GlobalState = GlobalState;
