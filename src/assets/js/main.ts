@@ -83,9 +83,9 @@ function GlobalState(): GlobalStateInterface {
 			if (type === "cart") {
 				this.couponLoading = false;
 				if (this.Modal.open) {
-					window.Qumra.dom.disableScrolling();
+					Qumra.dom.disableScrolling();
 				} else {
-					window.Qumra.dom.enableScrolling();
+					Qumra.dom.enableScrolling();
 				}
 				this.coupon = "";
 			}
@@ -95,7 +95,6 @@ function GlobalState(): GlobalStateInterface {
 		},
 		searchProducts(search: any) {
 			window.location.href = `/search/?q=${search}`;
-			window.Qumra
 		},
 		
 	};
