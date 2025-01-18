@@ -31,7 +31,7 @@
                     <div class=" flex  flex-col gap-3">
                         <div class=" flex flex-col gap-2">
                             <div class=" flex justify-between items-center">
-                                <div class=" font-bold" x-text="product.title.length > 20 ? product.title.slice(0, 20) + '...' : product.title"></div>
+                                <a x-bind:href="'/product/' + product.slug" class=" font-bold" x-text="product.title.length > 20 ? product.title.slice(0, 20) + '...' : product.title"></a>
                                 <div class=" flex items-center gap-[6px]">
 
                                     <span class=" flex items-center">

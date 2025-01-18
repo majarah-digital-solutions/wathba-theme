@@ -17,15 +17,16 @@
             <div class=" flex items-center justify-between container">
                 <div class=" flex gap-8">
                     <div class="flex items-center gap-3">
-                        <svg id="toggle-sideBar" class="  hidden-lg block cursor-pointer w-[35px] h-[35px]"
+                        <svg x-on:click="toggle('sidebar')" class="  hidden-lg block cursor-pointer w-[35px] h-[35px]"
                             viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
                                 d="M3 7.25C3 6.83579 3.33579 6.5 3.75 6.5H20.25C20.6642 6.5 21 6.83579 21 7.25C21 7.66421 20.6642 8 20.25 8H3.75C3.33579 8 3 7.66421 3 7.25ZM3 12.5C3 12.0858 3.33579 11.75 3.75 11.75H20.25C20.6642 11.75 21 12.0858 21 12.5C21 12.9142 20.6642 13.25 20.25 13.25H3.75C3.33579 13.25 3 12.9142 3 12.5ZM11.25 17.75C11.25 17.3358 11.5858 17 12 17H20.25C20.6642 17 21 17.3358 21 17.75C21 18.1642 20.6642 18.5 20.25 18.5H12C11.5858 18.5 11.25 18.1642 11.25 17.75Z"
                                 fill="{{global.app.settings.mainColor}}" stroke="{{global.app.settings.mainColor}}"
                                 stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-
+                    <a href="/">
                         <img class=" h-12 w-20  object-contain" src={{global.app.logoUrl}} alt="Logo">
+</a>
                     </div>
 
                     <div class=" flex un-hidden-lg justify-start items-center gap-10 ">
@@ -107,6 +108,7 @@
 </div>
 {% include "common/static/cart/index.njk" ignore missing %}
 {% include "common/static/search/index.njk" ignore missing %}
+{% include "common/static/sideBar/index.njk" ignore missing %}
 
 <script>
     var sidebarItem = document.getElementById('sidebar-item');
@@ -117,14 +119,6 @@
         });
     });
 
-
-
-
-    console.log("{{global}}", {{ global.app.lists | dump | safe }});
-    var test = JSON.parse('{{global.app.lists.header | dump |safe}}')
-    test.forEach(element =>
-        console.log("Header element:", element)
-    );
 
 </script>
 {# {

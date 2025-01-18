@@ -1,8 +1,8 @@
 <div x-bind:class="Modal.open && Modal.type === 'cart'  ? 'left-0' : ' left-[-120%] md:left-[-100%]'" class="fixed z-[9992]
  md:w-[450px]    w-full xs:w-8/12 flex flex-col gap-4
      bg-white  top-0 transition-all duration-300">
-    <div class=" flex flex-col  h-screen overflow-y-auto">
-        <div class=" flex  bg-white border-b border-black justify-between p-6 sticky top-0 ">
+    <div class=" flex flex-col  h-screen ">
+        <div class=" flex  bg-white border-b border-black justify-between p-3 sticky top-0 ">
             <div class=" text-mainColor text-2xl font-bold">
                 السلة
             </div>
@@ -12,7 +12,7 @@
         </div>
         <template x-if="cardItems.items.length > 0">
         <div class=" flex flex-col  justify-between">
-            <div class=" px-4 flex flex-col gap-4  h-96 overflow-y-auto border-b border-black">
+            <div class=" px-4 flex flex-col gap-4 h-96 overflow-y-auto border-b border-black">
                 <template x-for="item in cardItems.items">
                     <div class="flex items-center justify-between gap-4 border-b py-2 ">
                         <div class="flex items-center  gap-4">
@@ -74,7 +74,7 @@
             <div class="p-4   flex flex-col gap-2">
                 <div x-show="!cardItems.getCoupon" class=" flex gap-2">
                     <input :disabled="couponLoading" x-model="coupon" placeholder="اكتب الكوبون" type="text"
-                        class=" py-1 px-2 h-[45px] rounded-lg w-full outline-none border border-[#E9E9E9]">
+                        class=" py-1 px-2 h-[40px] rounded-lg w-full outline-none border border-[#E9E9E9]">
                     <button :disabled="couponLoading || coupon.length === 0" x-on:click="checkCoupon(coupon)"
                         class="py-1 px-4 rounded-lg bg-mainColor text-white">
                         <template x-if="couponLoading">
@@ -88,21 +88,21 @@
                     </button>
                 </div>
                 <div class=" flex justify-between">
-                    <span class=" text-lg">السعر قبل الخصم</span>
-                    <span class=" text-lg" x-text="cardItems.totalProducts"></span>
+                    <span class="">السعر قبل الخصم</span>
+                    <span class="" x-text="cardItems.totalProducts"></span>
                 </div>
                 <div class=" flex justify-between">
-                    <span class=" text-lg">توفير</span>
-                    <span class=" text-lg" x-text="cardItems.productDiscount"></span>
+                    <span class="">توفير</span>
+                    <span class="" x-text="cardItems.productDiscount"></span>
                 </div>
 
                 <div x-show="cardItems.couponDiscount" class=" flex justify-between">
-                    <span class=" text-lg">خصم الكوبون</span>
-                    <span class=" text-lg" x-text="cardItems.couponDiscount"></span>
+                    <span class="">خصم الكوبون</span>
+                    <span class="" x-text="cardItems.couponDiscount"></span>
                 </div>
                 <div class=" flex justify-between">
-                    <span class=" text-2xl">المجموع</span>
-                    <span class=" text-2xl" x-text="cardItems.totalPrice"></span>
+                    <span class="">المجموع</span>
+                    <span class="" x-text="cardItems.totalPrice"></span>
                 </div>
             </div>
             <div class="px-4 pb-6 ">
