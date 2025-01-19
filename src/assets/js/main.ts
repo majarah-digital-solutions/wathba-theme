@@ -101,6 +101,13 @@ function GlobalState(): GlobalStateInterface {
 				}
 				this.coupon = "";
 			}
+			
+			if (this.Modal.open) {
+				// console.log(this.Modal.open);
+				Qumra.dom.disableScrolling();
+			} else {
+				Qumra.dom.enableScrolling();
+			}
 		},
 		closeModal() {
 			this.Modal.open = false;
