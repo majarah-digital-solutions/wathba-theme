@@ -68,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.Qumra.events.on(
       window.Qumra.events.QumraEventName.CartUpdate,
       (data: any) => {
+        console.log("🚀 ~ document.addEventListener ~ data:", data)
         window.updateCart(data);
       }
     );
