@@ -46,9 +46,9 @@
                                 </div>
                             </div>
                             <div class=" w-max self-start">
-                                <div
+                                <div @click="window.Qumra.cart.clearCartItem(item._id)"
                                 class="  w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300  bg-opacity-0 hover:bg-opacity-100 hover:bg-[#E9E9E9]">
-                                    <i @click="window.Qumra.cart.clearCartItem(item._id)"
+                                    <i 
                                     class="fi fi-rr-trash cursor-pointer  text-red-600  flex text-xl self-center"></i>
                                 </div>
                             </div>
