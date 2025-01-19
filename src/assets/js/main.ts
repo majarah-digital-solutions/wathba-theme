@@ -10,6 +10,7 @@ interface GlobalStateInterface {
 	};
 	couponLoading: boolean;
 	coupon?: string;
+	updateCart:(data: any)  => void
 	addCartItem(product: any, quantity: any, properties: any): void;
 	updatePrductCount(_id: string, quantity: string | number): void;
 	removeProduct(_id: string): void;
@@ -17,20 +18,10 @@ interface GlobalStateInterface {
 	toggle(type: string): void;
 	closeModal(): void;
 	searchProducts(search: any): void;
+	init:() => void
 }
 
 function GlobalState(): GlobalStateInterface {
-	document.addEventListener("DOMContentLoaded", () => {
-		if (window.Qumra && window.Qumra.events) {
-		  console.log("Qumra is ready");
-	  
-		  window.Qumra.events.on(window.Qumra.events.QumraEventName.CartUpdate, (arg2: any) => {
-			console.log("CartUpdate event received:", arg2);
-		  });
-		} else {
-		  console.error("Qumra is not defined or events are not available.");
-		}
-	  });
 	return {
 		itemsCount: window.__qumra__?.context.cart?.items?.length ?? 0,
 		products: window.__qumra__?.context?.products ?? [],
@@ -40,6 +31,12 @@ function GlobalState(): GlobalStateInterface {
 			type: "",
 		},
 		couponLoading: false,
+		updateCart(data: any){
+			console.log("🚀 ~ updateCart ~ data:", data)
+			console.log("🚀 ~ updateCart ~ this.cardItems:", this.cardItems)
+			this.cardItems = {...data}
+			console.log("🚀 ~ updateCart ~ this.cardItems:", this.cardItems)
+		},
 		addCartItem(product: any, quantity: any, properties: any) {
 			window.Qumra.cart
 				.addCartItem(product, quantity, properties)
@@ -111,9 +108,21 @@ function GlobalState(): GlobalStateInterface {
 		searchProducts(search: any) {
 			window.location.href = `/search/?q=${search}`;
 		},
-		
+		init(){
+			window.updateCart = this.updateCart
+		}
 	};
 }
-
+document.addEventListener("DOMContentLoaded", () => {
+	if (window.Qumra && window.Qumra.events) {
+	  console.log("Qumra is ready");
+  
+	  window.Qumra.events.on(window.Qumra.events.QumraEventName.CartUpdate, (data: any) => {
+		window.updateCart(data)
+	  });
+	} else {
+	  console.error("Qumra is not defined or events are not available.");
+	}
+  });
 
 window.GlobalState = GlobalState;
