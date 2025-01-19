@@ -109,7 +109,7 @@ function GlobalState(): GlobalStateInterface {
 			window.location.href = `/search/?q=${search}`;
 		},
 		init(){
-			window.updateCart = this.updateCart
+			window.updateCart = this.updateCart.bind(this);
 		}
 	};
 }
