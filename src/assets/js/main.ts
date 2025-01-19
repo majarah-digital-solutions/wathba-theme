@@ -42,7 +42,7 @@ function GlobalState(): GlobalStateInterface {
         this.Modal.type = type;
         this.Modal.open = true;
       }
-      if (type === "cart") {
+      if (this.Modal.open) {
         this.couponLoading = false;
         if (this.Modal.open) {
           Qumra.dom.disableScrolling();
