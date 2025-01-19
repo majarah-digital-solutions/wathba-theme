@@ -61,12 +61,11 @@ function GlobalState(): GlobalStateInterface {
 		},
 	};
 }
-document.addEventListener("DOMContentLoaded", () => {
-	if (window.Qumra && window.Qumra.events) {
+document.addEventListener("QumraGearboxReady", () => {
+	if (Qumra && Qumra.events) {
 		window.Qumra.events.on(
 			window.Qumra.events.QumraEventName.CartUpdate,
 			(data: any) => {
-				console.log("🚀 ~ document.addEventListener ~ data:", data);
 				window.updateCart(data);
 			}
 		);
