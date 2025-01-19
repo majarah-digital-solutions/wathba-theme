@@ -10,7 +10,11 @@
                 <i class="fi fi-rr-cross-circle text-2xl text-mainColor"></i>
             </button>
         </div>
-        <template x-if="cart.items.length > 0">
+        <div x-if="cart.items.length > 0" x-show="cartLoading">
+            تحميل
+        </div>
+        <div x-if="cart.items.length > 0" x-show="!cartLoading">
+            
             <div class=" flex flex-col  justify-between h-full">
                 <div class=" px-4 flex flex-col gap-4 h-96 overflow-y-auto">
                     <template x-for="item in cart.items">
@@ -104,8 +108,8 @@
                     </div>
                 </div>
             </div>
-        </template>
-        <template x-if="cart.items.length === 0">
+        </div>
+        <template x-if="cart.items.length === 0" x-show="!cartLoading">
             <div class=" flex items-center h-full justify-center">'
         <div class=" flex flex-col items-center md:gap-3">
 
