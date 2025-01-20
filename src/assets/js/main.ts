@@ -47,11 +47,11 @@ function GlobalState(): GlobalStateInterface {
 				this.Modal.open = true;
 			}
 			this.couponLoading = false;
-			if (this.Modal.open) {
-				Qumra.dom.disableScrolling();
-			} else {
-				Qumra.dom.enableScrolling();
-			}
+			// if (this.Modal.open) {
+			// 	Qumra.dom.disableScrolling();
+			// } else {
+			// 	Qumra.dom.enableScrolling();
+			// }
 			this.coupon = "";
 		},
 		closeModal() {
