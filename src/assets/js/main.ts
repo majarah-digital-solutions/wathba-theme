@@ -34,6 +34,7 @@ function GlobalState(): GlobalStateInterface {
 		couponLoading: false,
 		updateCart(data: any) {
 			this.cart = data;
+			this.itemsCount = data?.items?.length ?? 0;
 		},
 		toggle(type) {
 			console.log("Modal", this.Modal, type);

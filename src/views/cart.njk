@@ -91,7 +91,7 @@
                                     <span class=" font-bold  text-subColor text-base">اجمالي المنتجات</span>
                                     <span class=" font-bold text-customBlack">
                                         {% if context.cart.totalProducts > 0 %}
-                                        {{context.cart.totalProducts | money}}
+                                        {{context.cart.totalProducts }}
                                         {%else%}
                                         0
                                         {%endif%}
@@ -101,7 +101,7 @@
                                     <span class=" font-bold  text-subColor text-base">توفير</span>
                                     <span class=" font-bold text-customBlack">
                                         {%if context.cart.productDiscount > 0%}
-                                        {{ context.cart.productDiscount|money}}
+                                        {{ context.cart.productDiscount}}
                                         {%else%}
                                         0
                                         {%endif%}
@@ -112,7 +112,7 @@
                                     <span class=" font-bold text-customBlack">
                                         {%if context.cart.totalProductsAfterDiscount >0%}
 
-                                        {{context.cart.totalProductsAfterDiscount|money}}
+                                        {{context.cart.totalProductsAfterDiscount}}
                                         {%else%}
                                         0
                                         {%endif%}
@@ -125,7 +125,7 @@
                                         ({{context.cart.coupon.code}})</span>
                                     <span class=" font-bold text-customBlack">
 
-                                        {{context.cart.couponDiscount|money}}
+                                        {{context.cart.couponDiscount}}
 
                                     </span>
                                 </div>
@@ -137,7 +137,7 @@
                                 <span class=" font-bold text-mainColor text-customBlack">
                                     {%if context.cart.totalPrice >0%}
 
-                                    {{context.cart.totalPrice|money}}
+                                    {{context.cart.totalPrice}}
                                     {%else%}
                                     0
                                     {%endif%}
