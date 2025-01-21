@@ -26,7 +26,8 @@
 
             <div class=" md:w-6/12">
                 <form class="flex flex-col gap-6" enctype="multipart/form-data" method="post"
-                onsubmit="return window.Qumra.forms.submit('addToCart', event)">
+                onsubmit="return window.Qumra.forms.submit('addToCart', event)"
+                >
                 <div class=" flex flex-col gap-2 ">
                         <input type="hidden" name="product" value={{context.product._id}}>
                         <h1 class="text-2xl font-bold  text-customBlack">{{context.product.title}}</h1>
@@ -112,7 +113,7 @@
                     {%endif%}
 
                     <div class="pt-6  border-t font-bold flex border-[#D9D9D9]  justify-between  items-center  gap-4">
-                            <qumra-quantity-input :value=1 ></qumra-quantity-input>
+                            <qumra-quantity-input name="quantity" :value=1 ></qumra-quantity-input>
                         <div class=" grid grid-cols-2 gap-3 flex-1">
                             <button type="submit"
                                 class=" border-mainColor border  text-mainColor  font-bold rounded-mainRadius flex gap-2 items-center px-4 h-[50px]  justify-center">
