@@ -148,6 +148,11 @@
                     <qumra-product-card product='{{item | dump}}'></qumra-product-card>
                 </qumra-slider-item>
                 {%endfor%}
+                {%for item in context.relatedProducts.results%}
+                <qumra-slider-item>
+                    <qumra-product-card product='{{item | dump}}'></qumra-product-card>
+                </qumra-slider-item>
+                {%endfor%}
             </qumra-slider-multi>
 
 
