@@ -26,7 +26,7 @@
 
             <div class=" md:w-6/12">
                 <form class="flex flex-col gap-6" enctype="multipart/form-data" method="post"
-                onsubmit="return window.Qumra.forms.submit('addToCart', event)"
+                onsubmit="return window.Qumra.forms.submit('product', event)"
                 >
                 <div class=" flex flex-col gap-2 ">
                         <input type="hidden" name="product" value={{context.product._id}}>
@@ -113,19 +113,25 @@
                     {%endif%}
 
                     <div class="pt-6  border-t font-bold flex border-[#D9D9D9]  justify-between  items-center  gap-4">
-                            <qumra-quantity-input name="quantity" :value=1 ></qumra-quantity-input>
+                            <qumra-quantity-input name="quantity" :value=1  ></qumra-quantity-input>
                         <div class=" grid grid-cols-2 gap-3 flex-1">
-                            {# <input type="submit"   name="asdasd" value="   اضافة للسلة"
-                                class=" border-mainColor border  text-mainColor  font-bold rounded-mainRadius flex gap-2 items-center px-4 h-[50px]  justify-center">
-                                <i class="fi flex items-center text-mainColor fi-rr-shopping-cart"></i>
-                             
-                            </input>
+                            <button type="submit" name="addToCart" value="addToCart"
+                                class=" border-mainColor border rounded-mainRadius flex justify-center items-center px-4 h-[50px]  ">
+                               <template x-if="cartLoading">
+                                <qumra-loading loading-size="20px" loading={true}></qumra-loading>
+                            </template>
+                            <template x-if="!cartLoading">
+                                <div class=" text-mainColor flex gap-2 items-center font-bold justify-center">
+                                    <i class="fi flex items-center text-mainColor fi-rr-shopping-cart"></i>
+                                    اضافة للسلة
+                                </div>
+                            </template>
+                            </button>
 
-                            <input type="submit" name="buyNow" class=" bg-mainColor  text-white  font-bold rounded-mainRadius 
-                            flex items-center px-4 h-[50px]  justify-center" value="اشترى الان"/> #}
-                            <button type="submit" name="action" value="addToCart">إضافة للسلة</button>
-<button type="submit" name="action" value="buyNow">اشترِ الآن</button>
-                                
+                            <button  type="submit" name="buyNow" value="buyNow"  class=" bg-mainColor  text-white  font-bold rounded-mainRadius 
+                            flex items-center px-4 h-[50px]  justify-center">
+                                اشترى الان
+                            </button>
                         </div>
                         
 
