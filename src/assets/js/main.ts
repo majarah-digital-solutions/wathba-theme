@@ -12,15 +12,12 @@ interface GlobalStateInterface {
 	coupon?: string;
 	cartLoading: boolean;
 	updateCart: (data: any) => void;
-	addCartItem?(product: any, quantity: any, properties: any): void;
-	updatePrductCount?(_id: string, quantity: string | number): void;
-	removeProduct?(_id: string): void;
 	checkCoupon?(code: string): void;
 	toggle?(type: string): void;
 	searchProducts(search: any): void;
 	closeModal(): void;
 	cartLoadingToggle(loading: boolean): void;
-
+	couponLoadingToggle(loading: boolean): void;
 	init: () => void;
 }
 
@@ -47,11 +44,11 @@ function GlobalState(): GlobalStateInterface {
 				this.Modal.open = true;
 			}
 			this.couponLoading = false;
-			// if (this.Modal.open) {
-			// 	Qumra.dom.disableScrolling();
-			// } else {
-			// 	Qumra.dom.enableScrolling();
-			// }
+			if (this.Modal.open) {
+				Qumra.dom.disableScrolling();
+			} else {
+				Qumra.dom.enableScrolling();
+			}
 			this.coupon = "";
 		},
 		closeModal() {
@@ -64,17 +61,23 @@ function GlobalState(): GlobalStateInterface {
 		cartLoadingToggle(loading: boolean) {
 			this.cartLoading = loading;
 		},
+		couponLoadingToggle(loading: boolean) {
+			this.couponLoading = loading;
+		},
 		init() {
 			window.updateCart = this.updateCart.bind(this);
 			window.cartLoadingToggle = this.cartLoadingToggle.bind(this);
+			window.couponLoadingToggle = this.couponLoadingToggle.bind(this);
 		},
 	};
+	
 }
 document.addEventListener("QumraGearboxReady", () => {
 	if (Qumra && Qumra.events) {
 		window.Qumra.events.on(
 			window.Qumra.events.QumraEventName.CartUpdate,
 			(data: any) => {
+				console.log("datadata", data);
 				window.updateCart(data);
 			}
 		);
@@ -83,8 +86,19 @@ document.addEventListener("QumraGearboxReady", () => {
 			window.Qumra.events.QumraEventName.CartLoading,
 			(data: { loading: boolean }) => {
 				window.cartLoadingToggle(data.loading);
+
+				console.log("loading", data);
 			}
 		);
+		window.Qumra.events.on(
+			window.Qumra.events.QumraEventName.CouponeLoading,
+			(data: { loading: boolean }) => {
+				console.log("loading", data);
+				window.couponLoadingToggle(data.loading);
+			}
+		);
+
+		
 	} else {
 		console.error("Qumra is not defined or events are not available.");
 	}

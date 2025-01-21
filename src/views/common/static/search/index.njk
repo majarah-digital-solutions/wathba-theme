@@ -1,25 +1,28 @@
 <div 
+    x-on:click="toggle('search')" 
     :class="Modal.open && Modal.type === 'search' ? 'fixed' : 'hidden'"
+    class="w-screen h-screen bg-black bg-opacity-50 top-0 left-0 z-[9991] flex items-center justify-center"
 >
-    <div class="relative w-full h-full flex items-center justify-center">
+    <div 
+        class="relative w-full h-full flex items-center justify-center"
+    >
         <i 
             x-on:click="toggle('search')" 
             class="absolute md:top-[60px] top-5 md:right-[60px] right-5 cursor-pointer text-3xl md:text-5xl text-white fi fi-rr-circle-xmark"
         ></i>
-
-        <div class="md:w-7/12 w-11/12 bg-mainColor md:h-[80px] items-center rounded-mainRadius justify-center p-2 flex gap-4">
+         
+        <div x-on:click.stop class="md:w-7/12 w-11/12 bg-mainColor md:h-[80px] items-center rounded-mainRadius justify-center p-2 pl-6 flex gap-[19px]">
             <input 
-            @keydown.enter="searchProducts(search)" 
-               x-model="search"
+                @keydown.enter="searchProducts(search)" 
+                x-model="search"
                 placeholder="ابحث عن المنتجات..." 
                 class="flex-1 outline-none md:h-[64px] bg-white rounded-mainRadius py-3 px-6" 
                 type="text"
             >
-            <i x-on:click="searchProducts(search)" class="fi cursor-pointer 
-            flex self-center fi-rr-search text-2xl text-white"></i>
+            <i 
+                x-on:click="searchProducts(search)" 
+                class="fi cursor-pointer flex self-center fi-rr-search text-2xl text-white"
+            ></i>
         </div>
     </div>
 </div>
-
-<div x-on:click="toggle('search')" x-bind:class="Modal.open  && Modal.type === 'search' ? 'opacity-10' : 'hidden bg-opacity-0'"
-    class=" bg-black  transition-all duration-400  top-0 fixed flex w-screen h-screen z-[9991]"></div>
