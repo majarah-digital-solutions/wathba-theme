@@ -44,8 +44,11 @@
                                 </div>
                                 <div class=" flex flex-col gap-1">
                                     <h6 x-text="item.product.title" class=" text-[#434A5B]"></h6>
-                                    <p x-text="item.totalPriceForItem" class=" font-bold text-[#434A5B]">
-                                    </p>
+                                        <div class=" flex items-center gap-1">
+                                            <p  x-text="item.totalPriceForItem" class=" font-bold text-[#434A5B]"></p>
+                                            <p x-show="+item.discount > 0" x-text="item.totalPriceForItemBeforeDiscount" :class="item.discount > 0 ? 'line-through' : ''" class="  text-sm text-[#929A9A]"></p>
+                                        </div>
+                                    
                                 </div>
                             </div>
                             <div class=" flex flex-col items-end gap-4">
