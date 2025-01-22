@@ -11,53 +11,62 @@
                 <input type="hidden" name="cartItem" value={{item._id}}>
                 <template x-for="item in cart.items" :key="index">
 
-                    <div
-                        class="w-full grid md:grid-cols-5 grid-cols-2 md:items-center items-start rounded-lg gap-4 shadow-[0px_0px_25px_#D7D7D780] p-[20px]">
-                        <div class="flex lg:gap-4 gap-2 md:col-span-2">
+                    <div class="w-full    grid grid-cols-3   md:items-center items-start rounded-lg
+                          shadow-[0px_0px_25px_#D7D7D780] p-3 md:p-[20px]">
+                        <div class="col-span-2  grid grid-cols-3 md:grid-cols-5">
                             <img :src="item.product.images[0].imageUrl"
                                 style="width: 80px; height: 80px; object-fit: contain; border-radius: 50%;" alt="">
-                            <div class="flex flex-col justify-center">
-                                <div class="text-customBlack">
-                                    <span
-                                        x-text="item.product.title.length > 18 ? item.product.title.slice(0, 18) + '...' : item.product.title"></span>
-                                </div>
-                                <div class="text-[#929292]">
-                                    <template x-if="item.properties && item.properties.length > 0">
-                                        <template x-for="prop in item.properties" :key="prop.property">
-                                            <span class="text-nowrap">
-                                                <span x-text="prop.property"></span> : <span
-                                                    x-text="prop.value.title"></span>
-                                            </span>
+
+                            <div class=" md:col-span-4  grid grid-cols-1 md:grid-cols-3">
+
+                                <div class="flex flex-col justify-center">
+                                    <div class="text-customBlack">
+                                        <span
+                                            x-text="item.product.title.length > 18 ? item.product.title.slice(0, 18) + '...' : item.product.title"></span>
+                                    </div>
+                                    <div class="text-[#929292]">
+                                        <template x-if="item.properties && item.properties.length > 0">
+                                            <template x-for="prop in item.properties" :key="prop.property">
+                                                <span class="text-nowrap">
+                                                    <span x-text="prop.property"></span> : <span
+                                                        x-text="prop.value.title"></span>
+                                                </span>
+                                            </template>
                                         </template>
-                                    </template>
+                                    </div>
                                 </div>
+                                <div class="text-customBlack md:justify-self-end font-[600] place-self-center order-2">
+                                    <div class=" flex items-center gap-1">
+                                        <p x-text="item.totalPriceForItem"
+                                            class=" text-nowrap font-bold text-[#434A5B]">
+                                        </p>
+                                        <p x-show="+item.discount > 0" x-text="item.totalPriceForItemBeforeDiscount"
+                                            :class="item.discount > 0 ? 'line-through' : ''"
+                                            class=" text-nowrap  text-sm text-[#929A9A]">
+                                        </p>
+                                    </div>
+                                </div>
+
                             </div>
+                            
                         </div>
-                        <div class="order-1 md:justify-self-center justify-self-end relative sm:left-0 left-[-38px]">
-                            <div>
+                        <div class=" flex flex-col-reverse md:grid md:grid-cols-2 h-full gap-4 ">
+                            <div class=" flex justify-end">
 
                                 <qumra-quantity-input size="32px" :item="item._id" :value="item.quantity">
                                 </qumra-quantity-input>
                             </div>
-                        </div>
-                        <div class="text-customBlack justify-self-end font-[600] place-self-center order-2">
-                            <div class=" flex items-center gap-1">
-                                <p x-text="item.totalPriceForItem" class=" font-bold text-[#434A5B]"></p>
-                                <p x-show="+item.discount > 0" x-text="item.totalPriceForItemBeforeDiscount"
-                                    :class="item.discount > 0 ? 'line-through' : ''" class="  text-sm text-[#929A9A]">
-                                </p>
+                            <div class=" flex justify-end gap-4">
+                                <button @click="deleteItemCart(item._id)">
+                                    <span
+                                        class=" bg-[#F2F2F2] hover:scale-105 transition-all duration-300 rounded-full w-[32px] h-[32px] flex items-center justify-center ">
+                                        <i @click="window.Qumra.cart.clearCartItem(item._id)"
+                                            class="fi flex items-center cursor-pointer justify-center text-[18px] text-red-600 fi-rs-trash"></i>
+                                    </span>
+                                </button>
                             </div>
                         </div>
-                        <div style="justify-self: end;"
-                            class="justify-self-end place-self-start md:place-self-center md:order-last order-0">
-                            <button @click="deleteItemCart(item._id)">
-                                <span
-                                    class=" bg-[#F2F2F2] hover:scale-105 transition-all duration-300 rounded-full w-[32px] h-[32px] flex items-center justify-center ">
-                                    <i @click="window.Qumra.cart.clearCartItem(item._id)"
-                                        class="fi flex items-center cursor-pointer justify-center text-[18px] text-red-600 fi-rs-trash"></i>
-                                </span>
-                            </button>
-                        </div>
+
                     </div>
                 </template>
 
@@ -92,26 +101,22 @@
                             <div class=" flex flex-col gap-3">
                                 <div class=" flex justify-between">
                                     <span class=" font-bold  text-subColor text-base">اجمالي المنتجات</span>
-                                    <span x-show="window.__qumra__.context.cart.totalProducts"
-                                        class=" font-bold text-customBlack"
-                                        x-text="window.__qumra__.context.cart.totalProducts">
+                                    <span x-show="cart.totalProducts" class=" font-bold text-customBlack"
+                                        x-text="cart.totalProducts">
                                         0
                                     </span>
                                 </div>
                                 <div class=" flex justify-between">
                                     <span class=" font-bold  text-subColor text-base">توفير</span>
-                                    <span x-show="window.__qumra__.context.cart.productDiscount !='0 ج.م'"
-                                        class=" font-bold text-customBlack"
-                                        x-text="window.__qumra__.context.cart.productDiscount">
+                                    <span class=" font-bold text-customBlack" x-text="cart.productDiscount">
                                         0
                                     </span>
                                 </div>
                                 <div class=" flex justify-between">
                                     <span class=" font-bold  text-subColor text-base">سعر المنتحات النهائي</span>
-                                        <span class=" font-bold text-customBlack"
-                                            x-text="window.__qumra__.context.cart.totalProductsAfterDiscount">
-                                            0
-                                        </span>
+                                    <span class=" font-bold text-customBlack" x-text="cart.totalProductsAfterDiscount">
+                                        0
+                                    </span>
                                 </div>
                                 {%if context.cart.couponDiscount >0%}
                                 <div class=" flex justify-between">
@@ -128,10 +133,9 @@
                             <div class=" border-b border-dashed flex w-full"></div>
                             <div class=" flex justify-between">
                                 <span class=" font-bold  text-subColor text-base">الإجمالي</span>
-                                <span class=" font-bold text-customBlack"
-                                x-text="window.__qumra__.context.cart.totalProductsAfterDiscount">
-                                0
-                            </span>
+                                <span class=" font-bold text-customBlack" x-text="cart.totalProductsAfterDiscount">
+                                    0
+                                </span>
                             </div>
                         </div>
 
