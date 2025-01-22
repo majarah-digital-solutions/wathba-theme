@@ -10,6 +10,7 @@ interface GlobalStateInterface {
 	};
 	couponLoading: boolean;
 	coupon?: string;
+	search?: string;
 	cartLoading: boolean;
 	updateCart: (data: any) => void;
 	checkCoupon?(code: string): void;
@@ -27,6 +28,7 @@ function GlobalState(): GlobalStateInterface {
 		products: window.__qumra__?.context?.products ?? [],
 		cart: window.__qumra__?.context?.cart,
 		cartLoading: false,
+		search: window.__qumra__?.context.search?.q || "",
 		Modal: {
 			open: false,
 			type: "",

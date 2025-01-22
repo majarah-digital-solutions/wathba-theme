@@ -1,16 +1,23 @@
 {% extends "layouts/layout.njk" %}
 
 {% block content %}
-<div class=" flex flex-col gap-10 container  sm:px-0  pb-10 pt-[60px]">
-    <div class=" flex flex-col gap-2">
+<div class=" h-screen justify-center flex flex-col gap-10 container  sm:px-0  pb-10 pt-[60px]">
+    {% if context.products and context.products.length > 0 %}
+        <div class=" flex flex-col gap-2">
         <h1 class=" font-bold text-2xl">{{context.page.title}}</h1>
         <p class=" text-subColor">{{context.page.description}}</p>
     </div>
-    <div class="   grid lg:grid-cols-5  md:grid-cols-4 grid-cols-1 sm:grid-cols-3 gap-5">
+    <div class="grid lg:grid-cols-5  md:grid-cols-4 grid-cols-1 sm:grid-cols-3 gap-5">
         {%for item in context.products%}
-            <qumra-product-card product='{{item | dump}}'></qumra-product-card>
+        <qumra-product-card product='{{item | dump}}'></qumra-product-card>
         {%endfor%}
     </div>
+    {% else %}
+        <div class=" flex flex-col items-center justify-center gap-3">
+            <i style="font-size: 7rem " class="fi flex items-center  fi-rr-drawer-empty"></i>
+            <div class=" text-[#777777] text-[32px] font-bold">لا يوجود نتائج للبحث</div>
+        </div>
+    {% endif %}
 </div>
 </div>
-{% endblock %} 
+{% endblock %}

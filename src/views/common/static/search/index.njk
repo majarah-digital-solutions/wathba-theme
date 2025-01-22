@@ -1,5 +1,6 @@
 <div 
-    x-on:click="toggle('search')" 
+    x-on:click="toggle('search')"
+    x-effect="if (!Modal.open && Modal.type === 'search' && window.location.pathname.includes('/search/?q=')) search = ''" 
     :class="Modal.open && Modal.type === 'search' ? 'top-0' : '-top-full'"
     class="w-screen md:h-[307px] h-[120px]  bg-white transition-all duration-500  fixed z-[9991] flex md:items-center justify-center"
 >
@@ -14,6 +15,7 @@
             <input 
                 @keydown.enter="searchProducts(search)" 
                 x-model="search"
+                :value="window.__qumra__?.context.search?.q"
                 type="search"
                 placeholder="ابحث عن المنتجات..." 
                 class="flex-1 outline-none h-full  md:border-0 border border-[#E5E6E6] bg-white rounded-mainRadius py-3 px-6" 
@@ -29,7 +31,6 @@
     </div>
 </div>
 <div class="w-full h-full blur-md backdrop-blur-sm bg-black/30    fixed duration-500 transition-all  z-[999] "
-:class="Modal.open && Modal.type === 'search' ? 'bottom-0' : '-bottom-full'"
-></div>
+:class="Modal.open && Modal.type === 'search' ? 'bottom-0' : '-bottom-full'"></div>
 </div>
 
