@@ -125,12 +125,14 @@
         <template x-if="!cart.items || cart.items.length === 0 && !cartLoading">
             <div class="flex items-center h-full justify-center  flex-col gap-10">
                 <div class="">
-                    <img src={{"images/svgs/empty-cart.svg"}} class="w-full" alt="">
+                    <a href="/latest">
+                        <i style="font-size: 128px;" class="fi text-mainColor flex items-center fi-rr-shopping-cart-add hover:scale-105 transition-all duration-300"></i>
+                    </a>
                 </div>
             <div class=" flex flex-col gap-6">
                 <h5 class=" text-[#313535] font-bold text-xl">لا يوجد منتجات في السلة</h5>
-                <a href="/" class=" flex justify-center items-center h-[40px] bg-mainColor rounded-mainRadius text-white px-6">
-                    عرض السلة
+                <a href="/latest" class="hover:scale-105 transition-all duration-300 flex justify-center items-center h-[40px] bg-mainColor rounded-mainRadius text-white px-6">
+                    عرض المنتجات
                 </a>
             </div>
             </div>

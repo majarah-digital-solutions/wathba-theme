@@ -3,7 +3,7 @@
 
 
 {% block content %}
-<div class=" flex flex-col gap-8 md:gap-40 container">
+<div class=" flex flex-col gap-8 md:gap-40 container pt-[60px]">
 
     <div class=" flex flex-col gap-10 ">
         {# <div class=" flex flex-col gap-2">
@@ -112,11 +112,15 @@
 
                     {%endif%}
 
-                    <div class="pt-6  border-t font-bold flex border-[#D9D9D9]  justify-between  items-center  gap-4">
-                            <qumra-quantity-input name="quantity" :value=1  ></qumra-quantity-input>
-                        <div class=" grid grid-cols-2 gap-3 flex-1">
+                    <div class="pt-6  border-t font-bold  border-[#D9D9D9]    flex md:flex-row flex-col items-center gap-3">
+                        <div class=" flex gap-4 items-center w-full md:w-7/12  ">
+
+                            <div class=" w-1/2 h-[50px] md:h-[40px]">
+                                <qumra-quantity-input  size="100%" name="quantity" :value=1  ></qumra-quantity-input>
+                            </div>
+                            <div class=" w-1/2">
                             <button type="submit" name="addToCart" value="addToCart"
-                                class=" border-mainColor border rounded-mainRadius flex justify-center items-center px-4 h-[50px]  ">
+                                class=" border-mainColor border w-full text-nowrap rounded-mainRadius flex justify-center items-center px-4 h-[50px]  ">
                                <template x-if="cartLoading">
                                 <qumra-loading loading-size="20px" loading={true}></qumra-loading>
                             </template>
@@ -127,12 +131,13 @@
                                 </div>
                             </template>
                             </button>
-
-                            <button  type="submit" name="buyNow" value="buyNow"  class=" bg-mainColor  text-white  font-bold rounded-mainRadius 
+                        </div>
+                    </div>
+                            <button  type="submit" name="buyNow" value="buyNow"  class=" bg-mainColor md:w-5/12 w-full   text-white  font-bold rounded-mainRadius 
                             flex items-center px-4 h-[50px]  justify-center">
                                 اشترى الان
                             </button>
-                        </div>
+                      
                         
 
                     </div>
