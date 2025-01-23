@@ -2,8 +2,8 @@
   md:w-[450px]  w-full xs:w-9/12 flex flex-col gap-4
      bg-white  top-0 transition-all duration-300 pb-10">
      <div class="flex flex-col  h-screen ">
-    <div class=" justify-start flex-col flex items-center gap-[29px] py-10">
-        <div class=" flex justify-between w-full px-4 items-center">
+    <div class=" justify-start flex-col flex items-center gap-6">
+        <div class=" flex justify-between w-full px-4 items-center py-3 border-y border-[#E5E6E6]">
             <div class=" font-bold">القائمة الرئيسية</div>
      
             <button class=" bg-[#F5F6F6] border border-[#ECEEEE] w-[24px] h-[24px] flex items-center justify-center"
@@ -14,10 +14,10 @@
         <div class='flex flex-col w-full'>
         {% for item in global.lists.header %}
         <a href="{{item.url}}" :class="item.url == window.location.pathname ? 'bg-[#F5F6F6]' : '' "
-            class=" p-3 w-full border-t last:border-b  border-[#EAEAEA]  flex items-center justify-between font-bold ">
+            class=" p-3 w-full border-t first:pt-0 first:border-t-0 last:border-b  border-[#EAEAEA]  flex items-center justify-between font-bold ">
             
             {{item.title}}
-            
+        
         </a>
         {% endfor %}
         </div>
