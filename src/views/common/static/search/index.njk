@@ -1,8 +1,8 @@
 <div 
     x-on:click="toggle('search')"
     x-effect="if (!Modal.open && Modal.type === 'search' && window.location.pathname.includes('/search/?q=')) search = ''" 
-    :class="Modal.open && Modal.type === 'search' ? 'top-0' : '-top-full'"
-    class="w-screen md:h-[307px] h-[120px]  bg-white transition-all duration-500  fixed z-[9991] flex md:items-center justify-center"
+    :class="Modal.open && Modal.type === 'search' ? '!top-0' : '-top-full'"
+    class="w-screen md:h-[307px] h-[120px]  -top-full bg-white transition-all duration-500  fixed z-[9991] flex md:items-center justify-center"
 >
     <div class="z-[9991]  md:py-0 py-6 bg-white relative w-full h-full flex md:items-center items-end justify-center">
         <i 

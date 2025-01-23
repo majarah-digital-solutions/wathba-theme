@@ -36,22 +36,23 @@
 
                 <div class="px-4 pt-6 flex flex-col gap-4 h-96 overflow-y-auto">
                     <template x-for="item in cart.items" :key="item._id">
-                        <div class="border-[#E5E6E6] border bg-white p-3 flex justify-between items-center">
+                        <div class="border-[#E5E6E6] border bg-white p-3 gap-2 flex justify-between items-center">
                             <div class=" flex items-center gap-3">
                                 <div class="w-[55px] h-[55px]">
                                     <img :src="item.product.images[0].imageUrl" alt=""
                                         class="w-full h-full object-contain">
+
                                 </div>
                                 <div class=" flex flex-col gap-1">
-                                    <h6 x-text="item.product.title" class=" text-[#434A5B]"></h6>
-                                        <div class=" flex items-center gap-1">
-                                            <p  x-text="item.totalPriceForItem" class=" font-bold text-[#434A5B]"></p>
-                                            <p x-show="+item.discount > 0" x-text="item.totalPriceForItemBeforeDiscount" :class="item.discount > 0 ? 'line-through' : ''" class="  text-sm text-[#929A9A]"></p>
+                                    <h6 x-text="item.product.title" class=" w-[126px] text-ellipsis overflow-hidden text-nowrap text-[#434A5B]"></h6>
+                                        <div class=" flex items-center w-[126px] flex-wrap gap-1">
+                                            <p  x-text="item.totalPriceForItem" class=" text-nowrap font-bold text-[#434A5B]"></p>
+                                            <p x-show="+item.discount > 0" x-text="item.totalPriceForItemBeforeDiscount" :class="item.discount > 0 ? 'line-through' : ''" class="text-nowrap text-sm text-[#929A9A]"></p>
                                         </div>
                                     
                                 </div>
                             </div>
-                            <div class=" flex flex-col items-end gap-4">
+                            <div class=" flex flex-col items-end gap-4 h-full justify-between">
                                 <span>
                                     <i @click="window.Qumra.cart.clearCartItem(item._id)"
                                         class="fi flex items-center justify-center text-[18px] text-[#929A9A] cursor-pointer fi-rs-trash"></i>
