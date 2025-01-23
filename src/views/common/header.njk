@@ -3,16 +3,16 @@
 
 <div style="z-index: 100;" class=" sticky  flex   top-0  flex-col gap-8 shadow-mainColor w-full">
     <div class="">
-        <div class=" h-9 items-center flex  bg-mainColor">
+        {# <div class=" h-9 items-center flex  bg-mainColor">
             <div class="container w-full  md:flex-row flex-col   flex justify-between">
-                <div class=" un-hidden-lg  flex   text-white ">
+                <div class="  flex  text-white ">
                     {%for listItem in global.lists.topMenu%}
                     <a href="{{listItem.url}}"
                         class=" last:border-none text-center border-l  px-3">{{listItem.title}}</a>
                     {%endfor%}
                 </div>
             </div>
-        </div>
+        </div> #}
         <div style="height: 69px;" class=" w-full  bg-white flex items-center py-3 z-100">
             <div class=" flex items-center justify-between container">
                 <div class=" flex gap-8">
@@ -77,4 +77,4 @@
 
 {% include "common/static/cart/index.njk" ignore missing %}
 {% include "common/static/search/index.njk" ignore missing %}
-{% include "common/static/sid/index.njk" ignore missing %}
+{% include "common/static/sideBar/index.njk" ignore missing %}

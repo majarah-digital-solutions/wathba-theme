@@ -76,6 +76,7 @@ function GlobalState(): GlobalStateInterface {
 	
 }
 document.addEventListener("QumraGearboxReady", () => {
+ (document?.getElementById('spinner-container') as any).style.display= 'none' 
 	if (Qumra && Qumra.events) {
 		window.Qumra.events.on(
 			window.Qumra.events.QumraEventName.CartUpdate,
