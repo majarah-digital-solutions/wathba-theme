@@ -1,7 +1,7 @@
 {% extends "layouts/layout.njk" %}
 {% block content %}
 <div class="py-[60px]" >
-    <div x-show="cart.items.length > 0" class=" flex flex-col gap-8 md:gap-10 container md:px-4">
+    <div x-show="cart?.items?.length > 0" class=" flex flex-col gap-8 md:gap-10 container md:px-4">
         <div class=" flex flex-col gap-2">
             <h1 class=" font-bold text-2xl text-customBlack">{{context.page.title}}</h1>
             <p class=" text-subColor">{{context.page.description}}</p>
@@ -10,7 +10,7 @@
         <div class=" flex md:flex-row flex-col gap-[20px] lg:gap-[43px]">
             <div style="border-radius:  20px;" class=" bg-white initial-scroll  md:w-2/3   flex flex-col gap-6">
                 <input type="hidden" name="cartItem" value="{{item._id}}">
-                <template x-for="item in cart.items" :key="index">
+                <template x-for="item in cart?.items" :key="index">
 
                     <div class="w-full relative  md:gap-[115px]  flex items-center  rounded-lg
                           shadow-[0px_0px_25px_#D7D7D780] p-3 md:p-[20px]">
@@ -107,24 +107,24 @@
                             <div class=" flex flex-col gap-3">
                                 <div class=" flex justify-between">
                                     <span class=" font-bold  text-subColor text-base">اجمالي المنتجات</span>
-                                    <span x-show="cart.totalProducts" class=" font-bold text-customBlack"
-                                        x-text="cart.totalProducts">
+                                    <span x-show="cart?.totalProducts" class=" font-bold text-customBlack"
+                                        x-text="cart?.totalProducts">
                                         0
                                     </span>
                                 </div>
                                 <div class=" flex justify-between">
                                     <span class=" font-bold  text-subColor text-base">توفير</span>
-                                    <span class=" font-bold text-customBlack" x-text="cart.productDiscount">
+                                    <span class=" font-bold text-customBlack" x-text="cart?.productDiscount">
                                         0
                                     </span>
                                 </div>
                                 <div class=" flex justify-between">
                                     <span class=" font-bold  text-subColor text-base">سعر المنتحات النهائي</span>
-                                    <span class=" font-bold text-customBlack" x-text="cart.totalProductsAfterDiscount">
+                                    <span class=" font-bold text-customBlack" x-text="cart?.totalProductsAfterDiscount">
                                         0
                                     </span>
                                 </div>
-                                {%if context.cart.couponDiscount >0%}
+                                {%if context.cart.couponDiscount > 0 %}
                                 <div class=" flex justify-between">
                                     <span class=" font-bold  text-subColor text-base">كود خصم
                                         ({{context.cart.coupon.code}})</span>
@@ -139,7 +139,7 @@
                             <div class=" border-b border-dashed flex w-full"></div>
                             <div class=" flex justify-between">
                                 <span class=" font-bold  text-subColor text-base">الإجمالي</span>
-                                <span class=" font-bold text-customBlack" x-text="cart.totalProductsAfterDiscount">
+                                <span class=" font-bold text-customBlack" x-text="cart?.totalProductsAfterDiscount">
                                     0
                                 </span>
                             </div>
@@ -163,7 +163,7 @@
 
     </div>
 
-    <div x-show="cart.items && cart.items.length === 0" class=" w-full h-screen flex justify-center items-center">
+    <div x-show="cart?.items && cart?.items?.length === 0" class=" w-full h-screen flex justify-center items-center">
         <div class="flex flex-col items-center gap-2">
             <i class="fi flex items-center text-9xl text-[#777777] fi-rr-box-open"></i>
             <div class=" font-bold text-[#777777] text-[32px]">سلتك فارغة</div>

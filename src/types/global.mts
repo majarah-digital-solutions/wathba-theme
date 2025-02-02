@@ -7,7 +7,7 @@ declare global {
   interface Window {
     [key: string]: any;
       Qumra: typeof Qumra,
-    __qumra__?: {
+    __qumra__: {
       context: {
         [x: string]: any;
       };

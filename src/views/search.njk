@@ -73,7 +73,7 @@
         <div class=" flex md:flex-row flex-col gap-[20px] lg:gap-[43px]">
             <div style="border-radius:  20px;" class=" bg-white initial-scroll  md:w-2/3   flex flex-col gap-6">
                 <input type="hidden" name="cartItem" value={{item._id}}>
-                <template x-for="item in cart.items" :key="index">
+                <template x-for="item in cart?.items" :key="index">
 
                     <div class="w-full relative  gap-8  py-4 flex items-center  rounded-lg
                           shadow-[0px_0px_25px_#D7D7D780] p-3 md:p-[20px]">
@@ -162,20 +162,20 @@
                             <div class=" flex flex-col gap-3">
                                 <div class=" flex justify-between">
                                     <span class=" font-bold  text-subColor text-base">اجمالي المنتجات</span>
-                                    <span x-show="cart.totalProducts" class=" font-bold text-customBlack"
-                                        x-text="cart.totalProducts">
+                                    <span x-show="cart?.totalProducts" class=" font-bold text-customBlack"
+                                        x-text="cart?.totalProducts">
                                         0
                                     </span>
                                 </div>
                                 <div class=" flex justify-between">
                                     <span class=" font-bold  text-subColor text-base">توفير</span>
-                                    <span class=" font-bold text-customBlack" x-text="cart.productDiscount">
+                                    <span class=" font-bold text-customBlack" x-text="cart?.productDiscount">
                                         0
                                     </span>
                                 </div>
                                 <div class=" flex justify-between">
                                     <span class=" font-bold  text-subColor text-base">سعر المنتحات النهائي</span>
-                                    <span class=" font-bold text-customBlack" x-text="cart.totalProductsAfterDiscount">
+                                    <span class=" font-bold text-customBlack" x-text="cart?.totalProductsAfterDiscount">
                                         0
                                     </span>
                                 </div>
@@ -194,7 +194,7 @@
                             <div class=" border-b border-dashed flex w-full"></div>
                             <div class=" flex justify-between">
                                 <span class=" font-bold  text-subColor text-base">الإجمالي</span>
-                                <span class=" font-bold text-customBlack" x-text="cart.totalProductsAfterDiscount">
+                                <span class=" font-bold text-customBlack" x-text="cart?.totalProductsAfterDiscount">
                                     0
                                 </span>
                             </div>

@@ -17,6 +17,7 @@ interface GlobalStateInterface {
 	toggle?(type: string): void;
 	searchProducts(search: any): void;
 	closeModal(): void;
+	checkoutLoading: boolean
 	cartLoadingToggle(loading: boolean): void;
 	couponLoadingToggle(loading: boolean): void;
 	init: () => void;
@@ -33,6 +34,7 @@ function GlobalState(): GlobalStateInterface {
 			open: false,
 			type: "",
 		},
+		checkoutLoading: false,
 		couponLoading: false,
 		updateCart(data: any) {
 			this.cart = data;

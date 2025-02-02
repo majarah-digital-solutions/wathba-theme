@@ -33,7 +33,7 @@
                     <div class=" flex un-hidden-lg justify-start items-center gap-10 ">
                         {% for item in global.lists.header%}
 
-                        <a  aria-label="item header lists"  href="{{item.url}}"
+                        <a  aria-label="item header lists"  href="{{item?.url}}"
                             class="  rounded-md text-customBlack font-bold {{item.class}}">{{item.title}}</a>
                         {% endfor %}
                     </div>
@@ -55,7 +55,7 @@
                             class=" cursor-pointer group hover:scale-105 transition-all duration-300  rounded-full w-[45px] h-[45px]  flex items-center justify-center  relative">
                             <i class="fi text-[20px] text-mainColor flex items-center fi-rr-shopping-cart"></i>
 
-                            <span x-text="cart.items ? cart.items.length : 0" class="text-white absolute top-0 right-0 transform translate-x-[3%] translate-y-0 w-[14px] h-[14px]
+                            <span x-text="cart?.items ? cart?.items.length : 0" class="text-white absolute top-0 right-0 transform translate-x-[3%] translate-y-0 w-[14px] h-[14px]
                         text-[10px] rounded-full flex items-center justify-center bg-mainColor">
                                 0
                             </span>

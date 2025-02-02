@@ -12,8 +12,8 @@
         </button>
         </div>
         <div class='flex flex-col w-full'>
-        {% for item in global.lists.header %}
-        <a aria-label="list of headerList sideBar" href="{{item.url}}" :class="item.url == window.location.pathname ? 'bg-[#F5F6F6]' : '' "
+        {% for item in global?.lists?.header %}
+        <a aria-label="list of headerList sideBar" href="{{item?.url}}" :class="item?.url == window.location.pathname ? 'bg-[#F5F6F6]' : '' "
             class=" p-3 w-full border-t transition-all duration-300 bg-white hover:bg-[#F5F6F6]  first:border-t-0 last:border-b  border-[#EAEAEA]  flex items-center justify-between font-bold ">
             
             {{item.title}}
