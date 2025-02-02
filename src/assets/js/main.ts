@@ -26,7 +26,7 @@ function GlobalState(): GlobalStateInterface {
 	return {
 		itemsCount: window.__qumra__?.context.cart?.items?.length ?? 0,
 		products: window.__qumra__?.context?.products ?? [],
-		cart: window.__qumra__?.context?.cart,
+		cart: window.__qumra__?.cart,
 		cartLoading: false,
 		search: window.__qumra__?.context.search?.q || "",
 		Modal: {
@@ -76,6 +76,7 @@ function GlobalState(): GlobalStateInterface {
 	
 }
 document.addEventListener("QumraGearboxReady", () => {
+	 
  (document?.getElementById('spinner-container') as any).style.display= 'none' 
 	if (Qumra && Qumra.events) {
 		window.Qumra.events.on(

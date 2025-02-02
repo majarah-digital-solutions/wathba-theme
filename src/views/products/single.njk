@@ -17,7 +17,7 @@
                         {%for image in context.product.images%}
                         <qumra-slider-item class="rounded-lg"><img class="h-full w-full rounded-lg"
                                 style="object-fit: contain;max-height: 400px;" src="{{ image.imageUrl }}"
-                                alt="Image description"></qumra-slider-item>
+                                alt="Image description" loading="lazy"></qumra-slider-item>
                         {%endfor%}
                     </qumra-slider>
 
@@ -119,7 +119,7 @@
                                 <qumra-quantity-input  size="100%" name="quantity" :value=1  ></qumra-quantity-input>
                             </div>
                             <div class=" w-1/2">
-                            <button type="submit" name="addToCart" value="addToCart"
+                            <button aria-label="إضافة إلى السلة" type="submit" name="addToCart" value="addToCart"
                                 class=" border-mainColor border w-full text-nowrap rounded-mainRadius flex justify-center items-center px-4 h-[50px]  ">
                                <template x-if="cartLoading">
                                 <qumra-loading loading-size="20px" loading={true}></qumra-loading>
@@ -133,7 +133,7 @@
                             </button>
                         </div>
                     </div>
-                            <button  type="submit" name="buyNow" value="buyNow"  class=" bg-mainColor md:w-5/12 w-full   text-white  font-bold rounded-mainRadius 
+                            <button aria-label="اشتري الان"  type="submit" name="buyNow" value="buyNow"  class=" bg-mainColor md:w-5/12 w-full   text-white  font-bold rounded-mainRadius 
                             flex items-center px-4 h-[50px]  justify-center">
                                 اشترى الان
                             </button>
@@ -149,7 +149,7 @@
     <div class=" flex flex-col gap-6 ">
         <div class="flex justify-between">
             <h2 class=" font-bold text-2xl text-customBlack">منتجات مشابهة</h2>
-            <a href="" class=" font-bold text-md text-mainColor">عرض المزيد</a>
+            <a aria-label="moreofProductmore"  href="/latest" class=" font-bold text-md text-mainColor">عرض المزيد</a>
         </div>
         <div class="relative w-full">
             <qumra-slider-multi navigation-color={{global.app.settings.mainColor}} slides-per-view="5"

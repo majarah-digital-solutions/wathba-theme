@@ -3,7 +3,7 @@
            <div class="flex item-center justify-center gap-4 transition-all duration-300 group-next cursor-pointer">
             {{text}}
             <div class=' w-max transition-all duration-300 next-arrow rounded-full flex item-center justify-center p-2'>
-              <i class="fa-solid fa-arrow-left  text-brown" ></i>
+              <i class="fa-solid fa-arrow-left  text-mainColor" ></i>
             </div>
            </div>
      </div> 
@@ -11,9 +11,9 @@
 
 
 {%macro  navogationLink(firstText="",firstLink="",secondText="",secondLink="")%}
-    <a href="{{firstLink}}" class="text-sm text-brown">{{firstText}}</a>
-     <i class="fa-solid fa-chevron-left text-sm text-brown " style="font-size: 9px;"></i>
-     <a class="text-sm text-brown" id="linkProduct">{{secondText}}</a>
+    <a aria-label="firstLink" href="{{firstLink}}" class="text-sm text-mainColor">{{firstText}}</a>
+     <i class="fa-solid fa-chevron-left text-sm text-mainColor " style="font-size: 9px;"></i>
+     <a aria-label="secondText" class="text-sm text-mainColor" id="linkProduct">{{secondText}}</a>
 {%endmacro%}
 
 
@@ -22,7 +22,7 @@
 <div id="searchBar" class="searchBar hidden bg-white w-full fixed top-0 z-9 p-4">
   <div class="flex justify-end">
     <img id="x-close-search" class="w-full cursor-pointer object-contain transition-filter duration-300 x-red-hover"
-     src={{"images/cancel.png" | assets}} alt="Close">
+     src={{"images/cancel.png" | assets}} alt="Close" loading="lazy">
         </div>
   <div class="flex flex-col item-center justify-center">
       <div class="text-center text-xl">ما الذي تبحث عنه؟</div>

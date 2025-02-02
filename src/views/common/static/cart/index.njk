@@ -15,7 +15,7 @@ class="h-full fixed z-[102]  left-[-120%] md:left-[-100%]
                 <p class="text-[#313535] text-xl  font-bold">السلة</p>
 
             </div>
-            <button class=" bg-[#F5F6F6] border border-[#ECEEEE] w-[24px] h-[24px] flex items-center justify-center"
+            <button aria-label="فتح السلة" class=" bg-[#F5F6F6] border border-[#ECEEEE] w-[24px] h-[24px] flex items-center justify-center"
                 @click="toggle('cart')">
                 <i class="fi flex items-center fi-rr-cross-small"></i>
             </button>
@@ -40,7 +40,7 @@ class="h-full fixed z-[102]  left-[-120%] md:left-[-100%]
                         <div class="border-[#E5E6E6] border bg-white p-3 gap-2 flex justify-between items-center">
                             <div class=" flex items-center gap-3">
                                 <div class="w-[55px] h-[55px]">
-                                    <img :src="item.product.images[0].imageUrl" alt=""
+                                    <img :src="item.product.images[0].imageUrl" alt="صورة المنتج" loading="lazy"
                                         class="w-full h-full object-contain">
 
                                 </div>
@@ -56,7 +56,7 @@ class="h-full fixed z-[102]  left-[-120%] md:left-[-100%]
                             <div class=" flex flex-col items-end gap-4 h-full justify-between">
                                 <span>
                                     <i @click="window.Qumra.cart.clearCartItem(item._id)"
-                                        class="fi flex items-center justify-center text-[18px] text-[#929A9A] cursor-pointer fi-rs-trash"></i>
+                                        class="fi flex items-center justify-center text-[18px] text-[#929A9A] cursor-pointer fi-rr-trash"></i>
                                 </span>
                                 <qumra-quantity-input size="24px" :item="item._id" :value="item.quantity">
                                 </qumra-quantity-input>
@@ -106,14 +106,20 @@ class="h-full fixed z-[102]  left-[-120%] md:left-[-100%]
 
 
                     <div class="flex flex-col gap-[10px]">
-                        <a href="/cart"
+                        <a aria-label="showCart" href="/cart"
                         class="py-2 border-mainColor border flex items-center justify-center
                         rounded-mainRadius transition-all hover:bg-mainColor  hover:text-white duration-300 h-[42px] font-bold text-[#313535] w-full">
                         اعرض السلة
                     </a>
-                        <button  @click="Qumra.order.checkout()" :disabled="couponLoading" :class="couponLoading ? 'bg-gray-400' : 'bg-mainColor'"
+                        <button :disabled="checkoutLoading" aria-label="اتمام الطلب" @click="Qumra.order.checkout()" :disabled="couponLoading" :class="couponLoading ? 'bg-gray-400' : 'bg-mainColor'"
                             class="py-2  rounded-mainRadius h-[42px] text-white w-full">
-                            اتمام الطلب
+                            <span x-show="!checkoutLoading"> اتمام الطلب</span>
+                            <template x-if="checkoutLoading">
+                                <div class=" flex justify-center ">
+                                    <qumra-loading color="white" loading-size="20px" loading={true}></qumra-loading>
+                                </div>
+                            </template>
+                           
                         </button>
                         
                     </div>
@@ -130,13 +136,13 @@ class="h-full fixed z-[102]  left-[-120%] md:left-[-100%]
         <template x-if="!cart.items || cart.items.length === 0 && !cartLoading">
             <div class="flex items-center h-full justify-center  flex-col gap-10">
                 <div class="">
-                    <a href="/latest">
+                    <a aria-label="latestproduct" href="/latest">
                         <i style="font-size: 128px;" class="fi text-mainColor flex items-center fi-rr-shopping-cart-add hover:scale-105 transition-all duration-300"></i>
                     </a>
                 </div>
             <div class=" flex flex-col gap-6">
                 <h5 class=" text-[#313535] font-bold text-xl">لا يوجد منتجات في السلة</h5>
-                <a href="/latest" class="hover:scale-105 transition-all duration-300 flex justify-center items-center h-[40px] bg-mainColor rounded-mainRadius text-white px-6">
+                <a aria-label="showproduct" href="/latest" class="hover:scale-105 transition-all duration-300 flex justify-center items-center h-[40px] bg-mainColor rounded-mainRadius text-white px-6">
                     عرض المنتجات
                 </a>
             </div>

@@ -5,7 +5,7 @@
 {% from "common/components/operations/index.njk" import showMore,navogationLink %}
 
 {% block content %}
-<div class="main-bg pb-10">
+<div class="bg-mainColor pb-10">
     <div class="flex justify-center ">
         <div class="xl:w-10/12  w-[97%]">
             <div class="my-[4.5rem]">
@@ -13,7 +13,7 @@
 
             </div>
             <div class=" my-10 relative">
-                <img class="w-full" src={{"images/pages.webp" | assets}}>
+                <img class="w-full" src={{"images/pages.webp" | assets}}alt="صورة الرئسية">
             </div>
             <div class=" grid md:grid-cols-3  grid-cols-2 gap-3">
                 {% for product in context.categories %}

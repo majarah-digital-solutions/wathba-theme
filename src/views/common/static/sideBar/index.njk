@@ -6,14 +6,14 @@
         <div class=" flex justify-between w-full px-4 items-center py-3 border-y border-[#E5E6E6]">
             <div class=" font-bold">القائمة الرئيسية</div>
      
-            <button class=" bg-[#F5F6F6] border border-[#ECEEEE] w-[24px] h-[24px] flex items-center justify-center"
+            <button aria-label="فتح القائمه الجانبية" class=" bg-[#F5F6F6] border border-[#ECEEEE] w-[24px] h-[24px] flex items-center justify-center"
             @click="toggle('sidebar')">
             <i class="fi flex items-center fi-rr-cross-small"></i>
         </button>
         </div>
         <div class='flex flex-col w-full'>
         {% for item in global.lists.header %}
-        <a href="{{item.url}}" :class="item.url == window.location.pathname ? 'bg-[#F5F6F6]' : '' "
+        <a aria-label="list of headerList sideBar" href="{{item.url}}" :class="item.url == window.location.pathname ? 'bg-[#F5F6F6]' : '' "
             class=" p-3 w-full border-t transition-all duration-300 bg-white hover:bg-[#F5F6F6]  first:border-t-0 last:border-b  border-[#EAEAEA]  flex items-center justify-between font-bold ">
             
             {{item.title}}
