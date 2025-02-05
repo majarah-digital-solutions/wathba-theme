@@ -3,32 +3,32 @@
 
 
 {% block content %}
-<div class=" flex flex-col gap-8 md:gap-40 container pt-8 md:pt-[60px]">
+<div class="min-h-screen flex flex-col gap-8 md:gap-40 container pt-8 md:pt-[60px]">
 
     <div class=" flex flex-col gap-10 ">
         {# <div class=" flex flex-col gap-2">
             <h1 class=" font-bold  text-customBlack text-2xl">{{context.page.title}}</h1>
             <p class=" text-subColor ">{{context.page.description}}</p>
         </div> #}
-        <div class=" flex lg:flex-row items-center flex-col gap-10">
-            <div class=" items-center md:w-6/12 w-full z-10  flex flex-col gap-3">
+        <div class=" relative md:grid  md:items-start md:grid-cols-5 md:gap-[60px]">
+            
+            <div class="md:sticky md:top-20  md:col-span-2 ">
                 <div class="relative w-full">
-                    <qumra-slider navigation-color={{global.app.settings.mainColor}}>
-                        {%for image in context.product.images%}
-                        <qumra-slider-item class="rounded-lg"><img class="h-full w-full rounded-lg"
-                                style="object-fit: contain;max-height: 400px;" src="{{ image.imageUrl }}"
-                                alt="Image description" loading="lazy"></qumra-slider-item>
-                        {%endfor%}
+                    <qumra-slider :navigation-color="data.app.settings.mainColor">
+                        <template x-for="image in context.product.images">
+                            <qumra-slider-item navigationColor="#eb0000" class="rounded-lg"><img
+                                class="h-full w-full rounded-lg" style="object-fit: contain;max-height: 400px;"
+                                :src="image.imageUrl" alt="Image description" loading="lazy"></qumra-slider-item>
+                            </template>
                     </qumra-slider>
 
                 </div>
             </div>
 
-            <div class=" md:w-6/12">
+            <div class="md:col-span-3">
                 <form class="flex flex-col gap-6" enctype="multipart/form-data" method="post"
-                onsubmit="return window.Qumra.forms.submit('product', event)"
-                >
-                <div class=" flex flex-col gap-2 ">
+                    onsubmit="return window.Qumra.forms.submit('product', event)">
+                    <div class=" flex flex-col gap-2 ">
                         <input type="hidden" name="product" value={{context.product._id}}>
                         <h1 class="text-2xl font-bold  text-customBlack">{{context.product.title}}</h1>
                         <div class=" flex gap-4 items-center">
@@ -104,74 +104,78 @@
                     {% if context.product.properties.length > 0%}
                     <div class="pt-6 border-t w-full font-bold  flex flex-col gap-2 items-center text-customBlack"
                         style="border-color: #D9D9D9">
-                        <qumra-product-options class="w-full" main-color="{{global.app.settings.mainColor}}"
+                        <qumra-product-options class="w-full" :main-color="data.app.settings.mainColor"
                             product={{context.product._id}}
                             data="{{context.product.properties | dump}}"></qumra-product-options>
                     </div>
-                    
+
 
                     {%endif%}
 
-                    <div class="pt-6  border-t font-bold  border-[#D9D9D9]    flex md:flex-row flex-col items-center gap-3">
+                    <div
+                        class="pt-6  border-t font-bold  border-[#D9D9D9]    flex md:flex-row flex-col items-center gap-3">
                         <div class=" flex gap-4 items-center w-full md:w-7/12  ">
 
                             <div class=" w-1/2 h-[50px] md:h-[40px]">
-                                <qumra-quantity-input  size="100%" name="quantity" :value=1  ></qumra-quantity-input>
+                                <qumra-quantity-input size="100%" name="quantity" :value=1></qumra-quantity-input>
                             </div>
                             <div class=" w-1/2">
-                            <button aria-label="إضافة إلى السلة" type="submit" name="addToCart" value="addToCart"
-                                class=" border-mainColor border w-full text-nowrap rounded-mainRadius flex justify-center items-center px-4 h-[50px]  ">
-                               <template x-if="cartLoading">
-                                <qumra-loading loading-size="20px" loading={true}></qumra-loading>
-                            </template>
-                            <template x-if="!cartLoading">
-                                <div class=" text-mainColor flex gap-2 items-center font-bold justify-center">
-                                    <i class="fi flex items-center text-mainColor fi-rr-shopping-cart"></i>
-                                    اضافة للسلة
-                                </div>
-                            </template>
-                            </button>
+                                <button aria-label="إضافة إلى السلة" type="submit" name="addToCart" value="addToCart"
+                                    class=" border-mainColor border w-full text-nowrap rounded-mainRadius flex justify-center items-center px-4 h-[50px]  ">
+                                    <template x-if="cartLoading">
+                                        <qumra-loading loading-size="20px" loading={true}></qumra-loading>
+                                    </template>
+                                    <template x-if="!cartLoading">
+                                        <div class=" text-mainColor flex gap-2 items-center font-bold justify-center">
+                                            <i class="fi flex items-center text-mainColor fi-rr-shopping-cart"></i>
+                                            اضافة للسلة
+                                        </div>
+                                    </template>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                            <button aria-label="اشتري الان"  type="submit" name="buyNow" value="buyNow"  class=" bg-mainColor md:w-5/12 w-full   text-white  font-bold rounded-mainRadius 
+                        <button aria-label="اشتري الان" type="submit" name="buyNow" value="buyNow" class=" bg-mainColor md:w-5/12 w-full   text-white  font-bold rounded-mainRadius 
                             flex items-center px-4 h-[50px]  justify-center">
-                                اشترى الان
-                            </button>
-                      
-                        
+                            اشترى الان
+                        </button>
+
+
 
                     </div>
                 </form>
             </div>
+
         </div>
     </div>
-   {%if context.relatedProducts.results.length > 0%}
-    <div class=" flex flex-col gap-6 ">
+    <div x-show="context.relatedProducts.results.length > 0" class=" flex flex-col gap-6 ">
         <div class="flex justify-between">
             <h2 class=" font-bold text-2xl text-customBlack">منتجات مشابهة</h2>
-            <a aria-label="moreofProductmore"  href="/latest" class=" font-bold text-md text-mainColor">عرض المزيد</a>
+            <a aria-label="moreofProductmore" href="/latest" class=" font-bold text-md text-mainColor">عرض المزيد</a>
         </div>
-        <div class="relative w-full">
-            <qumra-slider-multi navigation-color={{global.app.settings.mainColor}} slides-per-view="5"
-                spaceBetween="10">
+        {# <qumra-animation always="true" animation="slide-bottom fade"> #}
+            <div class="relative w-full">
+                <qumra-slider-multi navigation-color={{global.app.settings.mainColor}} slides-per-view="5"
+                    spaceBetween="10">
 
-                {%for item in context.relatedProducts.results%}
-                <qumra-slider-item>
-                    <qumra-product-card product='{{item | dump}}'></qumra-product-card>
-                </qumra-slider-item>
-                {%endfor%}
-                {%for item in context.relatedProducts.results%}
-                <qumra-slider-item>
-                    <qumra-product-card product='{{item | dump}}'></qumra-product-card>
-                </qumra-slider-item>
-                {%endfor%}
-            </qumra-slider-multi>
+                    {%for item in context.relatedProducts.results%}
+                    <qumra-slider-item>
+                        <qumra-product-card product='{{item | dump}}'></qumra-product-card>
+                    </qumra-slider-item>
+                    {%endfor%}
+                    {%for item in context.relatedProducts.results%}
+                    <qumra-slider-item>
+                        <qumra-product-card product='{{item | dump}}'></qumra-product-card>
+                    </qumra-slider-item>
+                    {%endfor%}
+                </qumra-slider-multi>
 
 
-        </div>
+            </div>
+            {#
+        </qumra-animation> #}
 
     </div>
-    {%endif%}
+
 </div>
 
 

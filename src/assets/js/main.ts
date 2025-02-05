@@ -4,6 +4,8 @@ interface GlobalStateInterface {
 	itemsCount: number;
 	products: any;
 	cart: any;
+	context: any;
+	data: any;
 	Modal: {
 		open: boolean;
 		type: string;
@@ -28,6 +30,8 @@ function GlobalState(): GlobalStateInterface {
 		itemsCount: window.__qumra__?.context.cart?.items?.length ?? 0,
 		products: window.__qumra__?.context?.products ?? [],
 		cart: window.__qumra__?.cart,
+		context: window.__qumra__?.context,
+		data: window.__qumra__?.data,
 		cartLoading: false,
 		search: window.__qumra__?.context.search?.q || "",
 		Modal: {
@@ -41,7 +45,6 @@ function GlobalState(): GlobalStateInterface {
 			this.itemsCount = data?.items?.length ?? 0;
 		},
 		toggle(type) {
-			console.log("Modal", this.Modal, type);
 			if (this.Modal.type === type) {
 				this.Modal.open = !this.Modal.open;
 			} else {
@@ -60,7 +63,6 @@ function GlobalState(): GlobalStateInterface {
 			this.Modal.open = false;
 		},
 		searchProducts(search: any) {
-			console.log(search); // Your search logic here
 			window.location.href = `/search/?q=${search}`;
 		},
 		cartLoadingToggle(loading: boolean) {
@@ -84,7 +86,6 @@ document.addEventListener("QumraGearboxReady", () => {
 		window.Qumra.events.on(
 			window.Qumra.events.QumraEventName.CartUpdate,
 			(data: any) => {
-				console.log("datadata", data);
 				window.updateCart(data);
 			}
 		);
@@ -94,13 +95,11 @@ document.addEventListener("QumraGearboxReady", () => {
 			(data: { loading: boolean }) => {
 				window.cartLoadingToggle(data.loading);
 
-				console.log("loading", data);
 			}
 		);
 		window.Qumra.events.on(
 			window.Qumra.events.QumraEventName.CouponeLoading,
 			(data: { loading: boolean }) => {
-				console.log("loading", data);
 				window.couponLoadingToggle(data.loading);
 			}
 		);
