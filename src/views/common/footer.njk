@@ -36,14 +36,14 @@
 
          <div class=" flex flex-col gap-4">
             <template x-if="data.app.support.phone">
-               <a aria-label="الهاتف" target="_blank" href="tel://{{global.app.socialMedia.phone}}"
+               <a aria-label="الهاتف" target="_blank" :href="tel://data.app.socialMedia.phone"
                   class="flex  items-center gap-3 ">
                   <i class="fi flex items-center fi-rr-phone-call"></i>
                   <span x-text="data.app.socialMedia.phone"></span>
                </a>
             </template>
             <template x-if="data.app.socialMedia.whatsapp">
-               <a aria-label="الواتساب" target="_blank" href="https://wa.me/{{global.app.socialMedia.whatsapp}}"
+               <a aria-label="الواتساب" target="_blank" ;href="https://wa.me/data.app.socialMedia.whatsapp"
                   class="flex items-center gap-3 ">
                   <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                      <path
@@ -56,7 +56,7 @@
                </a>
             </template>
             <template x-if="data.app.socialMedia.email">
-               <a aria-label="الايميل" target="_blank" href="mailto:{{global.app.socialMedia.email}}"
+               <a aria-label="الايميل" target="_blank" :href="mailto:data.app.socialMedia.email"
                   class="flex items-center gap-3 ">
                   <i class="fi fi-rr-envelope"></i>
                   <span x-text="data.app.socialMedia.email"></span>

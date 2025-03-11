@@ -9,7 +9,7 @@
         </div>
         <div class=" flex md:flex-row flex-col gap-[20px] lg:gap-[43px]">
             <div style="border-radius:  20px;" class=" bg-white initial-scroll  md:w-2/3   flex flex-col gap-6">
-                <input type="hidden" name="cartItem" value="{{item._id}}">
+                {# <input type="hidden" name="cartItem" value="{{item._id}}"> #}
                 <template x-for="item in cart?.items" :key="index">
                     {# <qumra-animation duration="" always="true" animation="slide-right"> #}
                     <div class="w-full relative  md:gap-[115px]  flex items-center  rounded-lg
