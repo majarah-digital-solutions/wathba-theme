@@ -17,10 +17,7 @@
                 color: [],
                 texts: []
             },
-        
-            // كائن لحفظ جميع الفلاتر بشكل دائم
             globalProperties: [],
-        
             addFilter(type, value) {
                 if (!this.selectedFilters[type]) {
                     this.selectedFilters[type] = [];
@@ -36,7 +33,6 @@
             },
         
             updateFilters() {
-                // تحديث القيم بشكل دائم في globalProperties
                 this.globalProperties = [
                     ...new Set([
                         ...this.selectedFilters.colors,
@@ -56,7 +52,10 @@
             }
         }"
         >
+        <span x-effect="console.log('location',decodeURIComponent(window.location.pathname.split('/')[1]))"></span>
+        <div  x-show="decodeURIComponent(window.location.pathname.split('/')[1]) == category">
             {% include "common/static/filterCategory/index.njk" ignore missing %}
+        </div>
             {% include "common/static/priceing/index.njk" ignore missing %}
             {% include "common/static/filterColor/index.njk" ignore missing %}
             {% include "common/static/filterText/index.njk" ignore missing %}

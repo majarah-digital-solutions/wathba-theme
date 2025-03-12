@@ -38,7 +38,6 @@ interface GlobalStateInterface {
 	filterProducts(filter: any): void;
 	pageLoadingToggle(loading: boolean): void
 	pageUpdated(data: any): void
-	addToCart(id: string, quantity: number): void
 	init: () => void;
 	currency: string
 	filterData: any
@@ -75,8 +74,8 @@ function GlobalState(): GlobalStateInterface {
 		priceAtCallLoading: false,
 		pageLoading: false,
 		updateCart(data: any) {
-			this.context.products = data.products;
-			this.filterData.pagination = data.pagination
+			this.cart = data;
+			this.itemsCount = data?.items?.length ?? 0;
 		},
 		updatePage(data: any) {
 			this.context = data;
@@ -140,10 +139,7 @@ function GlobalState(): GlobalStateInterface {
 			  this.filterData.pagination = data?.data?.pagination
 			  this.filterData.filters = data?.data?.filter?.data?.filters
 		},
-		addToCart(id, quantity=1) {
-			console.log("addToCart",  id, quantity);
-			window.Qumra.cart.addCartItem(id, quantity)
-		},
+
 		init() {
 			window.updateCart = this.updateCart.bind(this);
 			window.pageUpdated = this.pageUpdated.bind(this);
@@ -160,17 +156,17 @@ function GlobalState(): GlobalStateInterface {
 }
 document.addEventListener("QumraGearboxReady", () => {
 	(document?.getElementById('spinner-container') as any).style.display = 'none'
-	// const urlParams = new URLSearchParams(window.location.search);
-	// const page = urlParams.get("page")?.trim();
-	// const limit = urlParams.get("limit")?.trim();
+	const urlParams = new URLSearchParams(window.location.search);
+	const page = urlParams.get("page")?.trim();
+	const limit = urlParams.get("limit")?.trim();
 	
-	// const pageNum = page && !isNaN(parseInt(page)) ? parseInt(page, 10) : null;
-	// const limitNum = limit && !isNaN(parseInt(limit)) ? parseInt(limit, 10) : null;
+	const pageNum = page && !isNaN(parseInt(page)) ? parseInt(page, 10) : null;
+	const limitNum = limit && !isNaN(parseInt(limit)) ? parseInt(limit, 10) : null;
 	
-	// if (pageNum && limitNum) {
-	// 	const globalState = GlobalState();
-	// 	globalState.filterProducts({ page: pageNum, limit: limitNum });
-	// }
+	if (pageNum && limitNum) {
+		const globalState = GlobalState();
+		globalState.filterProducts({ page: pageNum, limit: limitNum });
+	}
 	
 
 	if (Qumra && Qumra.events) {
