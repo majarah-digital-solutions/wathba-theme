@@ -11,6 +11,9 @@ declare global {
       context: {
         [x: string]: any;
       };
+      data: {
+        [x: string]: any;
+      };
       cart: CartType;
     };
   }

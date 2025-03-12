@@ -1,0 +1,70 @@
+<div x-bind:class="Modal.open && Modal.type === 'filter' ? '!left-0' : 'left-[-120%] md:left-[-100%]'" class="h-full fixed z-[102] left-[-120%] md:left-[-100%] md:w-[360px] w-full xs:w-9/12 flex flex-col gap-4
+    bg-white top-0 transition-all duration-300 pb-6">
+    <div class="flex flex-col h-full  gap-6">
+        <div class="flex bg-white border-b border-[#E5E6E6] justify-between p-4 sticky top-0">
+            <div class=" flex  gap-2 items-center">
+                <p class="text-[#313535] text-xl  font-bold">تصفية حسب</p>
+            </div>
+            <button aria-label="فتح السلة"
+                class=" bg-[#F5F6F6] border border-[#ECEEEE] w-[24px] h-[24px] flex items-center justify-center"
+                @click="toggle('filter')">
+                <i class="fi flex items-center fi-rr-cross-small"></i>
+            </button>
+        </div>
+
+        <div class="flex flex-col gap-4 px-6 overflow-y-auto " x-data="{ 
+            selectedFilters: {
+                color: [],
+                texts: []
+            },
+        
+            // كائن لحفظ جميع الفلاتر بشكل دائم
+            globalProperties: [],
+        
+            addFilter(type, value) {
+                if (!this.selectedFilters[type]) {
+                    this.selectedFilters[type] = [];
+                }
+        
+                if (this.selectedFilters[type].includes(value)) {
+                    this.selectedFilters[type] = this.selectedFilters[type].filter(f => f !== value);
+                } else {
+                    this.selectedFilters[type].push(value);
+                }
+        
+                this.updateFilters();
+            },
+        
+            updateFilters() {
+                // تحديث القيم بشكل دائم في globalProperties
+                this.globalProperties = [
+                    ...new Set([
+                        ...this.selectedFilters.colors,
+                        ...this.selectedFilters.texts
+                    ])
+                ];
+        
+                const mergedFilters = {
+                    properties: this.globalProperties
+                };
+        
+                filterProducts(mergedFilters);
+            },
+        
+            isSelected(type, value) {
+                return this.selectedFilters[type]?.includes(value);
+            }
+        }"
+        >
+            {% include "common/static/filterCategory/index.njk" ignore missing %}
+            {% include "common/static/priceing/index.njk" ignore missing %}
+            {% include "common/static/filterColor/index.njk" ignore missing %}
+            {% include "common/static/filterText/index.njk" ignore missing %}
+            
+        </div>
+    </div>
+</div>
+<!-- خلفية التعتيم -->
+<div x-show="Modal.open && Modal.type === 'filter'" @click="toggle('filter')"
+    class="bg-black bg-opacity-50 transition-all duration-300 fixed top-0 left-0 w-screen h-screen z-[101]">
+</div>

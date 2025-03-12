@@ -1,0 +1,33 @@
+<div class="relative w-[140px]" x-data="{ 
+    data: { isOpen: false, selected: '', options: [
+        { key: 'date', label: 'المضاف حديثا',value:-1 },
+        { key: 'date', label: 'المضاف قديما',value:1 },
+        { key: 'price', label: 'السعر الاعلي',value:-1 },
+        { key: 'price', label: 'السعر الاقل',value:1 }
+    ] },
+    toggle() { this.data.isOpen = !this.data.isOpen; },
+    select(value,key) {
+        this.data.selected = { value, key }; 
+                this.data.isOpen = false; 
+        filterProducts({sortOb:[{ field: key, order: value }]})
+
+    }
+}">
+    <div @click="toggle()" class="border  px-3 h-[45px] rounded cursor-pointer bg-white flex justify-between items-center">
+        <span x-text="data.selected ? data.options.find(o => o.value === data.selected.value && o.key === data.selected.key).label : 'الترتيب حسب'"></span>
+        <svg class="w-4 h-4 transform transition-transform duration-300"
+            :class="data.isOpen ? 'rotate-180' : 'rotate-0'" 
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+    </div>
+
+    <div x-show="data.isOpen" @click.away="data.isOpen = false" class="absolute mt-1 w-full bg-white border rounded shadow-lg z-50">
+        <template x-for="option in data.options" >
+            <div @click="select(option.value, option.key)"
+                 class="px-4 py-2 cursor-pointer hover:bg-gray-100"
+                 x-text="option.label">
+            </div>
+        </template>
+    </div>
+</div>

@@ -1,26 +1,56 @@
 {% extends "layouts/layout.njk" %}
-
 {% block content %}
-<div class="justify-center flex flex-col gap-10 container pb-10 pt-8 md:pt-[60px]">
-    {% if context.products and context.products.length > 0 %}
-    <div class="flex flex-col gap-2">
-        <h1 class="font-bold text-2xl">{{context.page.title}}</h1>
-        <p x-show="window.__qumra__?.context?.search?.q" class="text-subColor">
-            نتائج البحث عن: "{{context.search.q}}"
-        </p>
-    </div>
-    <div class="min-h-screen">
-        <div class="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-3 grid-cols-2 gap-4">
-            {% for item in context.products %}
-            <qumra-product-card product='{{item | dump}}'></qumra-product-card>
-            {% endfor %}
+<div class=" min-h-screen justify-center flex flex-col gap-10 container pb-10 pt-8 md:pt-[60px]">
+    <div class=" flex md:flex-row flex-col justify-between gap-4 md:items-center">
+
+        <div x-show="products.length > 0" class="flex flex-col gap-2">
+            <qumra-animation always="false" animation="slide-right fade">
+                <h1 x-text="context.page.title" class="font-bold text-2xl"></h1>
+                <p x-show="context?.search?.q" class="text-subColor">
+                    نتائج البحث عن: "<span x-text='context.search.q'></span>"
+                </p>
+            </qumra-animation>
         </div>
+
+
+        <div class=" flex items-center gap-5">
+            <div class=" flex items-center gap-2">
+                عرض :
+                {% include "common/static/limit/index.njk" ignore missing %}
+            </div>
+            {% include "common/static/sort/index.njk" ignore missing %}
+            <button @click="toggle('filter')"
+                class=" border border-[#D8D8D8] h-[45px] w-[45px] flex items-center justify-center rounded">
+                <i class="fi text-lg text-mainColor flex items-center fi-rr-filter"></i>
+            </button>
+        </div>
+
     </div>
-    {% else %}
-    <div class="flex min-h-screen flex-col items-center justify-center gap-3">
+    <div  class="min-h-screen flex flex-col gap-6">
+        <div x-show="!pageLoading && products.length > 0" class="grid xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-3 lg:gap-6">
+         
+            {% include "common/components/card/index.njk" ignore missing %}
+
+        
+            
+        </div>
+        <span x-effect="console.log('globalData  products', products)"></span>
+        <div x-show="pageLoading" class=" flex h-screen items-center justify-center ">
+            <qumra-loading loading-size="24px"
+                loading={true}></qumra-loading>
+        </div>
+        <div x-show="products.length > 0" class=" w-full flex items-center justify-center">
+            {% include "common/static/pagination/index.njk" ignore missing %}
+        </div>
+
+    </div>
+    <div x-show="products.length == 0" class="flex min-h-screen flex-col items-center justify-center gap-3">
         <i style="font-size: 7rem" class="fi flex items-center fi-rr-drawer-empty"></i>
         <div class="text-[#777777] text-[32px] font-bold">لا توجد نتائج</div>
     </div>
-    {% endif %}
+
 </div>
+
+{% include "common/static/filter/index.njk" ignore missing %}
+
 {% endblock %}
