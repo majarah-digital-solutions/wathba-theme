@@ -1,10 +1,10 @@
 <div x-data="{ 
     isOpen: false, 
     setFilterCategory: [],
-    toggleFilterCategory(slug) {
-        const index = this.setFilterCategory.indexOf(slug);
+    toggleFilterCategory(id) {
+        const index = this.setFilterCategory.indexOf(id);
         if (index === -1) {
-            this.setFilterCategory.push(slug);
+            this.setFilterCategory.push(id);
         } else {
             this.setFilterCategory.splice(index, 1);
         }
@@ -22,16 +22,16 @@
                 stroke-linejoin="round" />
         </svg>
         </div>
-        <div x-show="isOpen" x-collapse class="w-full grid grid-cols-3 gap-2">
+        <div x-show="isOpen" x-collapse class="w-full  flex flex-wrap gap-2">
             <template x-for="item in filterData?.filters?.categories">
-                <div @click="toggleFilterCategory(item.slug)"
-                    :class="setFilterCategory.includes(item.slug) ? 'border-mainColor' : ''"
-                    class="cursor-pointer flex gap-1 items-center py-1 px-[10px] rounded-full border border-[#E5E5E5]">
+                <div @click="toggleFilterCategory(item.id)"
+                    :class="setFilterCategory.includes(item.id) ? 'border-mainColor' : ''"
+                    class="cursor-pointer flex  truncate gap-1 items-center py-1 px-[10px] rounded-full border border-[#E5E5E5]">
                     <div class="w-max">
                         <span x-effect="console.log('filterData', item)"></span>
-                        <span :class="setFilterCategory.includes(item.slug) ? 'bg-mainColor text-white' : ''"
+                        <span :class="setFilterCategory.includes(item.id) ? 'bg-mainColor text-white' : ''"
                             class="w-5 h-5 rounded-full border border-[#E5E5E5] flex items-center justify-center">
-                            <i x-show="setFilterCategory.includes(item.slug)"
+                            <i x-show="setFilterCategory.includes(item.id)"
                                 class="fi flex items-center text-xs font-bold fi-rr-check"></i>
                         </span>
                     </div>
