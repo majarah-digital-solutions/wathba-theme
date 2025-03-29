@@ -1,23 +1,25 @@
 <div class="relative w-[70px]" x-data="{ 
     data: { 
         isOpen: false, 
-        selected: '', 
+        selected:context.query.limit, 
+
         options: [
             { value: 10, label: '10' },
             { value: 20, label: '20' },
             { value: 50, label: '50' },
-            { value: 100, label: '100' } 
         ] 
     },
-    toggle() { this.data.isOpen = !this.data.isOpen; },
+    toggle() { this.data.isOpen = !this.data.isOpen },
     select(value) { 
         this.data.selected = value; 
         this.data.isOpen = false; 
-        filterProducts({ limit: value , page: 1 });
+        Qumra.products.setLimit(value);
     }
 }">
+
     <div @click="toggle()" class="border px-3 h-[45px] rounded cursor-pointer bg-white flex justify-between items-center">
-        <span x-text="data.selected ? data.options.find(o => o.value === data.selected).label : filterData.pagination.limit"></span>
+        <span x-text="data.selected"></span>
+        <span x-effect="console.log('pagination',context.query.limit)"></span>
         <svg class="w-4 h-4 transform transition-transform duration-300"
             :class="data.isOpen ? 'rotate-180' : 'rotate-0'" 
             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">

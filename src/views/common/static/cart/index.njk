@@ -43,7 +43,7 @@ class="h-full fixed z-[102]  left-[-120%] md:left-[-100%]
                                     class="border-[#E5E6E6] border bg-white p-3 gap-2 flex justify-between items-center">
                                     <div class=" flex items-center gap-3">
                                         <div class="w-[55px] h-[55px]">
-                                            <img :src="item.product.images[0].imageUrl" alt="صورة المنتج" loading="lazy"
+                                            <img :src="item?.product?.images[0]?.imageUrl" alt="صورة المنتج" loading="lazy"
                                                 class="w-full h-full object-contain">
 
                                         </div>

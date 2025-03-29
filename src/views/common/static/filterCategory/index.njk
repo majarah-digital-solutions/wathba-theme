@@ -11,7 +11,7 @@
         filterProducts({ categories: this.setFilterCategory });
     }
 }">
-    <div x-show="filterData.filters.categories.length > 0" class="rounded-lg border border-[#E5E5E5] p-4 flex flex-col items-start gap-3">
+    <div x-show="filterData?.filters?.categories?.length > 0" class="rounded-lg border border-[#E5E5E5] p-4 flex flex-col items-start gap-3">
         <div @click="isOpen = !isOpen" class="w-full flex items-center justify-between cursor-pointer">
             <span class="font-semibold text-[#434A5B]">تصنيفات المنتجات</span>
             <svg :class="isOpen ? 'rotate-180' : ''" width="24" height="25" viewBox="0 0 24 25" fill="none"

@@ -9,7 +9,7 @@
     select(value,key) {
         this.data.selected = { value, key }; 
                 this.data.isOpen = false; 
-        filterProducts({sortOb:[{ field: key, order: value }]})
+                setSort({sortOb:[{ field: key, order: value }]})
 
     }
 }">

@@ -90,9 +90,9 @@ function GlobalState(): GlobalStateInterface {
 			}
 			this.couponLoading = false;
 			if (this.Modal.open) {
-				Qumra.dom.disableScrolling();
+				Qumra?.dom?.disableScrolling();
 			} else {
-				Qumra.dom.enableScrolling();
+				Qumra?.dom?.enableScrolling();
 			}
 			this.coupon = "";
 		},

@@ -52,8 +52,7 @@
             }
         }"
         >
-        <span x-effect="console.log('location',decodeURIComponent(window.location.pathname.split('/')[1]))"></span>
-        <div  x-show="decodeURIComponent(window.location.pathname.split('/')[1]) == category">
+        <div  x-show="decodeURIComponent(window?.location?.pathname?.split('/')[1]) == 'category'">
             {% include "common/static/filterCategory/index.njk" ignore missing %}
         </div>
             {% include "common/static/priceing/index.njk" ignore missing %}
