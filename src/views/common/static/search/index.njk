@@ -1,4 +1,4 @@
-<div 
+{# <div 
     x-on:click="toggle('search')"
     x-effect="if (!Modal.open && Modal.type === 'search' && window.location.pathname.includes('/search/?q=')) search = ''" 
     :class="Modal.open && Modal.type === 'search' ? '!top-0' : '-top-full'"
@@ -33,4 +33,4 @@
 <div class="w-full h-full blur-md backdrop-blur-sm bg-black/30    fixed duration-500 transition-all -bottom-full  z-[999] "
 :class="Modal.open && Modal.type === 'search' ? '!bottom-0' : '-bottom-full'"></div>
 </div>
-
+ #}

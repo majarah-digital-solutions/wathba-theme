@@ -10,7 +10,7 @@
     
     {# <script type="module" src="http://127.0.0.1:5502/dist/esm/qumra-ui.js"></script> #}
     
-    {# <script src="http://127.0.0.1:5501/dist/gearbox/qumra-gearbox.js" defer></script> #}
+    <script src="http://127.0.0.1:5501/dist/gearbox/qumra-gearbox.js" defer></script>
     {#
     <script src="http://127.0.0.1:5501/dist/gearbox/qumra-gearbox.js" defer></script> #}
     {#
@@ -33,21 +33,18 @@
    </style>
    {# <script type="module" src="http://127.0.0.1:5502/dist/esm/qumra-ui.js" defer></script> #}
 
+
 </head>
 
-<body style="background-color: white;overflow-x: hidden" dir="rtl" x-data="GlobalState()" x-init="init()">
+<body style="background-color: white;overflow-x: hidden" dir="rtl">
+
     {% include "common/static/loading/index.njk" ignore missing %}
     {% include "common/header.njk" ignore missing %}
     <div class=" ">
         {% block content %}{% endblock %}
     </div>
     {% include "common/footer.njk" ignore missing %}
-
     <script src={{"app.js" | assets }}></script>
-
-    <script>
-        console.log("globalData", window.__qumra__);
-    </script>
     {{ hooks.body | safe }}
 </body>
 

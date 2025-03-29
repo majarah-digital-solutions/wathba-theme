@@ -86,18 +86,18 @@
                             <div class=" flex gap-2 items-end">
                                 <div class="font-bold text-mainColor text-2xl">
                                     <span x-text="context.product.priceAfterDiscount"></span>
-                                    <span x-text="currency"></span>
+                                    <span x-text="data.app.currency.currencySymbol"></span>
                                 </div>
                                 <div class="line-through" style="color: #AEAEAE;">
                                     <span x-text="context.product.price"></span>
-                                    <span x-text="currency"></span>
+                                    <span x-text="data.app.currency.currencySymbol"></span>
                                 </div>
                             </div>
                         </template>
                         <template x-if="context.product.discount ==0">
                             <div x-show="!context.product?.privatePrice" class="  font-bold text-mainColor  text-2xl">
                                 <span x-text="context.product.price"></span>
-                                <span x-text="currency"></span>
+                                <span x-text="data.app.currency.currencySymbol"></span>
                             </div>
                         </template>
                         <div x-html="context.product.content"

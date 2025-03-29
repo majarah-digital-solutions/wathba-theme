@@ -32,7 +32,7 @@
               <div class=""> سعر المنتجات :</div>
               <div class=" flex items-center">
                 <span x-text="context.order.totalProducts"></span>
-                <span x-text="currency"></span>
+                <span x-text="data.app.currency.currencySymbol"></span>
               </div>
             </div>
             
@@ -40,28 +40,28 @@
               <div class=""> الخصم  :</div>
               <div x-text=" flex items-center">
                 <span x-text="context.order.discount"></span>
-                <span x-text="currency"></span>
+                <span x-text="data.app.currency.currencySymbol"></span>
               </div>
             </div>
             <div class="flex justify-between">
               <div class=""> سعر المنتجات  بعد الخصم:</div>
               <div x-text=" flex items-center">
                 <span x-text="context.order.totalPrice"></span>
-                <span x-text="currency"></span>
+                <span x-text="data.app.currency.currencySymbol"></span>
               </div>
             </div>
             <div class="flex justify-between">
               <div class="">سعر الشحن:</div>
               <div x-text=" flex items-center">
                 <span x-text="context.order.shippingPrice"></span>
-                <span x-text="currency"></span>
+                <span x-text="data.app.currency.currencySymbol"></span>
               </div>
             </div>
             <div class="flex justify-between">
               <div class=""> السعر الكلي:</div>
               <div x-text=" flex items-center">
                 <span x-text="context.order.priceWithShipping"></span>
-                <span x-text="currency"></span>
+                <span x-text="data.app.currency.currencySymbol"></span>
               </div>
             </div>
           </div>

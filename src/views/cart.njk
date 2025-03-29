@@ -133,10 +133,10 @@
                             </div>
                         </div>
 
-                        <button :disabled="checkoutLoading" aria-label="اتمام الطلب" @click="Qumra.order.checkout()" :disabled="couponLoading" :class="couponLoading ? 'bg-gray-400' : 'bg-mainColor'"
+                        <button :disabled="loading.checkout" aria-label="اتمام الطلب" @click="Qumra.order.checkout()" :disabled="loading.coupon" :class="loading.coupon ? 'bg-gray-400' : 'bg-mainColor'"
                         class="py-2  rounded-mainRadius h-[42px] text-white w-full">
-                        <span x-show="!checkoutLoading"> اتمام الطلب</span>
-                        <template x-if="checkoutLoading">
+                        <span x-show="!loading.checkout"> اتمام الطلب</span>
+                        <template x-if="loading.checkout">
                             <div class=" flex justify-center ">
                                 <qumra-loading color="white" loading-size="20px" loading={true}></qumra-loading>
                             </div>

@@ -17,7 +17,7 @@
     }
 }">
     <div @click="toggle()" class="border px-3 h-[45px] rounded cursor-pointer bg-white flex justify-between items-center">
-        <span x-text="data.selected ? data.options.find(o => o.value === data.selected).label : filterData.pagination.limit"></span>
+        <span x-text="data.selected ? data.options.find(o => o.value === data.selected).label : pagination.limit"></span>
         <svg class="w-4 h-4 transform transition-transform duration-300"
             :class="data.isOpen ? 'rotate-180' : 'rotate-0'" 
             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">

@@ -1,21 +1,24 @@
-<!-- الغلاف العام للسلة (Modal Cart) -->
-<div x-bind:class="Modal.open && Modal.type === 'cart'  ? '!left-0' : ' left-[-120%] md:left-[-100%]'" 
-class="h-full fixed z-[102]  left-[-120%] md:left-[-100%]
-  md:w-[360px]  w-full xs:w-9/12 flex flex-col gap-4
-     bg-white  top-0 transition-all duration-300 ">
+<div
+  q-panel="cart"
+  q-panel-position="left"   
+  q-panel-direction="left"    
+  class="hidden md:w-[360px] w-full xs:w-9/12 flex-col gap-4 bg-white"
+>
 
-    <div class="flex flex-col h-full">
+
+<span x-effect="console.log('sdfsdfsdf',cart)"></span>
+    <div class="flex flex-col h-[100vh]">
 
 
         <div class="flex bg-white border-b border-[#E5E6E6] justify-between p-4 sticky top-0">
             <div class=" flex  gap-2 items-center">
 
-                <span x-text="itemsCount"
+                <span x-text="cart?.items.length"
                     class="w-[18px] h-[18px] flex items-center justify-center bg-mainColor text-white">0</span>
                 <p class="text-[#313535] text-xl  font-bold">السلة</p>
 
             </div>
-            <button aria-label="فتح السلة"
+            <button q-close-panel="cart" aria-label="فتح السلة"
                 class=" bg-[#F5F6F6] border border-[#ECEEEE] w-[24px] h-[24px] flex items-center justify-center"
                 @click="toggle('cart')">
                 <i class="fi flex items-center fi-rr-cross-small"></i>
@@ -24,15 +27,15 @@ class="h-full fixed z-[102]  left-[-120%] md:left-[-100%]
 
 
 
-        <template x-if="cartLoading">
+        <div x-show="loading.cart">
             <div class="w-full h-full flex items-center justify-center absolute bg-black/15">
                 <qumra-loading loading-size="20px" loading={true}></qumra-loading>
             </div>
-        </template>
+        </div>
 
 
-        <template x-if="cart?.items && cart?.items.length > 0 && !cartLoading">
-            <div class="overflow-y-auto cart-scroll h-[100vh]">
+        <div x-show="cart?.items && cart?.items.length > 0 && !loading.cart">
+            <div class="overflow-y-auto cart-scroll h-full">
 
                 <div class="flex flex-col justify-between h-full">
 
@@ -84,16 +87,16 @@ class="h-full fixed z-[102]  left-[-120%] md:left-[-100%]
                     <div class="flex flex-col gap-6 py-6 px-4 border-t border-[#E5E6E6]">
                         <div class=" flex flex-col gap-4">
                             {# <div x-show="!cart.getCoupon" class="flex gap-3">
-                                <input :disabled="couponLoading" x-model="coupon" placeholder="أدخل كود الخصم "
+                                <input :disabled="loading.coupon" x-model="coupon" placeholder="أدخل كود الخصم "
                                     type="text"
                                     class="py-1 px-2 h-[40px] w-full outline-none rounded-mainRadius border border-[#E9E9E9]">
-                                <button :disabled="coupon.length === 0 || couponLoading"
+                                <button :disabled="coupon.length === 0 || loading.coupon"
                                     @click="window.Qumra.cart.redeemCode(coupon)"
                                     class="flex items-center justify-center h-[40px] px-6 rounded-mainRadius  bg-mainColor text-white">
-                                    <template x-if="couponLoading">
+                                    <template x-if="loading.coupon">
                                         <qumra-loading color="white" loading-size="20px" loading={true}></qumra-loading>
                                     </template>
-                                    <template x-if="!couponLoading">
+                                    <template x-if="!loading.coupon">
                                         <span>تطبيق</span>
                                     </template>
                                 </button>
@@ -132,12 +135,12 @@ class="h-full fixed z-[102]  left-[-120%] md:left-[-100%]
                                 </a>
                             {# </qumra-animation> #}
                             {# <qumra-animation always="false" animation="slide-bottom"> #}
-                                <button :disabled="checkoutLoading" aria-label="اتمام الطلب"
-                                    @click="Qumra.order.checkout()" :disabled="couponLoading"
-                                    :class="couponLoading ? 'bg-gray-400' : 'bg-mainColor'"
+                                <button :disabled="loading.checkout" aria-label="اتمام الطلب"
+                                    @click="Qumra.order.checkout()" :disabled="loading.coupon"
+                                    :class="loading.coupon ? 'bg-gray-400' : 'bg-mainColor'"
                                     class="py-2  rounded-mainRadius h-[42px] text-white w-full">
-                                    <span x-show="!checkoutLoading"> اتمام الطلب</span>
-                                    <template x-if="checkoutLoading">
+                                    <span x-show="!loading.checkout"> اتمام الطلب</span>
+                                    <template x-if="loading.checkout">
                                         <div class=" flex justify-center ">
                                             <qumra-loading color="white" loading-size="20px"
                                                 loading={true}></qumra-loading>
@@ -155,10 +158,10 @@ class="h-full fixed z-[102]  left-[-120%] md:left-[-100%]
                 </div>
             </div>
 
-        </template>
+        </div>
 
 
-        <template x-if="!cart?.items || cart?.items.length === 0 && !cartLoading">
+        <template x-if="!cart?.items || cart?.items.length === 0 && !loading.cart">
             <div class="flex items-center h-full justify-center  flex-col gap-10">
                 <div class="">
                     <a aria-label="latestproduct" href="/latest">
@@ -179,7 +182,3 @@ class="h-full fixed z-[102]  left-[-120%] md:left-[-100%]
 
     </div>
 </div>
-
-<!-- الخلفية السوداء (Overlay) -->
-<div x-show="Modal.open && Modal.type === 'cart'" @click="toggle('cart')"
-    class="bg-black bg-opacity-50 transition-all duration-300 fixed top-0 left-0 w-screen h-screen z-[101]"></div>
