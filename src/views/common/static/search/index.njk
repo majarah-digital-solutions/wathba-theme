@@ -1,37 +1,22 @@
-<div 
-    x-on:click="toggle('search')"
-    x-effect="if (!Modal.open && Modal.type === 'search' && window.location.pathname.includes('/search/?q=')) search = ''" 
-    :class="Modal.open && Modal.type === 'search' ? '!top-0' : '-top-full'"
-    class="w-screen md:h-[307px] h-[120px]  -top-full bg-white transition-all duration-500  fixed z-[9991] flex md:items-center justify-center"
->
+<div q-panel="search" q-panel-position="top" q-panel-direction="top" class=" hidden bg-white w-full relative md:h-1/2 max-md:h-max">
 
-    <div class="z-[9991]  md:py-0 py-6 bg-white relative w-full h-full flex md:items-center items-end justify-center">
-        <i 
-        class="absolute md:top-[60px] top-5 md:right-[60px] right-5 cursor-pointer text-black fi fi-rr-cross-small"></i>
-        
-            <div class=" md:w-8/12 w-full flex flex-col items-center md:items-start gap-8 ">
-     <div class=" text-2xl text-[#434A5B] md:block hidden">ما الذي تبحث عنه ؟</div>
-        <div x-on:click.stop class="w-11/12 h-[40px] md:bg-mainColor md:h-[70px]
-         items-center rounded-mainRadius justify-center md:p-2 md:pl-6 flex gap-4">
-            <input 
-                @keydown.enter="searchProducts(search)" 
-                x-model="search"
-                :value="window.__qumra__?.context.search?.q"
-                type="search"
-                placeholder="ابحث عن المنتجات..." 
-                class="flex-1 outline-none h-full  md:border-0 border border-[#E5E6E6] bg-white rounded-mainRadius py-3 px-6" 
-                type="text"
-            >
-            <div class="w-[40px] h-[40px] flex items-center justify-center bg-mainColor">
-                <i 
-                x-on:click="setSearch(search)" 
-                class="fi cursor-pointer flex self-center fi-rr-search text-2xl text-white"
-                ></i>
+    <div class="   max-md:pb-6 max-md:pt-3 bg-white relative w-full h-full flex flex-col gap-6 md:px-16 px-4 md:items-center items-end justify-center">
+        <i q-toggle="search"
+            class=" cursor-pointer self-start text-black fi text-xl fi-rr-cross-small"></i>
+
+        <div class=" md:w-8/12 w-full flex flex-col items-center md:items-start gap-8 ">
+            <div class=" text-2xl text-[#434A5B] md:block hidden">ما الذي تبحث عنه ؟</div>
+            <div class=" w-full h-[40px] md:bg-mainColor md:h-[70px]
+         items-center rounded-mainRadius justify-center md:p-2 md:pl-6 flex gap-2">
+                <input @keydown.enter="searchProducts(search)" x-model="search"
+                    :value="context.search?.q" type="search" placeholder="ابحث عن المنتجات..."
+                    class="flex-1 outline-none h-full  md:border-0 border border-[#E5E6E6] bg-white rounded-mainRadius py-3 px-3"
+                    type="text">
+                <div class="w-[40px] h-[40px] flex items-center justify-center bg-mainColor">
+                    <i x-on:click="setSearch(search)"
+                        class="fi cursor-pointer flex self-center fi-rr-search text-2xl text-white"></i>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<div class="w-full h-full blur-md backdrop-blur-sm bg-black/30    fixed duration-500 transition-all -bottom-full  z-[999] "
-:class="Modal.open && Modal.type === 'search' ? '!bottom-0' : '-bottom-full'"></div>
-</div>
-

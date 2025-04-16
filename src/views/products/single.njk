@@ -1,9 +1,8 @@
 {% extends "layouts/layout.njk" %}
-{% from "common/components/headers/index.njk" import titleSection %}
-
-
 {% block content %}
-<div class="min-h-screen flex flex-col gap-8 md:gap-40 container py-8 md:pt-[60px]">
+<script src="{{ 'product.js' | assets }}"></script>
+<div class="min-h-screen flex flex-col gap-8 md:gap-40 container py-8 md:pt-[60px]"
+    x-data="xDataproduct(context.product)">
 
     <div class=" flex flex-col gap-10 ">
         {# <div class=" flex flex-col gap-2">
@@ -14,7 +13,7 @@
 
             <div class="md:sticky md:top-20  md:col-span-2 ">
                 <div class="relative w-full">
-                    <qumra-slider :navigation-color="data.app.settings.mainColor">
+                    <qumra-slider :navigation="context.product.images.length > 1" :navigation-color="data.app.settings.mainColor">
                         <template x-for="image in context.product.images">
                             <qumra-slider-item navigationColor="#eb0000" class="rounded-lg"><img
                                     class="h-full w-full rounded-lg" style="object-fit: contain;max-height: 400px;"
@@ -26,8 +25,7 @@
             </div>
 
             <div class="md:col-span-3">
-                <form class="flex flex-col gap-6" enctype="multipart/form-data" method="post"
-                    onsubmit="return window.Qumra.forms.submit('product', event)">
+                <form class="flex flex-col gap-8" enctype="multipart/form-data" method="post" id="productForm">
                     <div class=" flex flex-col gap-2 ">
                         <input type="hidden" name="product" :value="context.product._id">
                         <h1 x-text="context.product.title" class="text-2xl font-bold  text-customBlack"></h1>
@@ -112,73 +110,69 @@
                     </div>
                     {%endif%}
 
-                     {# <div x-show="context.product.properties.length > 0"
-                        class="pt-6 border-t w-full font-bold  flex flex-col gap-2 items-center text-customBlack"
-                        style="border-color: #D9D9D9">
-                        <qumra-product-options class="w-full" :main-color="data.app.settings.mainColor"
-                            :product="context.product._id"
-                            :data="JSON.stringify(context.product.properties)"></qumra-product-options>
-                    </div> #}
- 
-
-
-
-
-
                     <div class="flex flex-col gap-4">
                         <div x-show="!context.product?.privatePrice"
                             class="pt-6  border-t font-bold  border-[#D9D9D9]    flex md:flex-row flex-col items-center gap-3">
                             <div class=" flex gap-4 items-center w-full md:w-7/12  ">
 
-                                <div class=" w-1/2 h-[50px] md:h-[40px]">
-                                    <span x-effect="console.log('tsest',context.product.minQuantity)"></span>
-                                    <qumra-quantity-input :min="context.product.minQuantity"
-                                        :max="context.product.maxQuantity === undefined ? context.product.stock.quantity : context.product.maxQuantity "
-                                        :size="100%" :name="quantity" :stock="context.product.stock.quantity"
-                                        :value="context.product.minQuantity">
+                                <div class=" flex  w-1/2 h-[50px] md:h-[40px] items-center gap-2">
+                                    <span
+                                        class="flex w-full h-full items-center justify-center border rounded-mainRadius border-[#E5E5E5] cursor-pointer"
+                                        @click="decreaseCartItem(quntity)">
+                                        <i class="fi text-lg fi-rr-minus-small"></i>
+                                    </span>
 
-                                    </qumra-quantity-input>
+                                    <input name="quantity" step="1" :value="quntity" min="1"
+                                        class="w-full h-full bg-[#F3F3F3] text-center rounded-mainRadius flex items-center justify-center"></input>
+
+                                    <span
+                                        class="flex w-full h-full items-center justify-center border rounded-mainRadius border-[#E5E5E5] cursor-pointer"
+                                        @click="increaseCartItem(quntity)">
+                                        <i class="fi text-lg fi-rr-plus-small"></i>
+                                    </span>
+
                                 </div>
                                 <div class=" w-1/2">
-                                    <button aria-label="إضافة إلى السلة" type="submit" name="addToCart"
-                                        value="addToCart"
+                                    <button id="addToCartBtn" type="submit" name="addToCart" value="addToCart"
                                         class=" border-mainColor border w-full text-nowrap rounded-mainRadius flex justify-center items-center px-4 h-[50px]  ">
-                                        <template x-if="cartLoading">
-                                            <qumra-loading loading-size="20px" loading={true}></qumra-loading>
-                                        </template>
-                                        <template x-if="!cartLoading">
-                                            <div
-                                                class=" text-mainColor flex gap-2 items-center font-bold justify-center">
-                                                <i class="fi flex items-center text-mainColor fi-rr-shopping-cart"></i>
-                                                اضافة للسلة
-                                            </div>
-                                        </template>
+                                        <span id="addToCartLoader" style="display: none;">
+                                            <svg class="animate-spin h-5 w-5 text-mainColor"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                                    stroke-width="4"></circle>
+                                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z">
+                                                </path>
+                                            </svg>
+                                        </span>
+
+                                        <span id="addToCartText">إضافة للسلة</span>
                                     </button>
                                 </div>
                             </div>
-                            <button aria-label="اشتري الان" type="submit" name="buyNow" value="buyNow" class=" bg-mainColor md:w-5/12 w-full   text-white  font-bold rounded-mainRadius 
+                            <button id="buyNowBtn" aria-label="اشتري الان" type="submit" name="buyNow" value="buyNow"
+                                class=" bg-mainColor md:w-5/12 w-full   text-white  font-bold rounded-mainRadius 
                             flex items-center px-4 h-[50px]  justify-center">
-                                <span x-show="!buyNowLoading">اشترى الان</span>
-                                    <div x-show="buyNowLoading" class=" flex justify-center ">
-                                        <qumra-loading color="white" loading-size="20px"
-                                            loading={true}></qumra-loading>
-                                    </div>
+                                <span id="buyNowText">اشترى الآن</span>
+                                <span id="buyNowLoader" style="display: none;">
+                                    <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                            stroke-width="4" />
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+                                    </svg>
+                                </span>
                             </button>
                         </div>
                         <template x-if="context.product?.privatePrice">
-                            <div class="flex items-center justify-between gap-3 w-full" x-data="{ localType: null }">
+                            <div class="flex items-center justify-between gap-3 w-full">
                                 <span
                                     x-effect="console.log('test', priceAtCallLoading, priceAfterCall, localType)"></span>
 
-                                <button type="button" @click="
-                                        localType = 'whatsapp'; 
-                                        window.Qumra.product.productPriceAtCall('whatsapp').then(response => {
-                                            localType = response?.type;
-                                        }).catch(() => localType = null);
-                                    " aria-label="تواصل الان" value="buyNow"
-                                    class="bg-mainColor w-full flex items-center px-4 h-[50px] justify-center text-white font-bold rounded-mainRadius">
-
-                                    <template x-if="!priceAtCallLoading || localType !== 'whatsapp'">
+                                <button type="button" @click="priceAtCallMethod('whatsapp')" aria-label="تواصل الان"
+                                    value="buyNow"
+                                    class="bg-mainColor w-full flex items-center px-4 h-[50px] justify-center text-white font-bold rounded-mainRadius"
+                                    8>
+                                    <template x-if="!(loading.priceAtCallWhatsApp && localType === 'whatsapp')">
                                         <div class="flex items-center w-full gap-2 h-[50px] justify-center">
                                             <svg width="20" height="20" viewBox="0 0 19 19" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -190,35 +184,30 @@
                                         </div>
                                     </template>
 
-                                    <template x-if="priceAtCallLoading && localType === 'whatsapp'">
-                                        <qumra-loading borderType='dashed' color="white" loading-size="20px"
-                                            loading={true}></qumra-loading>
+                                    <template x-if="loading.priceAtCallWhatsApp && localType === 'whatsapp'">
+                                        <qumra-loading borderType="dashed" color="white" loading-size="20px"
+                                            loading="true"></qumra-loading>
                                     </template>
                                 </button>
-                                <button @click="
-                                        localType = 'call'; 
-                                        window.Qumra.product.productPriceAtCall('call').then(response => {
-                                            localType = response?.type;
-                                        }).catch(() => localType = null);
-                                    " type="button" x-show="data?.app?.socialMedia?.phone" target="_blank"
-                                    aria-label="تواصل الان" value="buyNow"
-                                    class="bg-mainColor w-full text-white font-bold rounded-mainRadius flex items-center px-4 h-[50px] justify-center">
 
-                                    <template x-if="!priceAtCallLoading || localType !== 'call'">
+                                <button type="button" @click="priceAtCallMethod('call');"
+                                    x-show="data?.app?.socialMedia?.phone" target="_blank" aria-label="تواصل الان"
+                                    value="buyNow"
+                                    class="bg-mainColor w-full text-white font-bold rounded-mainRadius flex items-center px-4 h-[50px] justify-center">
+                                    <template x-if="!(loading.priceAtCall && localType === 'call')">
                                         <div class="flex items-center h-[50px] w-full gap-2 justify-center">
                                             <i class="fi flex items-center fi-rr-phone-call text-white"></i>
                                             تواصل الان phone
                                         </div>
                                     </template>
 
-                                    <template x-if="priceAtCallLoading && localType === 'call'">
-                                        <qumra-loading borderType='dashed' color="white" loading-size="20px"
-                                            loading={true}></qumra-loading>
+                                    <template x-if="loading.priceAtCall && localType === 'call'">
+                                        <qumra-loading borderType="dashed" color="white" loading-size="20px"
+                                            loading="true"></qumra-loading>
                                     </template>
                                 </button>
                             </div>
                         </template>
-
 
                     </div>
                 </form>
@@ -232,26 +221,21 @@
             <h2 class=" font-bold text-2xl text-customBlack">منتجات مشابهة</h2>
             <a aria-label="moreofProductmore" href="/latest" class=" font-bold text-md text-mainColor">عرض المزيد</a>
         </div>
-        {# <qumra-animation always="true" animation="slide-bottom fade"> #}
-            <div class="relative w-full">
-                <qumra-slider-multi :navigation-color="data.app.settings.mainColor" :slides-per-view="5"
-                    :space-between="10">
-                    <template x-for="item in context.relatedProducts.results" :key="item.id">
-                        <qumra-slider-item>
-                            <qumra-product-card :product="JSON.stringify(item)"></qumra-product-card>
-                        </qumra-slider-item>
-                    </template>
+        <div class="relative w-full">
+            <qumra-slider-multi  :navigation-color="data.app.settings.mainColor" :slides-per-view="5"
+                :space-between="10">
+                <template x-for="item in context.relatedProducts.results" :key="item.id">
+                    <qumra-slider-item>
+                        <qumra-product-card :product="JSON.stringify(item)"></qumra-product-card>
+                    </qumra-slider-item>
+                </template>
 
-                </qumra-slider-multi>
-            </div>
-            {#
-        </qumra-animation> #}
+            </qumra-slider-multi>
+        </div>
 
     </div>
 
 </div>
-
-
 
 
 {% endblock %}

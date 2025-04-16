@@ -4,8 +4,8 @@
         this.IsOpen[title] = !this.IsOpen[title];
     },
 }">
-    <div x-show="filterData?.filters?.properties?.text?.length > 0" class="flex flex-col gap-4">
-        <template x-for="group in filterData?.filters?.properties?.text" :key="group.title">
+    <div x-show="context.filters.properties.text.length > 0" class="flex flex-col gap-4">
+        <template x-for="group in context.filters.properties.text" :key="group.title">
             <div class="rounded-lg border border-[#E5E5E5] p-4 flex flex-col items-start gap-3">
                 <div @click="toggleGroup(group.title)" class="w-full flex items-center justify-between cursor-pointer">
                     <span x-text="group.title" class="font-semibold text-[#434A5B]"></span>
@@ -19,7 +19,7 @@
                 </div>
                 <div x-show="IsOpen[group.title]" x-collapse class="w-max grid grid-cols-3 gap-2">
                     <template x-for="c in group.data" :key="c.id">
-                        <div @click="addFilter('texts', c.id)"
+                        <div @click="addFilter('texts', c)"
                             :class="isSelected('texts', c.id) ? 'border-mainColor' : 'border-[#E5E5E5]'"
                             class="cursor-pointer flex gap-1 items-center py-1 px-[10px] rounded-full border transition">
                             <div class="w-max">
